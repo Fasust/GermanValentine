@@ -7,18 +7,21 @@ public class playerMovement : MonoBehaviour
 {
 	public CharacterController2D controller;
 
-	//Finals
+	[Header("Movement")]
 	public float runSpeed = 40f;
-	public float sprintMultiplier = 1.5f;
-	public float moveSensetivety = .2f;
-	public float sneakSensetivety = .5f;
+	public float carryMultiplier = 1.5f;
 
-	//Animation
+	[Header("Animation")]
 	public Animator playerAnimator;
 	public GameObject particalEffect;
 
-	//Input
+	[Header("Input")]
 	public Joystick joystick;
+	public float moveSensetivety = .2f;
+	public float sneakSensetivety = .5f;
+
+	[Header("Hiding")]
+	public LayerMask hideMask;
 
 	private float horizontalMove = 0f;
 	private bool sneak = false;
@@ -65,8 +68,6 @@ public class playerMovement : MonoBehaviour
 		//Update Animator-----------------------------------------------------
 		playerAnimator.SetFloat("speed", Mathf.Abs(horizontalMove));
 		playerAnimator.SetBool("sneak", sneak);
-
-
 	}
 
 	void FixedUpdate() {
@@ -74,6 +75,7 @@ public class playerMovement : MonoBehaviour
 		//Get Animation States
 		bool chopping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop");
 		bool carrying = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying");
+		bool beingATree = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
 
 		//Special cases ----------------------------------------------
 
@@ -83,15 +85,19 @@ public class playerMovement : MonoBehaviour
 			horizontalMove = 0;
 		}
 
-		//When Carrying Block Sneaking and Display Leaves
+		//When Carrying Display Leaves and make immobile when sneaking
 		if (carrying)
 		{
-			sneak = false;
 			if (!particelsActive)
 			{
 				particalEffect.GetComponent<ParticleSystem>().Play();
 				particelsActive = true;
 			}
+		}
+
+		if (beingATree)
+		{
+			horizontalMove = 0;
 		}
 
 		//Movement -----------------------------------------------------
@@ -126,8 +132,23 @@ public class playerMovement : MonoBehaviour
 	public void makeCarry()
 	{
 		
-		runSpeed *= sprintMultiplier;
+		runSpeed *= carryMultiplier;
 		playerAnimator.SetTrigger("carrying");
+
+	}
+
+	public bool isSneaking()
+	{
+		return sneak;
+	}
+
+	public bool isHidden()
+	{
+		return sneak && GetComponent<Collider2D>().IsTouchingLayers(hideMask);
+	}
+
+	public void detect()
+	{
 
 	}
 

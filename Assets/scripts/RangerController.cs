@@ -3,16 +3,20 @@ using System.Collections;
 
 public class RangerController : MonoBehaviour
 {
-
-	private Vector3 initialPosition;
-
-	private float velocity;
+	
+	[Header("Movement")]
 	public bool isFacingRight = true;
-
-	//Finals
 	public float rigthMoveDistance = 1000;
 	public float leftMoveDistance = 1000;
 	public float movingSpeed = 100;
+
+	private Vector3 initialPosition;
+	private float velocity;
+
+	[Header("Detection")]
+	public float lightRange;
+	public Transform lightPos;
+	public LayerMask playerMask;
 
 	void Start()
 	{
@@ -23,6 +27,25 @@ public class RangerController : MonoBehaviour
 	}
 
 	void Update()
+	{
+		//Detection ---------------------------------
+		Collider2D[] playerColliders = Physics2D.OverlapCircleAll(lightPos.position, lightRange, playerMask);
+	
+		foreach (Collider2D col in playerColliders)
+		{
+
+			bool hidden = col.GetComponent<playerMovement>().isHidden();
+
+			if (!hidden){
+				
+			}
+
+		}
+
+		regularMove();
+	}
+
+	private void regularMove()
 	{
 		switch (isFacingRight)
 		{
@@ -55,6 +78,7 @@ public class RangerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		//Applie Movement
 		GetComponent<Rigidbody2D>().velocity = new Vector2(velocity * Time.fixedDeltaTime * 100, GetComponent<Rigidbody2D>().velocity.y);
 		
 	}
@@ -63,6 +87,12 @@ public class RangerController : MonoBehaviour
 	{
 		transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 		isFacingRight = transform.localScale.x > 0;
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawWireSphere(lightPos.position, lightRange);
 	}
 
 }
