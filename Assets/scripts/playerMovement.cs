@@ -26,8 +26,8 @@ public class playerMovement : MonoBehaviour
 	private float horizontalMove = 0f;
 	private bool sneak = false;
 	private bool soundPlaying = false;
-	private bool particelsActive = false;
 	private bool detectedAnimationStarted = false;
+	private bool hidenSoundPlayed = false;
 
 
 	private void Start()
@@ -37,7 +37,6 @@ public class playerMovement : MonoBehaviour
 
 	void Update()
 	{
-
 		// Movement -------------------------------------------------------
 		horizontalMove = joystick.Horizontal;
 		if(Mathf.Abs(joystick.Horizontal) >= moveSensetivety)
@@ -75,7 +74,6 @@ public class playerMovement : MonoBehaviour
 
 		//Get Animation States
 		bool chopping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop");
-		bool carrying = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying");
 		bool beingATree = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
 		bool detected = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_detected");
 
@@ -84,16 +82,6 @@ public class playerMovement : MonoBehaviour
 		if (chopping || beingATree || detected)
 		{
 			horizontalMove = 0;
-		}
-
-		//When Carrying Display Leaves and make immobile when sneaking
-		if (carrying)
-		{
-			if (!particelsActive)
-			{
-				particalEffect.GetComponent<ParticleSystem>().Play();
-				particelsActive = true;
-			}
 		}
 
 		//Movement -----------------------------------------------------
@@ -122,25 +110,24 @@ public class playerMovement : MonoBehaviour
 			soundPlaying = false;
 			FindObjectOfType<AudioManager>().stop("Step");
 		}
-
 	}
 
 	public void makeCarry()
 	{
-		
 		runSpeed *= carryMultiplier;
 		playerAnimator.SetTrigger("carrying");
+		FindObjectOfType<AudioManager>().play("Pickup");
 
+		//Particels
+		particalEffect.GetComponent<ParticleSystem>().Play();
 	}
 
-	public bool isSneaking()
-	{
+	public bool isSneaking(){
 		return sneak;
 	}
 
-	public bool isHidden()
-	{
-		return sneak && GetComponent<Collider2D>().IsTouchingLayers(hideMask);
+	public bool isHidden(){
+		return isSneaking() && GetComponent<Collider2D>().IsTouchingLayers(hideMask);
 	}
 
 	public void detect()
@@ -148,6 +135,8 @@ public class playerMovement : MonoBehaviour
 		if (!detectedAnimationStarted)
 		{
 			playerAnimator.SetTrigger("detect");
+			FindObjectOfType<AudioManager>().play("Gameover");
+			particalEffect.GetComponent<ParticleSystem>().Stop();
 			detectedAnimationStarted = true;
 		}
 		
