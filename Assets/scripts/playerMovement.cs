@@ -27,6 +27,7 @@ public class playerMovement : MonoBehaviour
 	private bool sneak = false;
 	private bool soundPlaying = false;
 	private bool particelsActive = false;
+	private bool detectedAnimationStarted = false;
 
 
 	private void Start()
@@ -76,11 +77,11 @@ public class playerMovement : MonoBehaviour
 		bool chopping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop");
 		bool carrying = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying");
 		bool beingATree = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
+		bool detected = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_detected");
 
 		//Special cases ----------------------------------------------
 
-		//When Chopping block the movement
-		if (chopping)
+		if (chopping || beingATree || detected)
 		{
 			horizontalMove = 0;
 		}
@@ -93,11 +94,6 @@ public class playerMovement : MonoBehaviour
 				particalEffect.GetComponent<ParticleSystem>().Play();
 				particelsActive = true;
 			}
-		}
-
-		if (beingATree)
-		{
-			horizontalMove = 0;
 		}
 
 		//Movement -----------------------------------------------------
@@ -149,7 +145,12 @@ public class playerMovement : MonoBehaviour
 
 	public void detect()
 	{
-
+		if (!detectedAnimationStarted)
+		{
+			playerAnimator.SetTrigger("detect");
+			detectedAnimationStarted = true;
+		}
+		
 	}
 
 }

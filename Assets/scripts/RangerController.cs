@@ -6,6 +6,7 @@ public class RangerController : MonoBehaviour
 	
 	[Header("Movement")]
 	public bool isFacingRight = true;
+	private bool nowSearching = false;
 	public float rigthMoveDistance = 1000;
 	public float leftMoveDistance = 1000;
 	public float movingSpeed = 100;
@@ -18,8 +19,16 @@ public class RangerController : MonoBehaviour
 	public Transform lightPos;
 	public LayerMask playerMask;
 
+	[Header("Visual")]
+	public Animator rangerAnimator;
+	public Canvas display;
+
+	[Header("Sound")]
+	public AudioSource walkingSource;
+
 	void Start()
 	{
+		display.enabled = false;
 		initialPosition = transform.position;
 
 		rigthMoveDistance = initialPosition.x + rigthMoveDistance;
@@ -33,11 +42,15 @@ public class RangerController : MonoBehaviour
 	
 		foreach (Collider2D col in playerColliders)
 		{
+			playerMovement player = col.GetComponent<playerMovement>();
 
-			bool hidden = col.GetComponent<playerMovement>().isHidden();
-
-			if (!hidden){
-				
+			if (!player.isHidden()){
+				rangerAnimator.SetTrigger("detect");
+				player.detect();
+				display.enabled = true;
+				velocity = 0;
+				walkingSource.Stop();
+				return;
 			}
 
 		}
@@ -58,7 +71,7 @@ public class RangerController : MonoBehaviour
 				else
 				{
 					flip();
-					isFacingRight = false;
+					
 				}
 				break;
 			case false:
@@ -70,7 +83,7 @@ public class RangerController : MonoBehaviour
 				else
 				{
 					flip();
-					isFacingRight = true;
+				
 				}
 				break;
 		}
@@ -85,8 +98,31 @@ public class RangerController : MonoBehaviour
 
 	public void flip()
 	{
-		transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-		isFacingRight = transform.localScale.x > 0;
+		if (!nowSearching)
+		{
+			nowSearching = true;
+			rangerAnimator.SetTrigger("search");
+			walkingSource.Stop();
+			velocity = 0;
+			return;
+		}
+
+		if (!rangerAnimator.GetCurrentAnimatorStateInfo(0).IsName("ranger_searching"))
+		{
+
+			transform.localScale =
+				new Vector3(
+					-transform.localScale.x,
+					+transform.localScale.y,
+					+transform.localScale.z);
+
+			isFacingRight = transform.localScale.x > 0;
+
+			walkingSource.Play();
+			nowSearching = false;
+
+		}
+	
 	}
 
 	private void OnDrawGizmosSelected()

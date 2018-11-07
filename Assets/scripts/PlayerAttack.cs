@@ -24,7 +24,8 @@ public class PlayerAttack : MonoBehaviour {
 		//Play Once per Attack Animation
 		if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop") &&
 			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying") &&
-			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_idel"))
+			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_idel") &&
+			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_detected"))
 		{
             
 			//Animation
