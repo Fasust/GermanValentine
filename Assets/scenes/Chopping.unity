@@ -6671,7 +6671,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4856551262959516, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.2
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 4856551262959516, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6724,6 +6724,19 @@ Prefab:
     - target: {fileID: 1361627091041352, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114365742681097078, guid: 4d3b4a4fac48b244b9fad422b75a1ce7,
+        type: 2}
+      propertyPath: lightRange
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480771473456760, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480771473456760, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
@@ -11591,7 +11604,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1145799792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.93, y: -0.75, z: 0}
+  m_LocalPosition: {x: 0.528, y: -0.302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 766638300}
@@ -11813,6 +11826,19 @@ Prefab:
         type: 2}
       propertyPath: leftMoveDistance
       value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 114365742681097078, guid: 4d3b4a4fac48b244b9fad422b75a1ce7,
+        type: 2}
+      propertyPath: lightRange
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480771473456760, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480771473456760, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
@@ -13399,7 +13425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2033382911}
-  runSpeed: 50
+  runSpeed: 45
   carryMultiplier: 1
   playerAnimator: {fileID: 2033382905}
   particalEffect: {fileID: 823251531}

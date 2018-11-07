@@ -60,19 +60,19 @@ public class playerMovement : MonoBehaviour
 			horizontalMove = 0;
 		}
 		//Jump --------------------------------------------------------------
-		bool landing = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_idel_land") ||
+		bool jumping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_idel_land") ||
 			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_right_land") ||
 			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_jump") ||
 			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
 			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump");
 
-		if (joystick.Vertical >= jumpSensetivety&& !landing)
+		if (joystick.Vertical >= jumpSensetivety&& !jumping)
 		{
 			jump = true;
 		}
 
 		//Sneak -------------------------------------------------------------
-		if (joystick.Vertical <= sneakSensetivety)
+		if (joystick.Vertical <= sneakSensetivety && !jumping)
 		{
 			sneak = true;
 		}
@@ -100,6 +100,11 @@ public class playerMovement : MonoBehaviour
 		if (chopping || beingATree || detected)
 		{
 			horizontalMove = 0;
+		}
+
+		if (detected)
+		{
+			jump = false;
 		}
 
 		//Movement -----------------------------------------------------
