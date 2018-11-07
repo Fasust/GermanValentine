@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour
 {
@@ -14,25 +15,29 @@ public class playerMovement : MonoBehaviour
 	[Header("Animation")]
 	public Animator playerAnimator;
 	public GameObject particalEffect;
+	private camShake camShake;
 
 	[Header("Input")]
 	public Joystick joystick;
 	public float moveSensetivety = .2f;
 	public float sneakSensetivety = .5f;
+	public float jumpSensetivety = .5f;
 
 	[Header("Hiding")]
 	public LayerMask hideMask;
 
 	private float horizontalMove = 0f;
 	private bool sneak = false;
+	private bool jump = false;
 	private bool soundPlaying = false;
 	private bool detectedAnimationStarted = false;
-	private bool hidenSoundPlayed = false;
+	private bool jumpSoundPlaying = false;
 
 
 	private void Start()
 	{
 		particalEffect.GetComponent<ParticleSystem>().Stop();
+		camShake = GameObject.FindGameObjectWithTag("CamController").GetComponent<camShake>();
 	}
 
 	void Update()
@@ -54,9 +59,20 @@ public class playerMovement : MonoBehaviour
 		{
 			horizontalMove = 0;
 		}
-		
+		//Jump --------------------------------------------------------------
+		bool landing = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_idel_land") ||
+			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_right_land") ||
+			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_jump") ||
+			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
+			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump");
+
+		if (joystick.Vertical >= jumpSensetivety&& !landing)
+		{
+			jump = true;
+		}
+
 		//Sneak -------------------------------------------------------------
-		if(joystick.Vertical <= sneakSensetivety)
+		if (joystick.Vertical <= sneakSensetivety)
 		{
 			sneak = true;
 		}
@@ -68,7 +84,9 @@ public class playerMovement : MonoBehaviour
 		//Update Animator-----------------------------------------------------
 		playerAnimator.SetFloat("speed", Mathf.Abs(horizontalMove));
 		playerAnimator.SetBool("sneak", sneak);
+		playerAnimator.SetBool("jump",jump);
 	}
+
 
 	void FixedUpdate() {
 
@@ -86,7 +104,7 @@ public class playerMovement : MonoBehaviour
 
 		//Movement -----------------------------------------------------
 
-		controller.Move(horizontalMove * runSpeed * Time.fixedDeltaTime, sneak, false);
+		controller.Move(horizontalMove * runSpeed * Time.fixedDeltaTime, sneak, jump);
 
 		//Sound --------------------------------------------------------
 		if (horizontalMove != 0)
@@ -103,13 +121,31 @@ public class playerMovement : MonoBehaviour
 			soundPlaying = false;
 			FindObjectOfType<AudioManager>().stop("Step");
 		}
+
+		if (jump && !jumpSoundPlaying)
+		{
+			jumpSoundPlaying = true;
+			FindObjectOfType<AudioManager>().play("Jump");
+		}
 	
-		//End Step Sound when sneaking
-		if (sneak)
+		if (sneak || jump)
 		{
 			soundPlaying = false;
 			FindObjectOfType<AudioManager>().stop("Step");
 		}
+	}
+
+	public void onLand()
+	{
+		jump = false;
+		jumpSoundPlaying = false;
+		playerAnimator.SetBool("jump", jump);
+
+		//screen shake
+		camShake.shakeTiny();
+
+		//sound
+		FindObjectOfType<AudioManager>().play("Land");
 	}
 
 	public void makeCarry()

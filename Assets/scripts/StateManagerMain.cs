@@ -8,7 +8,7 @@ public class StateManagerMain : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		FindObjectOfType<AudioManager>().play("Background");
+		//FindObjectOfType<AudioManager>().play("Background");
 	}
 
 }
