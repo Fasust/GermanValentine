@@ -9,6 +9,9 @@ public class PickUpMain : MonoBehaviour {
 	public Transform zonePosition;
 	public LayerMask playerMask;
 
+	[Header("Visuals")]
+	public Animator carAnimator;
+
 	private bool playingWinSound = false;
 
 	// Use this for initialization
@@ -35,8 +38,10 @@ public class PickUpMain : MonoBehaviour {
 
 	void gameWin()
 	{
+		
 		if (!playingWinSound)
 		{
+			carAnimator.SetTrigger("drive");
 			FindObjectOfType<AudioManager>().play("Win");
 			playingWinSound = true;
 		}

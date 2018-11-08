@@ -40,6 +40,7 @@ public class playerMovement : MonoBehaviour
 		particalEffect.GetComponent<ParticleSystem>().Stop();
 		camShake = GameObject.FindGameObjectWithTag("CamController").GetComponent<camShake>();
 		hiddenDisplay.enabled = false;
+		
 	}
 
 	void Update()
