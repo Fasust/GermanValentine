@@ -83,10 +83,9 @@ public class playerMovement : MonoBehaviour
 			sneak = false;
 		}
 
-		//Hidden Display------------------------------------------------------
+		//Display------------------------------------------------------
 		
 		hiddenDisplay.enabled = isHidden();
-	
 
 		//Update Animator-----------------------------------------------------
 		playerAnimator.SetFloat("speed", Mathf.Abs(horizontalMove));
@@ -112,6 +111,7 @@ public class playerMovement : MonoBehaviour
 		if (detected)
 		{
 			jump = false;
+			sneak = false;
 		}
 
 		//Movement -----------------------------------------------------
@@ -194,5 +194,4 @@ public class playerMovement : MonoBehaviour
 		return playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying") ||
 		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
 	}
-
 }
