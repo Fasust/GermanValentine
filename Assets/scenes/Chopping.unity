@@ -13216,6 +13216,7 @@ GameObject:
   - component: {fileID: 1953395216}
   - component: {fileID: 1953395215}
   - component: {fileID: 1953395214}
+  - component: {fileID: 1953395217}
   m_Layer: 5
   m_Name: Hidden Display
   m_TagString: Untagged
@@ -13299,6 +13300,24 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!95 &1953395217
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1953395212}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a52596465512464ea764ea632257c1a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1967831796
 GameObject:
   m_ObjectHideFlags: 0
