@@ -12,9 +12,10 @@ public class playerMovement : MonoBehaviour
 	public float runSpeed = 40f;
 	public float carryMultiplier = 1.5f;
 
-	[Header("Animation")]
+	[Header("Visuals")]
 	public Animator playerAnimator;
 	public GameObject particalEffect;
+	public Canvas hiddenDisplay;
 	private camShake camShake;
 
 	[Header("Input")]
@@ -38,6 +39,7 @@ public class playerMovement : MonoBehaviour
 	{
 		particalEffect.GetComponent<ParticleSystem>().Stop();
 		camShake = GameObject.FindGameObjectWithTag("CamController").GetComponent<camShake>();
+		hiddenDisplay.enabled = false;
 	}
 
 	void Update()
@@ -80,6 +82,11 @@ public class playerMovement : MonoBehaviour
 		{
 			sneak = false;
 		}
+
+		//Hidden Display------------------------------------------------------
+		
+		hiddenDisplay.enabled = isHidden();
+	
 
 		//Update Animator-----------------------------------------------------
 		playerAnimator.SetFloat("speed", Mathf.Abs(horizontalMove));
