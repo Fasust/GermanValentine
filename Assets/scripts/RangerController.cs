@@ -32,6 +32,7 @@ public class RangerController : MonoBehaviour
 	[Header("Sound")]
 	public AudioSource walkingSource;
 	private bool walkingSoundPlaying = false;
+	private bool searchSoundPlaying = false;
 
 	void Start()
 	{
@@ -67,11 +68,16 @@ public class RangerController : MonoBehaviour
 		}
 		else
 		{
+			//Sound
 			if (!walkingSoundPlaying)
 			{
 				walkingSource.Play();
 				walkingSoundPlaying = true;
 			}
+			FindObjectOfType<AudioManager>().stop("Searching");
+			searchSoundPlaying = false;
+
+			//Visual
 			rangerAnimator.SetBool("detecting", false);
 			searchingDisplay.enabled = false;
 			currentSearchingTime = 0;
@@ -87,6 +93,12 @@ public class RangerController : MonoBehaviour
 		//Sound
 		walkingSource.Stop();
 		walkingSoundPlaying = false;
+		if (!searchSoundPlaying)
+		{
+			FindObjectOfType<AudioManager>().play("Searching");
+			searchSoundPlaying = true;
+		}
+		
 
 		//Visuals
 		rangerAnimator.SetBool("detecting",true);
