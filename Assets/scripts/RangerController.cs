@@ -35,6 +35,7 @@ public class RangerController : MonoBehaviour
 
 	[Header("Sound")]
 	public AudioSource walkingSource;
+	public AudioSource searchSound;
 	private bool walkingSoundPlaying = false;
 	private bool searchSoundPlaying = false;
 
@@ -49,6 +50,11 @@ public class RangerController : MonoBehaviour
 	}
 	void Update()
 	{
+		if (rangerAnimator.GetCurrentAnimatorStateInfo(0).IsName("ranger_right_detected"))
+		{
+			return;
+		}
+
 		//Detection ---------------------------------
 		Collider2D[] playerColliders = Physics2D.OverlapCircleAll(lightPos.position, lightRange, playerMask);
 		playerMovement player = null;
@@ -90,7 +96,7 @@ public class RangerController : MonoBehaviour
 		walkingSoundPlaying = false;
 		if (!searchSoundPlaying)
 		{
-			FindObjectOfType<AudioManager>().play("Searching");
+			searchSound.Play();
 			searchSoundPlaying = true;
 		}
 		
@@ -153,7 +159,7 @@ public class RangerController : MonoBehaviour
 			walkingSource.Play();
 			walkingSoundPlaying = true;
 		}
-		FindObjectOfType<AudioManager>().stop("Searching");
+		searchSound.Stop();
 		searchSoundPlaying = false;
 
 		//Visual
