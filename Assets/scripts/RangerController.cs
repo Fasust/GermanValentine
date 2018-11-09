@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class RangerController : MonoBehaviour
 {
@@ -18,17 +19,24 @@ public class RangerController : MonoBehaviour
 	public float lightRange;
 	public Transform lightPos;
 	public LayerMask playerMask;
+	public float SERACHING_TIME = 1;
+	private float currentSearchingTime;
+	private bool detecting = false;
 
 	[Header("Visual")]
 	public Animator rangerAnimator;
-	public Canvas display;
+	public Canvas alertDisplay;
+	public Canvas searchingDisplay;
+	public Image searchingBar;
 
 	[Header("Sound")]
 	public AudioSource walkingSource;
+	private bool walkingSoundPlaying = false;
 
 	void Start()
 	{
-		display.enabled = false;
+		alertDisplay.enabled = false;
+		searchingDisplay.enabled = false;
 		initialPosition = transform.position;
 
 		rigthMoveDistance = initialPosition.x + rigthMoveDistance;
@@ -39,23 +47,76 @@ public class RangerController : MonoBehaviour
 	{
 		//Detection ---------------------------------
 		Collider2D[] playerColliders = Physics2D.OverlapCircleAll(lightPos.position, lightRange, playerMask);
-	
+		playerMovement player = null;
+
+		detecting = false;
 		foreach (Collider2D col in playerColliders)
 		{
-			playerMovement player = col.GetComponent<playerMovement>();
+			player = col.GetComponent<playerMovement>();
 
 			if (!player.isHidden()){
-				rangerAnimator.SetTrigger("detect");
-				player.detect();
-				display.enabled = true;
-				velocity = 0;
-				walkingSource.Stop();
-				return;
+				detecting = true;
 			}
 
 		}
 
-		regularMove();
+		if (detecting)
+		{
+			//Searching-----------------------------
+			searchForPlayer(player);
+		}
+		else
+		{
+			if (!walkingSoundPlaying)
+			{
+				walkingSource.Play();
+				walkingSoundPlaying = true;
+			}
+			rangerAnimator.SetBool("detecting", false);
+			searchingDisplay.enabled = false;
+			currentSearchingTime = 0;
+
+			//Move ----------------------------------
+			regularMove();
+		}
+		
+	}
+
+	private void searchForPlayer(playerMovement player)
+	{
+		//Sound
+		walkingSource.Stop();
+		walkingSoundPlaying = false;
+
+		//Visuals
+		rangerAnimator.SetBool("detecting",true);
+		searchingDisplay.enabled = true;
+
+		//Movement
+		velocity = 0;
+		
+		//Timeing
+		currentSearchingTime += Time.deltaTime;
+		float progress = currentSearchingTime / SERACHING_TIME;
+		searchingBar.fillAmount = progress;
+
+		float greenValue = 255 - (progress * 255);
+
+		searchingBar.color = new Color32(255, (byte) greenValue, 0, 255);
+
+		if (currentSearchingTime >= SERACHING_TIME)
+		{
+			searchingDisplay.enabled = false;
+			detect(player);
+		}
+}
+
+	private void detect(playerMovement player)
+	{
+		rangerAnimator.SetTrigger("detect");
+		player.detect();
+		alertDisplay.enabled = true;
+		
 	}
 
 	private void regularMove()
