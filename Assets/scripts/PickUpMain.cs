@@ -41,7 +41,7 @@ public class PickUpMain : MonoBehaviour {
 		
 		if (!playingWinSound)
 		{
-			carAnimator.SetTrigger("drive");
+			//carAnimator.SetTrigger("drive");
 			FindObjectOfType<AudioManager>().play("Win");
 			playingWinSound = true;
 		}
