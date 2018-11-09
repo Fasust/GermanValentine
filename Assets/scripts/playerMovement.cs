@@ -199,6 +199,9 @@ public class playerMovement : MonoBehaviour
 	public bool hasTree()
 	{
 		return playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying") ||
+		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_idel") ||
+		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
+		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump") ||
 		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
 	}
 	private void jumpUp()
