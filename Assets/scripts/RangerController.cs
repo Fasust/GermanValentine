@@ -18,8 +18,12 @@ public class RangerController : MonoBehaviour
 	[Header("Detection")]
 	public float lightRange;
 	public Transform lightPos;
+
+	public float instantDetectionRange;
+
 	public LayerMask playerMask;
 	public float SERACHING_TIME = 1;
+	public float SNEAKING_DETECTION_MULTIPLIER = .5f;
 	private float currentSearchingTime;
 	private bool detecting = false;
 
@@ -43,7 +47,6 @@ public class RangerController : MonoBehaviour
 		rigthMoveDistance = initialPosition.x + rigthMoveDistance;
 		leftMoveDistance = initialPosition.x - leftMoveDistance;
 	}
-
 	void Update()
 	{
 		//Detection ---------------------------------
@@ -63,33 +66,25 @@ public class RangerController : MonoBehaviour
 
 		if (detecting)
 		{
-			//Searching-----------------------------
+			//Searching
 			searchForPlayer(player);
 		}
 		else
 		{
-			//Sound
-			if (!walkingSoundPlaying)
-			{
-				walkingSource.Play();
-				walkingSoundPlaying = true;
-			}
-			FindObjectOfType<AudioManager>().stop("Searching");
-			searchSoundPlaying = false;
-
-			//Visual
-			rangerAnimator.SetBool("detecting", false);
-			searchingDisplay.enabled = false;
-			currentSearchingTime = 0;
-
-			//Move ----------------------------------
+			//Move 
 			regularMove();
 		}
 		
 	}
+	private void FixedUpdate()
+	{
+		//Applie Movement
+		GetComponent<Rigidbody2D>().velocity = new Vector2(velocity * Time.fixedDeltaTime * 100, GetComponent<Rigidbody2D>().velocity.y);
+
+	}
 
 	private void searchForPlayer(playerMovement player)
-	{
+	{ 
 		//Sound
 		walkingSource.Stop();
 		walkingSoundPlaying = false;
@@ -106,33 +101,67 @@ public class RangerController : MonoBehaviour
 
 		//Movement
 		velocity = 0;
-		
+
+		//Instant Detect
+		if(Vector2.Distance( this.transform.position, player.transform.position) <= instantDetectionRange){
+			detect(player);
+		}
+
 		//Timeing
-		currentSearchingTime += Time.deltaTime;
+		float curMul = 1;
+		if (player.isSneaking())
+		{
+			curMul = SNEAKING_DETECTION_MULTIPLIER;
+		}
+		currentSearchingTime += Time.deltaTime * curMul;
+
 		float progress = currentSearchingTime / SERACHING_TIME;
 		searchingBar.fillAmount = progress;
 
 		float greenValue = 255 - (progress * 255);
-
 		searchingBar.color = new Color32(255, (byte) greenValue, 0, 255);
 
 		if (currentSearchingTime >= SERACHING_TIME)
-		{
-			searchingDisplay.enabled = false;
+		{		
 			detect(player);
 		}
 }
-
 	private void detect(playerMovement player)
 	{
+		//Sound
+		walkingSource.Stop();
+		walkingSoundPlaying = false;
+	
+		
+		//Movement
+		velocity = 0;
+
+		searchingDisplay.enabled = false;
 		rangerAnimator.SetTrigger("detect");
 		player.detect();
 		alertDisplay.enabled = true;
 		
+		
 	}
-
 	private void regularMove()
 	{
+		//Resets-------------------------
+
+		//Sound
+		if (!walkingSoundPlaying)
+		{
+			walkingSource.Play();
+			walkingSoundPlaying = true;
+		}
+		FindObjectOfType<AudioManager>().stop("Searching");
+		searchSoundPlaying = false;
+
+		//Visual
+		rangerAnimator.SetBool("detecting", false);
+		searchingDisplay.enabled = false;
+		currentSearchingTime = 0;
+
+		//Movement-------------------------
 		switch (isFacingRight)
 		{
 			case true:
@@ -161,14 +190,6 @@ public class RangerController : MonoBehaviour
 				break;
 		}
 	}
-
-	private void FixedUpdate()
-	{
-		//Applie Movement
-		GetComponent<Rigidbody2D>().velocity = new Vector2(velocity * Time.fixedDeltaTime * 100, GetComponent<Rigidbody2D>().velocity.y);
-		
-	}
-
 	public void flip()
 	{
 		if (!nowSearching)

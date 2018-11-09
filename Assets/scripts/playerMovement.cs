@@ -27,6 +27,9 @@ public class playerMovement : MonoBehaviour
 	[Header("Hiding")]
 	public LayerMask hideMask;
 
+	[Header("General")]
+	public StateManagerMain StateManager;
+
 	private float horizontalMove = 0f;
 	private bool sneak = false;
 	private bool jump = false;
@@ -39,6 +42,7 @@ public class playerMovement : MonoBehaviour
 	{
 		particalEffect.GetComponent<ParticleSystem>().Stop();
 		camShake = GameObject.FindGameObjectWithTag("CamController").GetComponent<camShake>();
+
 		hiddenDisplay.enabled = false;
 		
 	}
@@ -188,7 +192,7 @@ public class playerMovement : MonoBehaviour
 			particalEffect.GetComponent<ParticleSystem>().Stop();
 			detectedAnimationStarted = true;
 		}
-		
+		StateManager.showReplay();
 	}
 	public bool hasTree()
 	{
