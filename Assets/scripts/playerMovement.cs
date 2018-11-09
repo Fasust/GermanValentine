@@ -20,6 +20,7 @@ public class playerMovement : MonoBehaviour
 
 	[Header("Input")]
 	public Joystick joystick;
+	public Button jumpButton;
 	public float moveSensetivety = .2f;
 	public float sneakSensetivety = .5f;
 	public float jumpSensetivety = .5f;
@@ -44,6 +45,7 @@ public class playerMovement : MonoBehaviour
 		camShake = GameObject.FindGameObjectWithTag("CamController").GetComponent<camShake>();
 
 		hiddenDisplay.enabled = false;
+		jumpButton.onClick.AddListener(jumpUp);
 		
 	}
 
@@ -198,5 +200,19 @@ public class playerMovement : MonoBehaviour
 	{
 		return playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying") ||
 		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
+	}
+	private void jumpUp()
+	{
+		bool jumping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_idel_land") ||
+			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_right_land") ||
+			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_jump") ||
+			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
+			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump");
+
+		if (!jumping)
+		{
+			jump = true;
+		}
+		
 	}
 }
