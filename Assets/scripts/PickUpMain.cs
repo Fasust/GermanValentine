@@ -43,6 +43,7 @@ public class PickUpMain : MonoBehaviour {
 			if (player.hasTree())
 			{
 				gameWin();
+				player.enabled = false;
 			}
 
 		}
@@ -50,7 +51,7 @@ public class PickUpMain : MonoBehaviour {
 
 	void gameWin()
 	{
-		
+
 		if (!playingWinSound)
 		{
 			//carAnimator.SetTrigger("drive");
