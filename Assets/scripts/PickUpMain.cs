@@ -70,6 +70,12 @@ public class PickUpMain : MonoBehaviour {
 
 		if (paTimeCount >= paticelDelay && !pSpawned1)
 		{
+
+			if (fierworkCicels == 0)
+			{
+				stateManager.loadLevel("drive");
+			}
+
 			pSpawned1 = true;
 			Instantiate(paparticalEffectRed, particelSpawn1.transform.position, Quaternion.identity);
 			FindObjectOfType<AudioManager>().play("BlowUp");
@@ -95,17 +101,6 @@ public class PickUpMain : MonoBehaviour {
 
 			fierworkCicels--;
 		}
-
-		if (fierworkCicels == 0)
-		{
-			stateManager.relode();
-		}
-
-		
-		
-		
-		
-		
 
 	}
 

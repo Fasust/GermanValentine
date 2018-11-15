@@ -8,10 +8,6 @@ public class StateManagerMain : MonoBehaviour
 {
 	public Button replayButton;
 
-	void Awake()
-	{
-		DontDestroyOnLoad(this);
-	}
 	void Start()
 	{
 		//Music ------------------
@@ -33,6 +29,6 @@ public class StateManagerMain : MonoBehaviour
 
 	public void loadLevel(string name)
 	{
-		SceneManager.LoadScene(name);
+		SceneManager.LoadScene(name, LoadSceneMode.Single);
 	}
 }

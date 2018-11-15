@@ -13985,7 +13985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca344204649f16144a6f13bc2f4d5f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateManager: {fileID: 0}
+  stateManager: {fileID: 413907755}
   timer: {fileID: 1313231326}
   zoneRange: 150
   zonePosition: {fileID: 1988203501}
@@ -24178,6 +24178,7 @@ MonoBehaviour:
   target: {fileID: 2033382907}
   camera: {fileID: 907908764}
   offset: {x: 0, y: 120, z: 0}
+  yOverwrite: 0
 --- !u!95 &907908761
 Animator:
   serializedVersion: 3
