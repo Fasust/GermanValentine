@@ -4923,7 +4923,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4962012763056470, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114287894847400848, guid: 4d3b4a4fac48b244b9fad422b75a1ce7,
         type: 2}
@@ -4934,6 +4934,10 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715509975363366, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
+      propertyPath: m_Name
+      value: ranger (0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
@@ -8737,7 +8741,7 @@ GameObject:
   - component: {fileID: 413907756}
   - component: {fileID: 413907755}
   m_Layer: 0
-  m_Name: StateManager
+  m_Name: Manager State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8876,7 +8880,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: 'Camera Orthographic '
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24146,7 +24150,7 @@ GameObject:
   - component: {fileID: 907908761}
   - component: {fileID: 907908760}
   m_Layer: 0
-  m_Name: Secondary Camera
+  m_Name: Camera Perspective
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24362,7 +24366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &964749563
 Transform:
   m_ObjectHideFlags: 0
@@ -24372,8 +24376,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 11.949999, y: -1.5777776, z: 720}
   m_LocalScale: {x: 0.6666666, y: 0.6666666, z: 1}
-  m_Children:
-  - {fileID: 1765994268}
+  m_Children: []
   m_Father: {fileID: 1792086640}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24691,7 +24694,7 @@ GameObject:
   - component: {fileID: 1175866452}
   - component: {fileID: 1175866451}
   m_Layer: 0
-  m_Name: Audio Manager
+  m_Name: 'Manager Audio '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25609,9 +25612,9 @@ Transform:
   m_LocalPosition: {x: 2770, y: 401.5, z: 0}
   m_LocalScale: {x: 200, y: 200, z: 1}
   m_Children:
-  - {fileID: 185227285}
-  - {fileID: 2144735294}
   - {fileID: 1905227840}
+  - {fileID: 2144735294}
+  - {fileID: 185227285}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26639,7 +26642,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4962012763056470, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114287894847400848, guid: 4d3b4a4fac48b244b9fad422b75a1ce7,
         type: 2}
@@ -26664,37 +26667,13 @@ Prefab:
       propertyPath: leftMoveDistance
       value: 355
       objectReference: {fileID: 0}
+    - target: {fileID: 1715509975363366, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
+      propertyPath: m_Name
+      value: ranger (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d3b4a4fac48b244b9fad422b75a1ce7, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1765994267
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1765994268}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1765994268
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1765994267}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 964749563}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1792086639
 GameObject:
   m_ObjectHideFlags: 0
