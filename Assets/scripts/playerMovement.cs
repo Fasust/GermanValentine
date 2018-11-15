@@ -30,6 +30,7 @@ public class playerMovement : MonoBehaviour
 
 	[Header("General")]
 	public StateManagerMain StateManager;
+	public TimerMain timer;
 
 	private float horizontalMove = 0f;
 	private bool sneak = false;
@@ -195,6 +196,7 @@ public class playerMovement : MonoBehaviour
 			detectedAnimationStarted = true;
 		}
 		StateManager.showReplay();
+		timer.stop();
 	}
 	public bool hasTree()
 	{

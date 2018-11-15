@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PickUpMain : MonoBehaviour {
 
+	[Header("General")]
+	public StateManagerMain stateManager;
+	public TimerMain timer;
+
 	[Header("Detection")]
 	public float zoneRange;
 	public Transform zonePosition;
@@ -17,6 +21,7 @@ public class PickUpMain : MonoBehaviour {
 	public Transform particelSpawn2;
 	public Transform particelSpawn3;
 	public float paticelDelay = 0.5f;
+	public int fierworkCicels = 2;
 
 	private float paTimeCount = 0;
 
@@ -44,6 +49,7 @@ public class PickUpMain : MonoBehaviour {
 			{
 				gameWin();
 				player.enabled = false;
+				timer.stop();
 			}
 
 		}
@@ -86,6 +92,13 @@ public class PickUpMain : MonoBehaviour {
 			pSpawned2 = false;
 			pSpawned3 = false;
 			paTimeCount = 0;
+
+			fierworkCicels--;
+		}
+
+		if (fierworkCicels == 0)
+		{
+			stateManager.relode();
 		}
 
 		
