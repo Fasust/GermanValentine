@@ -36,6 +36,9 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	void moveUp()
 	{
+		//Sound------------------
+		FindObjectOfType<AudioManager>().play("Button");
+
 		//Input -----------------
 		yMove = 0;
 
@@ -46,6 +49,9 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	void moveDown()
 	{
+		//Sound------------------
+		FindObjectOfType<AudioManager>().play("Button");
+
 		//Input -----------------
 		yMove = 0;
 
