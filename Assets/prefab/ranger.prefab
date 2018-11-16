@@ -609,13 +609,13 @@ MonoBehaviour:
   rigthMoveDistance: 0
   leftMoveDistance: 500
   movingSpeed: 70
-  lightRange: 250
+  lightRange: 200
   lightPos: {fileID: 4279824088813462}
   instantDetectionRange: 50
   playerMask:
     serializedVersion: 2
     m_Bits: 256
-  SERACHING_TIME: 0.7
+  SERACHING_TIME: 1
   SNEAKING_DETECTION_MULTIPLIER: 1
   rangerAnimator: {fileID: 95071538888737364}
   alertDisplay: {fileID: 223102773696775118}
@@ -898,7 +898,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1510625675
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1f4e606303537874097a59a39db2445b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
