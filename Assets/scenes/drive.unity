@@ -1327,6 +1327,18 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: cc57a6b7e83cb6044aac6fa112e3ca90, type: 3}
+    volume: 0.125
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Car
+    clip: {fileID: 8300000, guid: b834971fc9cf7c141a364f9b81319469, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!224 &1175866452
 RectTransform:
   m_ObjectHideFlags: 0

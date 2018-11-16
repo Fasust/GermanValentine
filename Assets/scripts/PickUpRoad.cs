@@ -20,6 +20,9 @@ public class PickUpRoad : MonoBehaviour {
 
 	private void Start()
 	{
+		//Sound------------------
+		FindObjectOfType<AudioManager>().play("Car");
+
 		buttonUp.onClick.AddListener(moveUp);
 		buttonDown.onClick.AddListener(moveDown);
 	}
@@ -45,7 +48,12 @@ public class PickUpRoad : MonoBehaviour {
 		if (transform.position.y + yMoveDistance < UpMoveLimet) //UP
 		{
 			yMove = yMoveDistance;
-		}	
+		}
+		else
+		{
+			//Sound------------------
+			FindObjectOfType<AudioManager>().play("Hit");
+		}
 	}
 	void moveDown()
 	{
@@ -58,6 +66,11 @@ public class PickUpRoad : MonoBehaviour {
 		if (transform.position.y - yMoveDistance > DownMoveLimet) //DOWN
 		{
 			yMove = -yMoveDistance;
+		}
+		else
+		{
+			//Sound------------------
+			FindObjectOfType<AudioManager>().play("Hit");
 		}
 	}
 }
