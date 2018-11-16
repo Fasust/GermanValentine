@@ -47,6 +47,9 @@ public class PickUpRoad : MonoBehaviour {
 
 		if (transform.position.y + yMoveDistance < UpMoveLimet) //UP
 		{
+			//Sound
+			FindObjectOfType<AudioManager>().play("Dash");
+
 			yMove = yMoveDistance;
 		}
 		else
@@ -65,6 +68,9 @@ public class PickUpRoad : MonoBehaviour {
 
 		if (transform.position.y - yMoveDistance > DownMoveLimet) //DOWN
 		{
+			//Sound
+			FindObjectOfType<AudioManager>().play("Dash");
+
 			yMove = -yMoveDistance;
 		}
 		else
