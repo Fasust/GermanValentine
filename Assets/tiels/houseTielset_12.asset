@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: roadTielset_20
+  m_Name: houseTielset_12
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300040, guid: c348aa54b142ca64090595b8c9e7fe04, type: 3}
+  m_Sprite: {fileID: 21300024, guid: d1b07742479cc1741a6b5ce9b153ccbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
