@@ -27,6 +27,9 @@ public class PlayerAttack : MonoBehaviour {
 			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_idel") &&
 			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump") &&
 			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") &&
+			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak") &&
+			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_sneak") &&
+			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_sneak_idel") &&
 			!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_detected"))
 		{
             

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="8" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" name="houseTielset" tilewidth="16" tileheight="16" tilecount="100" columns="10">
+  <image source="../tiels/houseTielset.png" width="160" height="160"/>
+ </tileset>
+ <layer id="4" name="Kachelebene 1" width="8" height="6">
+  <data encoding="csv">
+12,12,12,12,12,84,85,12,
+33,33,33,33,74,94,95,75,
+31,44,43,45,62,34,35,67,
+31,41,71,42,83,63,66,86,
+11,41,81,42,31,91,91,31,
+0,0,0,0,11,92,92,11
+</data>
+ </layer>
+</map>
