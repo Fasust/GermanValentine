@@ -130,7 +130,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5af35f66c48f55d49adefde0ba919bd4
+      spriteID: 6d600de4661b28447af1bce31b28c85b
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33c325e1a104d5344806924934bad174
+      spriteID: cda3428ece7e2774b88dab796b3d9154
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d9fd3237fcc1ed41b67982f48a991be
+      spriteID: ebdb530232e5e93488b77777ad7cf5f7
       vertices: []
       indices: 
       edges: []
@@ -190,7 +190,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e417d0be0cfe6d04fa9d3cd7809f3bcb
+      spriteID: 00a588a133d9c7b41adc0a59f25927a0
       vertices: []
       indices: 
       edges: []
@@ -210,7 +210,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5128b4b36692b2f49988de970d85055d
+      spriteID: a05840960e4e159418e7e5bd0299a2bf
       vertices: []
       indices: 
       edges: []
@@ -230,7 +230,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deecac52bebae184daeef389dffdc434
+      spriteID: ca24167daade81d41826988ed48f9c2c
       vertices: []
       indices: 
       edges: []
@@ -250,7 +250,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ca50110c58e3374eaab00ff8b1ac6ad
+      spriteID: 25f3e3e92eace0245a39773f7559c63f
       vertices: []
       indices: 
       edges: []
@@ -270,7 +270,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c27077ef7a67034eab054f8deb7c4c8
+      spriteID: d1ee1a844517a9a49a321e9f57dfc2ac
       vertices: []
       indices: 
       edges: []
@@ -290,7 +290,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c93c4ec907c3e4b4297253427fb67d8f
+      spriteID: 8a6854a1d9b4b48469981798dfc80e80
       vertices: []
       indices: 
       edges: []
@@ -310,7 +310,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a55b777d7f4227444913e7105b9cf852
+      spriteID: 2742f13b04b056d4fbe8ec054d9ee65a
       vertices: []
       indices: 
       edges: []
@@ -330,7 +330,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 523f7002c5086a644979077fa325fd9b
+      spriteID: 35e28f706b6e79042ae503a24db0baf8
       vertices: []
       indices: 
       edges: []
@@ -350,7 +350,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1d8b1468c5fc4c4ba945b7f073dfb72
+      spriteID: 89fb587f1abd207448a01f76934e6756
       vertices: []
       indices: 
       edges: []
@@ -370,7 +370,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82bc5a7cdf1206f4eb0d797daab034b2
+      spriteID: 5c71737106fddb34fa46690fb89e6bb5
       vertices: []
       indices: 
       edges: []
@@ -390,7 +390,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4df3cbeb030d4954cbfd1fd83e1c16e7
+      spriteID: 4f04fe0211d92fe4d9cde7f47936011d
       vertices: []
       indices: 
       edges: []
@@ -410,53 +410,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87c463c2b9585d24cb8e372f86928b37
+      spriteID: e10c8e18ccae36e47a5a72d0eb4b7796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: roadTielset_15
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d5f131d008fb9245ab9e4af235d343b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: roadTielset_16
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c7c4b3fe14e5e4340a89b5fcf7f1ce79
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: roadTielset_17
       rect:
         serializedVersion: 2
         x: 32
@@ -470,13 +430,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d06603cd4da562643b925b16db344d55
+      spriteID: 83e2c950b249cd649a829e1a850b5df3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roadTielset_18
+      name: roadTielset_16
       rect:
         serializedVersion: 2
         x: 48
@@ -490,36 +450,16 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee8a64cc9b7b41c4891f9cb770ccb535
+      spriteID: c28b14a874c1b794ba90d405d0ba4e2f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roadTielset_19
+      name: roadTielset_17
       rect:
         serializedVersion: 2
-        x: 64
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c6ae246dd94ff24b8e6401487f7e746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: roadTielset_20
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 32
         y: 64
         width: 16
         height: 16
@@ -530,7 +470,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85846759ceb2d2643903fab51bf746d8
+      spriteID: b3e1ad37e39d21f439e191e530f642f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roadTielset_18
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 029101a8146da9b42ae3e993ac9e9911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roadTielset_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 677c48d4ed62cb941a1934e66bdd48cf
       vertices: []
       indices: 
       edges: []
