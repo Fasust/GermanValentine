@@ -15,6 +15,9 @@ public class PickUpRoad : MonoBehaviour {
 	public Button buttonUp;
 	public Button buttonDown;
 
+	[Header("Visuals")]
+	public Animator animator;
+
 	private bool moved = false;
 	private float yMove = 0;
 
@@ -39,6 +42,7 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	void moveUp()
 	{
+	
 		//Sound------------------
 		FindObjectOfType<AudioManager>().play("Button");
 
@@ -49,6 +53,12 @@ public class PickUpRoad : MonoBehaviour {
 		{
 			//Sound
 			FindObjectOfType<AudioManager>().play("Dash");
+
+			//Animaton
+			if (!animator.GetCurrentAnimatorStateInfo(0).IsName("pickup_german_turn_up"))
+			{
+				animator.SetTrigger("up");
+			}
 
 			yMove = yMoveDistance;
 		}
@@ -70,6 +80,13 @@ public class PickUpRoad : MonoBehaviour {
 		{
 			//Sound
 			FindObjectOfType<AudioManager>().play("Dash");
+
+			//Animaton
+			if (!animator.GetCurrentAnimatorStateInfo(0).IsName("pickup_german_turn_down"))
+			{
+				animator.SetTrigger("down");
+			}
+			
 
 			yMove = -yMoveDistance;
 		}
