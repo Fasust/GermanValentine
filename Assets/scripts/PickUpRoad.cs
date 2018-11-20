@@ -19,6 +19,9 @@ public class PickUpRoad : MonoBehaviour {
 	public Animator animator;
 	private SpriteRenderer sprite;
 	public GameObject hitParitecels;
+	public GameObject smokeBigParitecels;
+	public SmoothCamera2D cam;
+	public camShake camShake;
 
 
 	private bool moved = false;
@@ -30,8 +33,11 @@ public class PickUpRoad : MonoBehaviour {
 		//Sound------------------
 		FindObjectOfType<AudioManager>().play("Car");
 
+		//Visuals------------------
 		sprite = GetComponent<SpriteRenderer>();
+		smokeBigParitecels.GetComponent<ParticleSystem>().Stop();
 
+		//Buttons-----------------
 		buttonUp.onClick.AddListener(moveUp);
 		buttonDown.onClick.AddListener(moveDown);
 	}
@@ -57,6 +63,12 @@ public class PickUpRoad : MonoBehaviour {
 		{
 			//Particals
 			Instantiate(hitParitecels, col.transform.position , Quaternion.identity);
+			smokeBigParitecels.GetComponent<ParticleSystem>().Play();
+
+			//Animation
+			animator.SetTrigger("lose");
+			cam.centerX();
+			camShake.shakeDrive();
 		}
 
 		hit = true;

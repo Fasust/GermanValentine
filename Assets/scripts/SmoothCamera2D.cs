@@ -28,5 +28,10 @@ public class SmoothCamera2D : MonoBehaviour
 		}
 
 	}
+
+	public void centerX()
+	{
+		offset.x = 0;
+	}
 }
  
