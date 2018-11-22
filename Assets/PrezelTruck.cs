@@ -30,6 +30,7 @@ public class PrezelTruck : MonoBehaviour
 	{
 		//Horn----------------------
 		if (player.transform.position.x >= detectionPos.transform.position.x &&
+			player.transform.position.x <= this.transform.position.x &&
 			player.transform.position.y <= this.transform.position.y + detectionYRange &&
 			player.transform.position.y >= this.transform.position.y - detectionYRange &&
 			!honked)
