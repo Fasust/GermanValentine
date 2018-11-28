@@ -16,6 +16,7 @@ public class BirchThief : MonoBehaviour {
 	private bool hit = false;
 	public float xspeed;
 	public float yspeed;
+	public float yDistance;
 
 	[Header("Audio")]
 	public AudioSource audio;
@@ -29,6 +30,12 @@ public class BirchThief : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Movement -----------------------
+		if(transform.transform.position.y >= yDistance)
+		{
+			//Turn after Distance
+			yspeed = -yspeed;
+		}
+
 		if (!hit)
 		{
 			//Move 
@@ -40,6 +47,7 @@ public class BirchThief : MonoBehaviour {
 			transform.position = Vector3.Lerp(transform.position, target, 1);
 		}
 
+		//Render ---------------------------
 		if(playerAncor.transform.position.y > ancor.transform.position.y)
 		{
 			sprite.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder -1;
