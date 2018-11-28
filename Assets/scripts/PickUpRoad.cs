@@ -23,6 +23,10 @@ public class PickUpRoad : MonoBehaviour {
 	public SmoothCamera2D cam;
 	public camShake camShake;
 
+	[Header("Throw")]
+	public GameObject lever;
+	public GameObject throwTree;
+	private bool throwing = false;
 
 	private bool moved = false;
 	private bool hit = false;
@@ -40,6 +44,8 @@ public class PickUpRoad : MonoBehaviour {
 		//Buttons-----------------
 		buttonUp.onClick.AddListener(moveUp);
 		buttonDown.onClick.AddListener(moveDown);
+
+		throwTree.active = false;
 	}
 	void Update () {
 
@@ -52,6 +58,16 @@ public class PickUpRoad : MonoBehaviour {
 				transform.position.z
 				);
 			transform.position = Vector3.Lerp(transform.position, target, 1);
+
+
+			//Throw -----------------
+			if(lever.GetComponent<leverControl>().wasHit && !throwing)
+			{
+				throwing = true;
+				throwTree.active = true;
+				throwTree.GetComponent<ThrownTree>().activateThrow();
+		
+			}
 		}
 		
 
