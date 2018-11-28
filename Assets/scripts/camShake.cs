@@ -17,4 +17,8 @@ public class camShake : MonoBehaviour {
 	{
 		camAnim.SetTrigger("shakeDrive");
 	}
+	public void zoomOut()
+	{
+		camAnim.SetBool("zoomOut",true);
+	}
 }

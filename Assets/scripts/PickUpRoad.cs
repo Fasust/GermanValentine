@@ -49,7 +49,7 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	void Update () {
 
-		if (!hit)
+		if (!hit && !throwing)
 		{
 			//Move ------------------
 			Vector3 target = new Vector3(
@@ -64,6 +64,10 @@ public class PickUpRoad : MonoBehaviour {
 			if(lever.GetComponent<leverControl>().wasHit && !throwing)
 			{
 				throwing = true;
+				cam.centerX();
+				camShake.zoomOut();
+				FindObjectOfType<AudioManager>().stop("Car");
+
 				throwTree.active = true;
 				throwTree.GetComponent<ThrownTree>().activateThrow();
 		
@@ -96,7 +100,7 @@ public class PickUpRoad : MonoBehaviour {
 	void moveUp()
 	{
 
-		if (hit) { return; }
+		if (hit || throwing) { return; }
 
 		//Sound------------------
 		FindObjectOfType<AudioManager>().play("Button");
@@ -128,7 +132,7 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	void moveDown()
 	{
-		if (hit) { return; }
+		if (hit || throwing) { return; }
 
 		//Sound------------------
 		FindObjectOfType<AudioManager>().play("Button");
