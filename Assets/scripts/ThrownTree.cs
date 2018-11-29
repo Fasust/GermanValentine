@@ -9,6 +9,7 @@ public class ThrownTree : MonoBehaviour
 	public float moveForce;
 	public float decayTime;
 	private float currentDecay;
+	public PickUpRoad player;
 
 	private bool setteled = false;
 	private bool throwing = false;
@@ -22,7 +23,7 @@ public class ThrownTree : MonoBehaviour
 
 	private void Update()
 	{
-		if (throwing)
+		if (throwing && !setteled)
 		{
 			if(currentDecay < decayTime)
 			{
@@ -31,6 +32,7 @@ public class ThrownTree : MonoBehaviour
 			else
 			{
 				settel();
+				player.lose();
 			}
 		}
 	}

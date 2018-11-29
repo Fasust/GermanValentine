@@ -30,6 +30,7 @@ public class PickUpRoad : MonoBehaviour {
 
 	private bool moved = false;
 	private bool hit = false;
+	private bool breaking = false;
 	private float yMove = 0;
 
 	private void Start()
@@ -49,7 +50,7 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	void Update () {
 
-		if (!hit && !throwing)
+		if (!hit && !breaking)
 		{
 			//Move ------------------
 			Vector3 target = new Vector3(
@@ -63,6 +64,7 @@ public class PickUpRoad : MonoBehaviour {
 			//Throw -----------------
 			if(lever.GetComponent<leverControl>().wasHit && !throwing)
 			{
+				throwing = true;
 				animator.SetTrigger("throw");
 				
 			}
@@ -73,23 +75,15 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
+		//Particals
 		if (!hit)
 		{
-			//Particals
-			Instantiate(hitParitecels, col.transform.position , Quaternion.identity);
+			Instantiate(hitParitecels, col.transform.position, Quaternion.identity);
 			smokeBigParitecels.GetComponent<ParticleSystem>().Play();
+			FindObjectOfType<AudioManager>().play("Hit");
 
-			//Animation
-			animator.SetTrigger("lose");
-			cam.centerX();
-			camShake.shakeDrive();
+			lose();
 		}
-
-		hit = true;
-		FindObjectOfType<AudioManager>().stop("Car");
-		FindObjectOfType<AudioManager>().play("Hit");
-		FindObjectOfType<AudioManager>().play("Dunz");
-
 	}
 	void moveUp()
 	{
@@ -158,11 +152,41 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	public void throwTree()
 	{
-		throwing = true;
+		
 		cam.centerX();
 		FindObjectOfType<AudioManager>().stop("Car");
 
 		throwableTree.active = true;
 		throwableTree.GetComponent<ThrownTree>().activateThrow();
+
+		breaking = true;
+	}
+	public void win()
+	{
+
+	}
+	public void lose()
+	{
+		if (!hit)
+		{
+			//Animation
+			if (throwing)
+			{
+				animator.SetTrigger("loseNoTree");
+			}
+			else
+			{
+				animator.SetTrigger("lose");
+			}
+			
+			cam.centerX();
+			camShake.shakeDrive();
+
+			FindObjectOfType<AudioManager>().stop("Car");
+			FindObjectOfType<AudioManager>().play("Dunz");
+		}
+
+		hit = true;
+		
 	}
 }

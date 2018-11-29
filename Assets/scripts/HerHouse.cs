@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HerHouse : MonoBehaviour {
 
+	public PickUpRoad player;
 	public float minStayTime;
 	private float stayTime;
 	private bool won;
@@ -29,5 +30,7 @@ public class HerHouse : MonoBehaviour {
 		FindObjectOfType<AudioManager>().play("Win");
 		tree.settel();
 		won = true;
+
+		player.win();
 	}
 }
