@@ -6,6 +6,7 @@ public class HerHouse : MonoBehaviour {
 
 	public PickUpRoad player;
 	public Fireworks fireworks;
+	public GameObject arrow;
 	public float minStayTime;
 	private float stayTime;
 	private bool won;
@@ -30,6 +31,7 @@ public class HerHouse : MonoBehaviour {
 		}
 		fireworks.play();
 		tree.settel();
+		arrow.active = false;
 		won = true;
 
 		player.win();

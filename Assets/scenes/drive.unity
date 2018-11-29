@@ -27246,6 +27246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1871123939}
   fireworks: {fileID: 767597088}
+  arrow: {fileID: 1771179692}
   minStayTime: 0.7
 --- !u!61 &767597091
 BoxCollider2D:

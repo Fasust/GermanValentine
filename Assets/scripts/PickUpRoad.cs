@@ -167,6 +167,7 @@ public class PickUpRoad : MonoBehaviour {
 	public void win()
 	{
 		StateManager.showReplay();
+		animator.SetTrigger("win");
 	}
 	public void lose()
 	{
