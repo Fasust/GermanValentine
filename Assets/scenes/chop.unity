@@ -13948,6 +13948,7 @@ GameObject:
   - component: {fileID: 631558588}
   - component: {fileID: 631558587}
   - component: {fileID: 631558586}
+  - component: {fileID: 631558591}
   m_Layer: 0
   m_Name: pickup End
   m_TagString: Untagged
@@ -13987,19 +13988,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateManager: {fileID: 413907755}
   timer: {fileID: 1313231326}
+  fireworks: {fileID: 631558591}
   zoneRange: 150
   zonePosition: {fileID: 1988203501}
   playerMask:
     serializedVersion: 2
     m_Bits: 256
   carAnimator: {fileID: 631558589}
-  paparticalEffectBlue: {fileID: 519480961}
-  paparticalEffectRed: {fileID: 889771888}
-  particelSpawn1: {fileID: 818731092}
-  particelSpawn2: {fileID: 455456537}
-  particelSpawn3: {fileID: 1806903349}
-  paticelDelay: 0.8
-  fierworkCicels: 2
 --- !u!61 &631558587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14114,6 +14109,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &631558591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 631558584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46466544d1c997041ad594fc8ee7b05e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paparticalEffectBlue: {fileID: 519480961}
+  paparticalEffectRed: {fileID: 889771888}
+  particelSpawn1: {fileID: 818731092}
+  particelSpawn2: {fileID: 455456537}
+  particelSpawn3: {fileID: 1806903349}
+  paticelDelay: 0.5
+  fierworkCicels: 2
+  end:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 413907755}
+        m_MethodName: loadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: drive
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &665585286
 GameObject:
   m_ObjectHideFlags: 0
@@ -14434,19 +14463,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateManager: {fileID: 0}
   timer: {fileID: 0}
+  fireworks: {fileID: 0}
   zoneRange: 100
   zonePosition: {fileID: 766638300}
   playerMask:
     serializedVersion: 2
     m_Bits: 256
   carAnimator: {fileID: 766638303}
-  paparticalEffectBlue: {fileID: 0}
-  paparticalEffectRed: {fileID: 0}
-  particelSpawn1: {fileID: 0}
-  particelSpawn2: {fileID: 0}
-  particelSpawn3: {fileID: 0}
-  paticelDelay: 0.5
-  fierworkCicels: 2
 --- !u!82 &766638306
 AudioSource:
   m_ObjectHideFlags: 0

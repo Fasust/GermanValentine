@@ -5,6 +5,7 @@ using UnityEngine;
 public class HerHouse : MonoBehaviour {
 
 	public PickUpRoad player;
+	public Fireworks fireworks;
 	public float minStayTime;
 	private float stayTime;
 	private bool won;
@@ -27,7 +28,7 @@ public class HerHouse : MonoBehaviour {
 		{
 			return;
 		}
-		FindObjectOfType<AudioManager>().play("Win");
+		fireworks.play();
 		tree.settel();
 		won = true;
 
