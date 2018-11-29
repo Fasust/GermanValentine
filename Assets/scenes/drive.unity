@@ -11322,7 +11322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &413907755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59312,6 +59312,7 @@ MonoBehaviour:
   camShake: {fileID: 972321695}
   lever: {fileID: 262175203}
   throwableTree: {fileID: 982360630}
+  StateManager: {fileID: 413907755}
 --- !u!50 &1871123940
 Rigidbody2D:
   serializedVersion: 4

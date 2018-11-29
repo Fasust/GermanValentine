@@ -28,6 +28,9 @@ public class PickUpRoad : MonoBehaviour {
 	public GameObject throwableTree;
 	private bool throwing = false;
 
+	[Header("Misc")]
+	public StateManagerMain StateManager;
+
 	private bool moved = false;
 	private bool hit = false;
 	private bool breaking = false;
@@ -163,7 +166,7 @@ public class PickUpRoad : MonoBehaviour {
 	}
 	public void win()
 	{
-
+		StateManager.showReplay();
 	}
 	public void lose()
 	{
@@ -184,6 +187,8 @@ public class PickUpRoad : MonoBehaviour {
 
 			FindObjectOfType<AudioManager>().stop("Car");
 			FindObjectOfType<AudioManager>().play("Dunz");
+
+			StateManager.showReplay();
 		}
 
 		hit = true;
