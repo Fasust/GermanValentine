@@ -22,7 +22,7 @@ public class leverControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (swipeControl.swipeUp && !movingDown &&!movingUp)
+		if (swipeControl.swipeUp && !movingDown &&!movingUp && !wasHit)
 		{
 			movingUp = true;
 			wasHit = true;

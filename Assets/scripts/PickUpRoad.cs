@@ -25,7 +25,7 @@ public class PickUpRoad : MonoBehaviour {
 
 	[Header("Throw")]
 	public GameObject lever;
-	public GameObject throwTree;
+	public GameObject throwableTree;
 	private bool throwing = false;
 
 	private bool moved = false;
@@ -45,7 +45,7 @@ public class PickUpRoad : MonoBehaviour {
 		buttonUp.onClick.AddListener(moveUp);
 		buttonDown.onClick.AddListener(moveDown);
 
-		throwTree.active = false;
+		throwableTree.active = false;
 	}
 	void Update () {
 
@@ -63,19 +63,13 @@ public class PickUpRoad : MonoBehaviour {
 			//Throw -----------------
 			if(lever.GetComponent<leverControl>().wasHit && !throwing)
 			{
-				throwing = true;
-				cam.centerX();
-				camShake.zoomOut();
-				FindObjectOfType<AudioManager>().stop("Car");
-
-				throwTree.active = true;
-				throwTree.GetComponent<ThrownTree>().activateThrow();
-		
+				animator.SetTrigger("throw");
+				
 			}
 		}
-		
 
 		yMove = 0;
+
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
@@ -161,5 +155,14 @@ public class PickUpRoad : MonoBehaviour {
 			//Sound------------------
 			FindObjectOfType<AudioManager>().play("Hit");
 		}
+	}
+	public void throwTree()
+	{
+		throwing = true;
+		cam.centerX();
+		FindObjectOfType<AudioManager>().stop("Car");
+
+		throwableTree.active = true;
+		throwableTree.GetComponent<ThrownTree>().activateThrow();
 	}
 }
