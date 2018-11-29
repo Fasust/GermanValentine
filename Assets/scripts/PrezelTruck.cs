@@ -60,6 +60,7 @@ public class PrezelTruck : MonoBehaviour
 		if (!hit)
 		{
 			smokeBigParitecels.GetComponent<ParticleSystem>().Play();
+			FindObjectOfType<AudioManager>().play("Hit");
 			hit = true;
 		}
 		
