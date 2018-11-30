@@ -7,15 +7,18 @@ using UnityEngine.UI;
 public class StateManagerMain : MonoBehaviour
 {
 	public Button replayButton;
+	public bool hideReplay = true;
 
 	void Start()
 	{
-		//Music ------------------
-		//FindObjectOfType<AudioManager>().play("Background");
 
 		//Buttons -------------------
-		replayButton.enabled = false;
-		replayButton.image.enabled = false;
+		if (hideReplay)
+		{
+			replayButton.enabled = false;
+			replayButton.image.enabled = false;
+		}
+		
 	}
 	public void relode()
 	{
