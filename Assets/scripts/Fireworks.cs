@@ -46,6 +46,7 @@ public class Fireworks : MonoBehaviour {
 				if (fierworkCicels == 0)
 				{
 					end.Invoke();
+					playing = false;
 				}
 
 				pSpawned1 = true;

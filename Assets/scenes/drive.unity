@@ -27227,7 +27227,7 @@ MonoBehaviour:
   particelSpawn1: {fileID: 1243221518}
   particelSpawn2: {fileID: 2063298}
   particelSpawn3: {fileID: 2104793585}
-  paticelDelay: 0.3
+  paticelDelay: 0.5
   fierworkCicels: 2
   end:
     m_PersistentCalls:
@@ -62996,7 +62996,7 @@ Animator:
   m_GameObject: {fileID: 1298546704}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 097bd39ee6a3cd248b6ced3c2a671bbe, type: 2}
+  m_Controller: {fileID: 9100000, guid: b863c451bb898dc439bf4da5ecb5b334, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

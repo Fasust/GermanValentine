@@ -14126,7 +14126,7 @@ MonoBehaviour:
   particelSpawn1: {fileID: 818731092}
   particelSpawn2: {fileID: 455456537}
   particelSpawn3: {fileID: 1806903349}
-  paticelDelay: 0.3
+  paticelDelay: 0.5
   fierworkCicels: 2
   end:
     m_PersistentCalls:
