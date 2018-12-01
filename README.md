@@ -24,5 +24,6 @@ All in all, this was a great opportunity to learn Unity and get some more experi
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=ru5_utgSWVY" target="_blank">Full Playthrough of the Game (2 min)</a>
 
+<a href="https://github.com/Fasust/GermanValentine/blob/master/German%20Valentine.apk" target="_blank">APK Download</a>
 
 
