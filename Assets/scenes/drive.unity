@@ -16345,6 +16345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replayButton: {fileID: 1665389538}
+  hideReplay: 1
 --- !u!4 &413907756
 Transform:
   m_ObjectHideFlags: 0
@@ -42242,7 +42243,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.011764707, g: 0.003921569, b: 0.10980393, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -69716,7 +69717,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 152c0128e3837f745a602faf0effb933, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.011764707, g: 0.003921569, b: 0.07450981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
