@@ -8760,6 +8760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replayButton: {fileID: 1665389538}
+  hideReplay: 1
 --- !u!4 &413907756
 Transform:
   m_ObjectHideFlags: 0
@@ -14125,7 +14126,7 @@ MonoBehaviour:
   particelSpawn1: {fileID: 818731092}
   particelSpawn2: {fileID: 455456537}
   particelSpawn3: {fileID: 1806903349}
-  paticelDelay: 0.5
+  paticelDelay: 0.3
   fierworkCicels: 2
   end:
     m_PersistentCalls:
