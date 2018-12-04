@@ -17,7 +17,7 @@ public class FactCard : MonoBehaviour {
 
 	public UnityEvent afterDisplay;
 
-	public string[] facts = {
+	private string[] facts = {
 		"\"schandMaien\" are a variant of \"LiebesMaien\" that People Attach to to houses of people they dislike. \n\n" +
 			"They are traditionally decorated with tampons and black ribbons.",
 		"One month after placing there tree, the german bealors come back to the houses of their crushes and put down their tree. \n\n" +
