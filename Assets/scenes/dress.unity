@@ -606,6 +606,7 @@ MonoBehaviour:
   text: {fileID: 915120239}
   titelText: {fileID: 215899714}
   delay: 6
+  showPermanent: 0
   afterDisplay:
     m_PersistentCalls:
       m_Calls:
@@ -622,24 +623,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  facts:
-  - '"schandMaien" are a variant of "LiebesMaien" that People Attach to to houses
-    of people they dislike. \n\nThey are traditionally decorated with tampons and
-    black ribbons. '
-  - 'One month after placing there tree, the german bealors come back to the houses
-    of their crushes and put down their tree. \n\nTheir efforts will be rewarded with
-    a cake or a beer.  '
-  - 'Every Leap year, the gender roles of the original tradition switch. The girls
-    go out to steal the trees and the boys eagerly lay in their beds. '
-  - 'Legally Buying a tree for this tradition is looked down upon. \n\nThusly Security
-    in german forests on the 1. Of May is on High Alert. '
-  - 'Usually the whole process of stealing, dressing and placing the trees is planed
-    days in advance to the first of May. \n\nBeer (as you would expect from Germany)
-    plays a big role in this. '
-  - 'Many Bachelors try to avoid the hassle of stealing a tree in the forest by stealing
-    trees that other bachelors did not properly secure on/at the houses of their crushes.   '
-  - "The \u201CLibesmaies\u201D are usually taped, tied or thrown on to the roofs
-    of the german beachloretts to make them less accessible for potential thieves."
 --- !u!114 &214550928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,16 +838,16 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 304901528}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2070226240}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -17.199951, y: -22}
+  m_AnchoredPosition: {x: 8.099976, y: -82.29999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &304901530
@@ -938,7 +921,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 509becc38e4d67e41b68c1771c6ecd4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7790e41a80affa341a3b82e7348ad5fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -977,16 +960,16 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 411285637}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2070226240}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -15.5, y: 22}
+  m_AnchoredPosition: {x: -60.19995, y: 0.5999756}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &411285639
@@ -1060,7 +1043,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: db869143b6ff54c48bd618889459f77e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ea37fb4365b0a843a0d4f137279fdc2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1617,16 +1600,16 @@ RectTransform:
   m_GameObject: {fileID: 1151313013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 0.9999998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2070226240}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 162, y: 6}
-  m_SizeDelta: {x: 370, y: 370}
-  m_Pivot: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -9, y: -0.0000038146973}
+  m_SizeDelta: {x: 320, y: 320}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1151313015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,7 +1803,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 58e727a55ba328643959044a6a774a16, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 443ad2c01f517ce4d8ff42cf9309a3d6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2006,16 +1989,16 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1891541178}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2070226240}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -16.099976, y: 0}
+  m_AnchoredPosition: {x: -24.900024, y: -39.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1891541180
@@ -2089,7 +2072,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7ad6b91d3cd9e0d48aad1b5419d66abd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a433bc94a80540b4f916d3b568532adb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
