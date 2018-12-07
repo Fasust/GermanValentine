@@ -25140,6 +25140,12 @@ MonoBehaviour:
     pitch: 0.8
     loop: 0
     source: {fileID: 0}
+  - name: Button
+    clip: {fileID: 8300000, guid: 7f3e72909e56c534cbe28a86d5a3b85f, type: 3}
+    volume: 0.153
+    pitch: 0.8
+    loop: 0
+    source: {fileID: 0}
 --- !u!224 &1175866452
 RectTransform:
   m_ObjectHideFlags: 0

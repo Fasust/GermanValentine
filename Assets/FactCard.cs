@@ -122,6 +122,7 @@ public class FactCard : MonoBehaviour {
 	}
 	private void invokeAfterDisplay()
 	{
+		FindObjectOfType<AudioManager>().play("Button");
 		afterDisplay.Invoke();
 	}
 }
