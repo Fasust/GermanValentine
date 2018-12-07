@@ -5376,6 +5376,7 @@ MonoBehaviour:
   text: {fileID: 930096093}
   titelText: {fileID: 1888917159}
   delay: 6
+  showPermanent: 0
   afterDisplay:
     m_PersistentCalls:
       m_Calls:
@@ -5392,24 +5393,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  facts:
-  - '"schandMaien" are a variant of "LiebesMaien" that People Attach to to houses
-    of people they dislike. \n\nThey are traditionally decorated with tampons and
-    black ribbons. '
-  - 'One month after placing there tree, the german bealors come back to the houses
-    of their crushes and put down their tree. \n\nTheir efforts will be rewarded with
-    a cake or a beer.  '
-  - 'Every Leap year, the gender roles of the original tradition switch. The girls
-    go out to steal the trees and the boys eagerly lay in their beds. '
-  - 'Legally Buying a tree for this tradition is looked down upon. \n\nThusly Security
-    in german forests on the 1. Of May is on High Alert. '
-  - 'Usually the whole process of stealing, dressing and placing the trees is planed
-    days in advance to the first of May. \n\nBeer (as you would expect from Germany)
-    plays a big role in this. '
-  - 'Many Bachelors try to avoid the hassle of stealing a tree in the forest by stealing
-    trees that other bachelors did not properly secure on/at the houses of their crushes.   '
-  - "The \u201CLibesmaies\u201D are usually taped, tied or thrown on to the roofs
-    of the german beachloretts to make them less accessible for potential thieves."
 --- !u!114 &59919408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69730,11 +69713,11 @@ RectTransform:
   m_Father: {fileID: 1298546708}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 518, y: 224}
-  m_SizeDelta: {x: 120, y: 120}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -55}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1704230425
 GameObject:
   m_ObjectHideFlags: 0
