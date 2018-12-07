@@ -7,15 +7,23 @@ using UnityEngine.UI;
 
 public class FactCard : MonoBehaviour {
 
+	[Header("Visuals")]
 	public Image loadingAnimation;
+	public Button continueButton;
 	public TextMeshProUGUI text;
+	public TextMeshProUGUI buttonText;
 	public TextMeshProUGUI titelText;
+	public Color yellow;
+
+	[Header("Logic")]
 	public float delay = 6;
 	public bool showPermanent = false;
+	public UnityEvent afterDisplay;
+
 	private float currentDelay;
 	private bool showing;
-
-	public UnityEvent afterDisplay;
+	private bool showContinueButton = false;
+	private AudioSource readySound;
 
 	private string[] facts = {
 		"\"schandMaien\" are a variant of \"LiebesMaien\" that People Attach to to houses of people they dislike. \n\n" +
@@ -33,10 +41,17 @@ public class FactCard : MonoBehaviour {
 	private int index;
 
 	void Start () {
+		readySound = GetComponent<AudioSource>();
+		continueButton.onClick.AddListener(invokeAfterDisplay);
+
 		GetComponent<Image>().enabled = false;
 		loadingAnimation.enabled = false;
 		text.enabled = false;
 		titelText.enabled = false;
+
+		continueButton.enabled = false;
+		continueButton.image.enabled = false;
+		buttonText.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -54,7 +69,16 @@ public class FactCard : MonoBehaviour {
 			}
 			else
 			{
-				afterDisplay.Invoke();
+				if (!continueButton.enabled)
+				{
+					continueButton.enabled = true;
+					continueButton.image.enabled = true;
+					continueButton.image.color = yellow;
+					buttonText.enabled = true;
+					buttonText.color = Color.black;
+					readySound.Play();
+					loadingAnimation.enabled = false;
+				}
 			}
 		}
 	}
@@ -69,7 +93,8 @@ public class FactCard : MonoBehaviour {
 		GetComponent<Image>().enabled = true;
 		GetComponent<Image>().color = Color.white;
 		loadingAnimation.enabled = true;
-		
+		loadingAnimation.color = Color.black;
+
 		text.text = facts[index].Replace("\\n", "\n");
 		titelText.text = "Fact #00" + ((index) + 1);
 	}
@@ -94,5 +119,9 @@ public class FactCard : MonoBehaviour {
 		text.text = facts[index ].Replace("\\n", "\n");
 		titelText.text = "Fact #00" + (index+ 1);
 
+	}
+	private void invokeAfterDisplay()
+	{
+		afterDisplay.Invoke();
 	}
 }
