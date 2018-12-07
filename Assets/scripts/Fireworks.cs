@@ -47,6 +47,7 @@ public class Fireworks : MonoBehaviour {
 				{
 					end.Invoke();
 					playing = false;
+					return;
 				}
 
 				pSpawned1 = true;
