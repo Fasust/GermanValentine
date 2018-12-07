@@ -28,7 +28,7 @@ public class PickUpMain : MonoBehaviour {
 		{
 			playerMovement player = col.GetComponent<playerMovement>();
 
-			if (player.hasTree())
+			if (player.hasTree() && player.enabled)
 			{
 				fireworks.play();
 				player.enabled = false;
