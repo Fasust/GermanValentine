@@ -22,7 +22,7 @@ The game is split into 3 parts, each representing one of the 3 phases of the tra
 I created all used sprites and most of the sound effects myself. This is the most animation work I have done for a project so far and I am very pleased with the result. 
 All in all, this was a great opportunity to learn Unity and get some more experience in digital design.
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=ru5_utgSWVY" target="_blank">Full Playthrough of the Game (2 min)</a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=vKhuwety1eE" target="_blank">Full Playthrough of the Game (3 min)</a>
 
 <a href="https://github.com/Fasust/GermanValentine/blob/master/German%20Valentine.apk" target="_blank">APK Download</a>
 
