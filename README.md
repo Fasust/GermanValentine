@@ -15,7 +15,7 @@ The game is split into 3 parts, each representing one of the 3 phases of the tra
 ### Stealing the tree
 ![Stealing](https://github.com/Fasust/GermanValentine/blob/master/screens/chop.gif)
 ### Dressing it (carving a heart from wood)
-![Dress](https://github.com/Fasust/GermanValentine/blob/master/screens/dress.gif)
+![Dress](https://github.com/Fasust/GermanValentine/blob/master/screens/dress.PNG)
 ### Bringing it to your crushes house
 ![Drive](https://github.com/Fasust/GermanValentine/blob/master/screens/drive.gif)
 
