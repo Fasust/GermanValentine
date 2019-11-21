@@ -20,6 +20,13 @@ public class PlayerAttack : MonoBehaviour {
 		chopButton.onClick.AddListener(chop);
 	}
 
+	private void Update(){
+		//REMOVE
+		if(Input.GetButtonDown("Jump")){
+			chop();
+		}
+	}
+
 	void chop() {
 		//Play Once per Attack Animation
 		if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop") &&

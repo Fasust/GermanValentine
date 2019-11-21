@@ -6,218 +6,223 @@ using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour
 {
-	public CharacterController2D controller;
+    public CharacterController2D controller;
 
-	[Header("Movement")]
-	public float runSpeed = 40f;
-	public float carryMultiplier = 1.5f;
+    [Header("Movement")]
+    public float runSpeed = 40f;
+    public float carryMultiplier = 1.5f;
 
-	[Header("Visuals")]
-	public Animator playerAnimator;
-	public GameObject particalEffect;
-	public Canvas hiddenDisplay;
-	private camShake camShake;
+    [Header("Visuals")]
+    public Animator playerAnimator;
+    public GameObject particalEffect;
+    public Canvas hiddenDisplay;
+    private camShake camShake;
 
-	[Header("Input")]
-	public Joystick joystick;
-	public Button jumpButton;
-	public float moveSensetivety = .2f;
-	public float sneakSensetivety = .5f;
-	public float jumpSensetivety = .5f;
+    [Header("Input")]
+    public Joystick joystick;
+    public KeyboardInput keyboard;
+    public Button jumpButton;
+    public float moveSensetivety = .2f;
+    public float sneakSensetivety = .5f;
+    public float jumpSensetivety = .5f;
 
-	[Header("Hiding")]
-	public LayerMask hideMask;
+    [Header("Hiding")]
+    public LayerMask hideMask;
 
-	[Header("General")]
-	public StateManagerMain StateManager;
-	public TimerMain timer;
+    [Header("General")]
+    public StateManagerMain StateManager;
+    public TimerMain timer;
 
-	private float horizontalMove = 0f;
-	private bool sneak = false;
-	private bool jump = false;
-	private bool soundPlaying = false;
-	private bool detectedAnimationStarted = false;
-	private bool jumpSoundPlaying = false;
-
-
-	private void Start()
-	{
-		particalEffect.GetComponent<ParticleSystem>().Stop();
-		camShake = GameObject.FindGameObjectWithTag("CamController").GetComponent<camShake>();
-
-		hiddenDisplay.enabled = false;
-		jumpButton.onClick.AddListener(jumpUp);
-		
-	}
-
-	void Update()
-	{
-		// Movement -------------------------------------------------------
-		horizontalMove = joystick.Horizontal;
-		if(Mathf.Abs(joystick.Horizontal) >= moveSensetivety)
-		{
-			if (joystick.Horizontal > 0)
-			{
-				horizontalMove = runSpeed;
-			}
-			else
-			{
-				horizontalMove = -runSpeed;
-			}
-		}
-		else
-		{
-			horizontalMove = 0;
-		}
-		//Jump --------------------------------------------------------------
-		bool jumping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_idel_land") ||
-			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_right_land") ||
-			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_jump") ||
-			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
-			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump");
-
-		if (joystick.Vertical >= jumpSensetivety&& !jumping)
-		{
-			jump = true;
-		}
-
-		//Sneak -------------------------------------------------------------
-		if (joystick.Vertical <= sneakSensetivety && !jumping)
-		{
-			sneak = true;
-		}
-		else
-		{
-			sneak = false;
-		}
-
-		//Display------------------------------------------------------
-		
-		hiddenDisplay.enabled = isHidden();
-
-		//Update Animator-----------------------------------------------------
-		playerAnimator.SetFloat("speed", Mathf.Abs(horizontalMove));
-		playerAnimator.SetBool("sneak", sneak);
-		playerAnimator.SetBool("jump",jump);
-	}
+    private float horizontalMove = 0f;
+    private bool sneak = false;
+    private bool jump = false;
+    private bool soundPlaying = false;
+    private bool detectedAnimationStarted = false;
+    private bool jumpSoundPlaying = false;
 
 
-	void FixedUpdate() {
+    private void Start()
+    {
+        particalEffect.GetComponent<ParticleSystem>().Stop();
+        camShake = GameObject.FindGameObjectWithTag("CamController").GetComponent<camShake>();
 
-		//Get Animation States
-		bool chopping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop");
-		bool beingATree = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
-		bool detected = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_detected");
+        hiddenDisplay.enabled = false;
+        jumpButton.onClick.AddListener(jumpUp);
 
-		//Special cases ----------------------------------------------
+    }
 
-		if (chopping || beingATree || detected)
-		{
-			horizontalMove = 0;
-		}
+	//REMOVE: Change keyboard to joystick
+    void Update()
+    {
+        // Movement -------------------------------------------------------
+        horizontalMove = keyboard.Horizontal;
+        if (Mathf.Abs(keyboard.Horizontal) >= moveSensetivety)
+        {
+            if (keyboard.Horizontal > 0)
+            {
+                horizontalMove = runSpeed;
+            }
+            else
+            {
+                horizontalMove = -runSpeed;
+            }
+        }
+        else
+        {
+            horizontalMove = 0;
+        }
+        //Jump --------------------------------------------------------------
+        bool jumping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_idel_land") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_right_land") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_jump") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump");
 
-		if (detected)
-		{
-			jump = false;
-			sneak = false;
-		}
+        if (keyboard.Vertical >= jumpSensetivety && !jumping)
+        {
+            jump = true;
+        }
 
-		//Movement -----------------------------------------------------
+        //Sneak -------------------------------------------------------------
+        if (keyboard.Vertical <= sneakSensetivety && !jumping)
+        {
+            sneak = true;
+        }
+        else
+        {
+            sneak = false;
+        }
 
-		controller.Move(horizontalMove * runSpeed * Time.fixedDeltaTime, sneak, jump);
+        //Display------------------------------------------------------
 
-		//Sound --------------------------------------------------------
-		if (horizontalMove != 0)
-		{
-			if (!soundPlaying)
-			{
-				soundPlaying = true;
-				FindObjectOfType<AudioManager>().play("Step");
-			}
+        hiddenDisplay.enabled = isHidden();
 
-		}
-		else
-		{
-			soundPlaying = false;
-			FindObjectOfType<AudioManager>().stop("Step");
-		}
+        //Update Animator-----------------------------------------------------
+        playerAnimator.SetFloat("speed", Mathf.Abs(horizontalMove));
+        playerAnimator.SetBool("sneak", sneak);
+        playerAnimator.SetBool("jump", jump);
+    }
 
-		if (jump && !jumpSoundPlaying)
-		{
-			jumpSoundPlaying = true;
-			FindObjectOfType<AudioManager>().play("Jump");
-		}
-	
-		if (sneak || jump)
-		{
-			soundPlaying = false;
-			FindObjectOfType<AudioManager>().stop("Step");
-		}
-	}
 
-	public void onLand()
-	{
-		jump = false;
-		jumpSoundPlaying = false;
-		playerAnimator.SetBool("jump", jump);
+    void FixedUpdate()
+    {
 
-		//screen shake
-		camShake.shakeTiny();
+        //Get Animation States
+        bool chopping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop");
+        bool beingATree = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
+        bool detected = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_detected");
 
-		//sound
-		FindObjectOfType<AudioManager>().play("Land");
-	}
+        //Special cases ----------------------------------------------
 
-	public void makeCarry()
-	{
-		runSpeed *= carryMultiplier;
-		playerAnimator.SetTrigger("carrying");
-		FindObjectOfType<AudioManager>().play("Pickup");
+        if (chopping || beingATree || detected)
+        {
+            horizontalMove = 0;
+        }
 
-		//Particels
-		particalEffect.GetComponent<ParticleSystem>().Play();
-	}
+        if (detected)
+        {
+            jump = false;
+            sneak = false;
+        }
 
-	public bool isSneaking(){
-		return sneak;
-	}
+        //Movement -----------------------------------------------------
 
-	public bool isHidden(){
-		return isSneaking() && GetComponent<Collider2D>().IsTouchingLayers(hideMask);
-	}
+        controller.Move(horizontalMove * runSpeed * Time.fixedDeltaTime, sneak, jump);
 
-	public void detect()
-	{
-		if (!detectedAnimationStarted)
-		{
-			playerAnimator.SetTrigger("detect");
-			FindObjectOfType<AudioManager>().play("Gameover");
-			particalEffect.GetComponent<ParticleSystem>().Stop();
-			detectedAnimationStarted = true;
-		}
-		StateManager.showReplay();
-		timer.stop();
-	}
-	public bool hasTree()
-	{
-		return playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying") ||
-		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_idel") ||
-		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
-		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump") ||
-		playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
-	}
-	private void jumpUp()
-	{
-		bool jumping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_idel_land") ||
-			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_right_land") ||
-			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_jump") ||
-			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
-			playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump");
+        //Sound --------------------------------------------------------
+        if (horizontalMove != 0)
+        {
+            if (!soundPlaying)
+            {
+                soundPlaying = true;
+                FindObjectOfType<AudioManager>().play("Step");
+            }
 
-		if (!jumping)
-		{
-			jump = true;
-		}
-		
-	}
+        }
+        else
+        {
+            soundPlaying = false;
+            FindObjectOfType<AudioManager>().stop("Step");
+        }
+
+        if (jump && !jumpSoundPlaying)
+        {
+            jumpSoundPlaying = true;
+            FindObjectOfType<AudioManager>().play("Jump");
+        }
+
+        if (sneak || jump)
+        {
+            soundPlaying = false;
+            FindObjectOfType<AudioManager>().stop("Step");
+        }
+    }
+
+    public void onLand()
+    {
+        jump = false;
+        jumpSoundPlaying = false;
+        playerAnimator.SetBool("jump", jump);
+
+        //screen shake
+        camShake.shakeTiny();
+
+        //sound
+        FindObjectOfType<AudioManager>().play("Land");
+    }
+
+    public void makeCarry()
+    {
+        runSpeed *= carryMultiplier;
+        playerAnimator.SetTrigger("carrying");
+        FindObjectOfType<AudioManager>().play("Pickup");
+
+        //Particels
+        particalEffect.GetComponent<ParticleSystem>().Play();
+    }
+
+    public bool isSneaking()
+    {
+        return sneak;
+    }
+
+    public bool isHidden()
+    {
+        return isSneaking() && GetComponent<Collider2D>().IsTouchingLayers(hideMask);
+    }
+
+    public void detect()
+    {
+        if (!detectedAnimationStarted)
+        {
+            playerAnimator.SetTrigger("detect");
+            FindObjectOfType<AudioManager>().play("Gameover");
+            particalEffect.GetComponent<ParticleSystem>().Stop();
+            detectedAnimationStarted = true;
+        }
+        StateManager.showReplay();
+        timer.stop();
+    }
+    public bool hasTree()
+    {
+        return playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying") ||
+        playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_idel") ||
+        playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
+        playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump") ||
+        playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak");
+    }
+    private void jumpUp()
+    {
+        bool jumping = playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_idel_land") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_right_land") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_jump") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") ||
+            playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump");
+
+        if (!jumping)
+        {
+            jump = true;
+        }
+
+    }
 }
