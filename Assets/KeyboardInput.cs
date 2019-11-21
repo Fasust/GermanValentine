@@ -10,8 +10,8 @@ public class KeyboardInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         Horizontal = Input.GetAxisRaw("Horizontal");
-         Vertical = Input.GetAxisRaw("Vertical");
+         Horizontal = Input.GetAxisRaw("Horizontal") * 100;
+         Vertical = Input.GetAxisRaw("Vertical") * 100;
 
     }
 }
