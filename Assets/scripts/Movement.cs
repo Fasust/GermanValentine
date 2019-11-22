@@ -41,6 +41,7 @@ public class Movement : MonoBehaviour {
     private float horizontalMove = 0f;
     private float verticalMove = 0f;
     private Rigidbody2D m_Rigidbody2D;
+    private PlayerState state;
     private bool facingRight = true;
     private bool grounded = true;
     private bool blocked = false;
@@ -48,6 +49,7 @@ public class Movement : MonoBehaviour {
 
     // Start is called before the first frame update
     void Awake() {
+        state = GetComponent<PlayerState>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null) OnLandEvent = new UnityEvent();
@@ -80,8 +82,9 @@ public class Movement : MonoBehaviour {
     }
 
     private void move() {
-        // If crouching
         if (isCrouching()) horizontalMove *= crouchSpeedMultiplier;
+
+        if (isCrouching() && state.isCarrying()) horizontalMove = 0;
 
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(horizontalMove, m_Rigidbody2D.velocity.y);

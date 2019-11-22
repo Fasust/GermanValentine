@@ -31,7 +31,7 @@ public class enemy : MonoBehaviour {
 		Instantiate(particalEffect, transform.position, Quaternion.identity);
 
 		//Animation
-		bool facingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().isFacingRigth();
+		bool facingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>().isFacingRight();
 		if (facingRight)
 		{
 			enemyAnimator.SetTrigger("hit_fl");

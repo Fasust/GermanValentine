@@ -26,12 +26,12 @@ public class PickUpMain : MonoBehaviour {
 
 		foreach (Collider2D col in playerColliders)
 		{
-			playerMovement player = col.GetComponent<playerMovement>();
+			PlayerState playerState = col.GetComponent<PlayerState>();
 
-			if (player.hasTree() && player.enabled)
+			if (playerState.isCarrying() && playerState.enabled)
 			{
 				fireworks.play();
-				player.enabled = false;
+				playerState.enabled = false;
 				timer.stop();
 			}
 

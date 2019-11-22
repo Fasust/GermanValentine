@@ -58,7 +58,7 @@ public class PlayerAttack : MonoBehaviour {
 				if (killed)
 				{
 					//Switch to Carry if one dies
-					this.GetComponent<playerMovement>().makeCarry();
+					this.GetComponent<PlayerState>().makeCarry();
 				}
             }
         }

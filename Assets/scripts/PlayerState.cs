@@ -28,6 +28,7 @@ public class PlayerState : MonoBehaviour {
         detected = true;
         FindObjectOfType<AudioManager>().play("Gameover");
         StateManager.showReplay();
+        movement.setBlocked(true);
         timer.stop();
     }
 
@@ -36,5 +37,6 @@ public class PlayerState : MonoBehaviour {
     }
 
     public bool isCarrying() => carrying;
+    public bool isCrouching() => movement.isCrouching();
     public bool isDetected() => detected;
 }

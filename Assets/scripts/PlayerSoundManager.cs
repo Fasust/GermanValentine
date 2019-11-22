@@ -37,7 +37,6 @@ public class PlayerSoundManager : MonoBehaviour {
         }
     }
     public void onLand() {
-        print("landed");
         jumpPlaying = false;
         FindObjectOfType<AudioManager>().stop("Jump");
         FindObjectOfType<AudioManager>().play("Land");
