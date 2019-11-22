@@ -4992,7 +4992,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1298546708}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -28633,7 +28633,7 @@ GameObject:
   - component: {fileID: 640623090}
   - component: {fileID: 640623089}
   - component: {fileID: 640623088}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fact Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28649,19 +28649,19 @@ RectTransform:
   m_GameObject: {fileID: 640623086}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.57657653, y: 0.57657653, z: 0.57657653}
+  m_LocalScale: {x: 0.5765764, y: 0.5765764, z: 0.5765764}
   m_Children:
   - {fileID: 1599593974}
   - {fileID: 2055528144}
   - {fileID: 996212555}
   - {fileID: 832899385}
   m_Father: {fileID: 1298546708}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 940, y: 457.2973}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_SizeDelta: {x: 940, y: 457.29736}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &640623088
 AudioSource:
@@ -28810,6 +28810,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: menu
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 13001639}
+        m_MethodName: saveScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &640623091
@@ -33849,7 +33860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733637134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47.32, y: 5.5, z: 0}
+  m_LocalPosition: {x: 47.77, y: 5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1187418420}
@@ -49208,7 +49219,7 @@ GameObject:
   - component: {fileID: 832899388}
   - component: {fileID: 832899387}
   - component: {fileID: 832899386}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55767,7 +55778,7 @@ GameObject:
   - component: {fileID: 996212555}
   - component: {fileID: 996212557}
   - component: {fileID: 996212556}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Loading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56459,7 +56470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036301654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47.95, y: 3.7350004, z: 0}
+  m_LocalPosition: {x: 48.35, y: 3.7350004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 466427508}
@@ -76477,9 +76488,9 @@ RectTransform:
   - {fileID: 766015692}
   - {fileID: 987428068}
   - {fileID: 1019789327}
-  - {fileID: 640623087}
   - {fileID: 1745010142}
   - {fileID: 13001638}
+  - {fileID: 640623087}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76769,7 +76780,7 @@ GameObject:
   - component: {fileID: 1399838305}
   - component: {fileID: 1399838307}
   - component: {fileID: 1399838306}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextMeshPro Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77355,7 +77366,7 @@ GameObject:
   - component: {fileID: 1467342488}
   - component: {fileID: 1467342490}
   - component: {fileID: 1467342489}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TMP SubMeshUI [Fluted Germanica SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82902,7 +82913,7 @@ GameObject:
   - component: {fileID: 1599593974}
   - component: {fileID: 1599593976}
   - component: {fileID: 1599593975}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Titel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83604,7 +83615,7 @@ GameObject:
   - component: {fileID: 1676801135}
   - component: {fileID: 1676801137}
   - component: {fileID: 1676801136}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TMP SubMeshUI [Fluted Germanica SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83892,7 +83903,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1298546708}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -98706,7 +98717,7 @@ GameObject:
   - component: {fileID: 2055528144}
   - component: {fileID: 2055528146}
   - component: {fileID: 2055528145}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fact
   m_TagString: Untagged
   m_Icon: {fileID: 0}

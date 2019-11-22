@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour {
     public int MILLISECOND_LOSE = 1;
@@ -13,8 +14,15 @@ public class Score : MonoBehaviour {
     // Use this for initialization
     void Start() {
         ui = this.GetComponent<TextMeshProUGUI>();
-        currentScore = startScore;
 
+        //Load Score
+        if (SceneManager.GetActiveScene().name == "drive") {
+            currentScore += DataHolder.score;
+        } else {
+            currentScore += startScore;
+        }
+
+        //Set Point Decay
         InvokeRepeating("timeDecal", 1f, 0.1f);
     }
 
@@ -42,5 +50,9 @@ public class Score : MonoBehaviour {
     public void setBlocked() {
         block = true;
         this.GetComponent<TextMeshProUGUI>().color = Color.yellow;
+    }
+
+    public void saveScore() {
+        DataHolder.score = currentScore;
     }
 }
