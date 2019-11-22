@@ -153,6 +153,10 @@ public class Movement : MonoBehaviour {
         transform.localScale = theScale;
     }
 
+    public void nockBack(float horizontalForce, float verticalForce) {
+        m_Rigidbody2D.AddForce(new Vector2(horizontalForce, verticalForce));
+    }
+
     public void setBlocked(bool val) => blocked = val;
 
     public bool isFacingRight() => facingRight;

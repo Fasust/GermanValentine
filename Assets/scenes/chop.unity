@@ -8936,7 +8936,7 @@ GameObject:
   - component: {fileID: 377112342}
   - component: {fileID: 377112341}
   - component: {fileID: 377112340}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9077,7 +9077,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 455456537}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14421,7 +14421,7 @@ GameObject:
   - component: {fileID: 631558587}
   - component: {fileID: 631558586}
   - component: {fileID: 631558591}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pickup End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14493,7 +14493,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.219599, y: 2}
+  m_Size: {x: 1.219599, y: 222}
   m_EdgeRadius: 0
 --- !u!61 &631558588
 BoxCollider2D:
@@ -14793,7 +14793,7 @@ GameObject:
   - component: {fileID: 766638302}
   - component: {fileID: 766638305}
   - component: {fileID: 766638306}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pickup Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14867,7 +14867,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.219599, y: 2}
+  m_Size: {x: 1.219599, y: 233}
   m_EdgeRadius: 0
 --- !u!95 &766638303
 Animator:
@@ -15181,7 +15181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818731092}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25882,6 +25882,12 @@ MonoBehaviour:
     pitch: 0.8
     loop: 0
     source: {fileID: 0}
+  - name: Metal
+    clip: {fileID: 8300000, guid: b24b66a58942ec74bb290913c9f1548f, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    loop: 0
+    source: {fileID: 0}
   - name: Button
     clip: {fileID: 8300000, guid: 7f3e72909e56c534cbe28a86d5a3b85f, type: 3}
     volume: 0.125
@@ -26073,7 +26079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1252448183}
   - component: {fileID: 1252448184}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Internal Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26699,7 +26705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1366924931}
   - component: {fileID: 1366924932}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Head Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26790,7 +26796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1401858033}
   - component: {fileID: 1401858034}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Internal Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28671,7 +28677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1719804230}
   - component: {fileID: 1719804231}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Head Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28862,7 +28868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1806903349}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pPos3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29568,7 +29574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1988203501}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PickupZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29783,9 +29789,14 @@ MonoBehaviour:
   attackRange: 80
   attackPos: {fileID: 349932249}
   chopButton: {fileID: 263082067}
-  cutbableMask:
+  cuttableMask:
     serializedVersion: 2
     m_Bits: 512
+  metalMask:
+    serializedVersion: 2
+    m_Bits: 65536
+  horizontalNockBack: 2000000
+  verticalNockBack: 1000000
 --- !u!81 &2033382914
 AudioListener:
   m_ObjectHideFlags: 0
@@ -29828,7 +29839,7 @@ MonoBehaviour:
   movementSmoothing: 0.15
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 65591
   groundCheck: {fileID: 1328656802}
   OnLandEvent:
     m_PersistentCalls:
@@ -29902,7 +29913,7 @@ GameObject:
   - component: {fileID: 2087025319}
   - component: {fileID: 2087025318}
   - component: {fileID: 2087025317}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: TextMeshPro Intro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
