@@ -1,84 +1,102 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour {
 
+    [Header("Visual")]
     public Animator playerAnimator;
-
-    public int attackDamage;
-    public float attackRange;
-    public Transform attackPos;
-
+    [Header("Control")]
     public Button chopButton;
 
+    [Header("Stats")]
+    public int attackDamage;
+    public float attackRange;
+    public float hitHorizontalNockBack = 2000000;
+    public float hitVerticalNockBack = 1000000;
+    public float misshorizontalNockBack = 2000000;
+    public float missVerticalNockBack = 1000000;
+    public Transform attackPos;
+    [Header("World")]
     public LayerMask cuttableMask;
     public LayerMask metalMask;
-    public float horizontalNockBack = 2500000;
-    public float verticalNockBack = 10000;
+
+    [Header("Private")]
+    private Movement movement;
+    private PlayerState state;
 
     private void Start() {
-        chopButton.onClick.AddListener(chop);
+        chopButton.onClick.AddListener(attack);
+        movement = FindObjectOfType<Movement>();
+        state = FindObjectOfType<PlayerState>();
     }
 
     private void Update() {
         //REMOVE
-        if (Input.GetButtonDown("Jump")) {
+        if (Input.GetButtonDown("Jump")) attack();
+    }
+    private void FixedUpdate() {
+        //When Animation done
+        if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop") && movement.isAttacking()) {
+            cancleAttack();
+        }
+    }
+
+    void attack() {
+        if (!movement.isAttacking() && !movement.isCrouching() && !state.isCarrying() && !state.isDetected()) {
+
+            //Play Once per Attack Animation
+            movement.setAttacking(true);
             chop();
         }
     }
 
-    void chop() {
-        //Play Once per Attack Animation
-        if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_chop") &&
-            !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying") &&
-            !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_idel") &&
-            !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_jump") &&
-            !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_land") &&
-            !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_carrying_sneak") &&
-            !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_sneak") &&
-            !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_sneak_idel") &&
-            !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("german_detected")) {
+    private void chop() {
+        //Animation
+        playerAnimator.SetTrigger("chop");
+        FindObjectOfType<AudioManager>().play("Swing");
 
-            //Animation
-            playerAnimator.SetTrigger("chop");
+        Collider2D[] destructables = Physics2D.OverlapCircleAll(attackPos.position, attackRange, cuttableMask);
+        Collider2D[] metals = Physics2D.OverlapCircleAll(attackPos.position, attackRange, metalMask);
 
-            //Sound
-            FindObjectOfType<AudioManager>().play("Swing");
+        bool hitMetal = (metals.Length != 0);
+        bool hitDestructable = (destructables.Length != 0);
 
-            //Get Destructables
-            Collider2D[] destructables = Physics2D.OverlapCircleAll(attackPos.position, attackRange, cuttableMask);
+        //Calc Knock Back
+        float chKnockBack = misshorizontalNockBack;
+        float cvKnockBack = missVerticalNockBack;
 
-            //Get Metals
-            Collider2D[] metals = Physics2D.OverlapCircleAll(attackPos.position, attackRange, metalMask);
+        if (hitMetal || hitDestructable) {
+            chKnockBack = hitHorizontalNockBack;
+            cvKnockBack = hitVerticalNockBack;
+        }
 
-            if (metals.Length != 0) {
-                FindObjectOfType<AudioManager>().play("Metal");
-                Movement movement = FindObjectOfType<Movement>();
-                if (movement.isFacingRight()) {
-                    movement.nockBack(-horizontalNockBack, verticalNockBack);
-                } else {
-                    movement.nockBack(horizontalNockBack, verticalNockBack);
-                }
-            }
+        //Apply Knock Back
+        if (movement.isFacingRight()) {
+            movement.nockBack(-chKnockBack, cvKnockBack);
+        } else {
+            movement.nockBack(chKnockBack, cvKnockBack);
+        }
 
-            //Select all Enemys in Range
-            foreach (Collider2D dest in destructables) {
+        if (hitMetal) FindObjectOfType<AudioManager>().play("Metal");
 
-                //Damage them
-                bool killed = dest.GetComponent<enemy>().takeDamage(attackDamage);
+        //Select all Enemys in Range
+        foreach (Collider2D dest in destructables) {
+            //Hit Tree
+            bool killed = dest.GetComponent<enemy>().takeDamage(attackDamage);
 
-                if (killed) {
-                    //Switch to Carry if one dies
-                    this.GetComponent<PlayerState>().makeCarry();
-                }
-            }
+            if (killed) this.GetComponent<PlayerState>().makeCarry();
         }
     }
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(attackPos.position, attackRange);
+    }
+
+    public void cancleAttack() {
+        movement.setAttacking(false);
     }
 }

@@ -15,16 +15,16 @@ public class PlayerState : MonoBehaviour {
     private bool carrying;
     private bool detected;
 
-    void Start(){
-         movement = this.GetComponent<Movement>();
+    void Start() {
+        movement = this.GetComponent<Movement>();
     }
-    
+
     public void makeCarry() {
         carrying = true;
         FindObjectOfType<AudioManager>().play("Pickup");
     }
 
-    public void detect(){
+    public void detect() {
         detected = true;
         FindObjectOfType<AudioManager>().play("Gameover");
         StateManager.showReplay();
@@ -33,7 +33,9 @@ public class PlayerState : MonoBehaviour {
     }
 
     public bool isHidden() {
-        return movement.isCrouching() && GetComponent<Collider2D>().IsTouchingLayers(hideMask);
+        return movement.isCrouching() &&
+        !movement.isBlocked() &&
+        GetComponent<Collider2D>().IsTouchingLayers(hideMask);
     }
 
     public bool isCarrying() => carrying;

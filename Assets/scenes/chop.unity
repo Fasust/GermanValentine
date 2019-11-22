@@ -28131,10 +28131,10 @@ RectTransform:
   m_Father: {fileID: 1298546708}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -87}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 320}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &1665983573
 PrefabInstance:
@@ -29785,18 +29785,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 2033382905}
+  chopButton: {fileID: 263082067}
   attackDamage: 15
   attackRange: 80
+  hitHorizontalNockBack: 1200000
+  hitVerticalNockBack: 0
+  misshorizontalNockBack: 800000
+  missVerticalNockBack: 0
   attackPos: {fileID: 349932249}
-  chopButton: {fileID: 263082067}
   cuttableMask:
     serializedVersion: 2
     m_Bits: 512
   metalMask:
     serializedVersion: 2
     m_Bits: 65536
-  horizontalNockBack: 2000000
-  verticalNockBack: 1000000
 --- !u!81 &2033382914
 AudioListener:
   m_ObjectHideFlags: 0

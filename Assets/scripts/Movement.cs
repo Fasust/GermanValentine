@@ -46,6 +46,7 @@ public class Movement : MonoBehaviour {
     private bool facingRight = true;
     private bool grounded = true;
     private bool blocked = false;
+    private bool attacking = false;
 
 
     // Start is called before the first frame update
@@ -59,7 +60,7 @@ public class Movement : MonoBehaviour {
     void FixedUpdate() {
         checkIfGrounded();
 
-        if (blocked) {
+        if (blocked || attacking) {
             verticalMove = 0;
             horizontalMove = 0;
         }
@@ -157,12 +158,19 @@ public class Movement : MonoBehaviour {
         m_Rigidbody2D.AddForce(new Vector2(horizontalForce, verticalForce));
     }
 
+    public void dash(float force) {
+        m_Rigidbody2D.AddForce(new Vector2(joystick.Horizontal * force, joystick.Vertical * force));
+    }
+
     public void setBlocked(bool val) => blocked = val;
+    public void setAttacking(bool val) => attacking = val;
 
     public bool isFacingRight() => facingRight;
     public bool isStartingJump() => grounded && verticalMove > 0;
     public bool isJumping() => !grounded && verticalMove > 0;
     public bool isAirborn() => !grounded;
+    public bool isBlocked() => blocked;
+    public bool isAttacking() => attacking;
     public bool isStumping() => !grounded && verticalMove <= 0;
     public bool isCrouching() => grounded && verticalMove < 0;
 
