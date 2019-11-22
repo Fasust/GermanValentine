@@ -88,6 +88,5 @@ public class enemy : MonoBehaviour {
         healthDisplay.enabled = false;
 
         FindObjectOfType<Score>().add(POINTS);
-        print(POINTS);
     }
 }

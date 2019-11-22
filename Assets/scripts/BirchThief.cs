@@ -4,72 +4,66 @@ using UnityEngine;
 
 public class BirchThief : MonoBehaviour {
 
-	[Header("Visuals")]
-	public GameObject bloodParticels;
-	public Animator animator;
-	public GameObject player;
-	public GameObject playerAncor;
-	public GameObject ancor;
-	private SpriteRenderer sprite;
+    [Header("Visuals")]
+    public GameObject bloodParticels;
+    public Animator animator;
+    public GameObject player;
+    public GameObject playerAncor;
+    public GameObject ancor;
+    private SpriteRenderer sprite;
 
-	[Header("Movment")]
-	private bool hit = false;
-	public float xspeed;
-	public float yspeed;
-	public float yDistance;
+    [Header("Movment")]
+    private bool hit = false;
+    public float xspeed;
+    public float yspeed;
+    public float yDistance;
 
-	[Header("Audio")]
-	public AudioSource audio;
+    [Header("Audio")]
+    public AudioSource audio;
 
-	// Use this for initialization
-	void Start () {
-		bloodParticels.GetComponent<ParticleSystem>().Stop();
-		sprite = GetComponent<SpriteRenderer>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//Movement -----------------------
-		if(transform.transform.position.y >= yDistance)
-		{
-			//Turn after Distance
-			yspeed = -yspeed;
-		}
+    // Use this for initialization
+    void Awake() {
+        bloodParticels.GetComponent<ParticleSystem>().Stop();
+        sprite = GetComponent<SpriteRenderer>();
+    }
 
-		if (!hit)
-		{
-			//Move 
-			Vector3 target = new Vector3(
-				transform.position.x + xspeed * Time.deltaTime,
-				transform.position.y + yspeed * Time.deltaTime,
-				transform.position.z
-				);
-			transform.position = Vector3.Lerp(transform.position, target, 1);
-		}
+    // Update is called once per frame
+    void Update() {
+        //Movement -----------------------
+        if (transform.transform.position.y >= yDistance) {
+            //Turn after Distance
+            yspeed = -yspeed;
+        }
 
-		//Render ---------------------------
-		if(playerAncor.transform.position.y > ancor.transform.position.y)
-		{
-			sprite.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder -1;
-		}
-		else
-		{
-			sprite.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder + 1;
-		}
+        if (!hit) {
+			bloodParticels.GetComponent<ParticleSystem>().Stop();
+            //Move 
+            Vector3 target = new Vector3(
+                transform.position.x + xspeed * Time.deltaTime,
+                transform.position.y + yspeed * Time.deltaTime,
+                transform.position.z
+                );
+            transform.position = Vector3.Lerp(transform.position, target, 1);
+        }
 
-	}
-	void OnCollisionEnter2D(Collision2D col)
-	{
+        //Render ---------------------------
+        if (playerAncor.transform.position.y > ancor.transform.position.y) {
+            sprite.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder - 1;
+        } else {
+            sprite.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder + 1;
+        }
 
-		if (!hit)
-		{
-			bloodParticels.GetComponent<ParticleSystem>().Play();
-			hit = true;
-			animator.SetTrigger("lose");
-			FindObjectOfType<AudioManager>().play("Hit");
-			audio.Stop();
-		}
+    }
+    void OnCollisionEnter2D(Collision2D col) {
 
-	}
+        if (!hit) {
+            bloodParticels.GetComponent<ParticleSystem>().Play();
+            hit = true;
+            animator.SetTrigger("lose");
+            FindObjectOfType<AudioManager>().play("Hit");
+            audio.Stop();
+        }
+
+    }
 
 }
