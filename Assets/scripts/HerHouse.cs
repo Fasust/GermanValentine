@@ -30,8 +30,8 @@ public class HerHouse : MonoBehaviour {
             return;
         }
         won = true;
-        fireworks.play();
         tree.settel();
+		arrow.SetActive(false);
 
         int currentPoints = 0;
         float distanz = Mathf.Abs(tree.transform.position.x - arrow.transform.position.x);
@@ -44,10 +44,9 @@ public class HerHouse : MonoBehaviour {
 		FindObjectOfType<Score>().add(currentPoints);
 		pointDisplay.text = currentPoints.ToString();
 
-        arrow.active = false;
-
 		pointDisplayAnimator.SetTrigger("show");
 		
         player.win();
+		fireworks.play();
     }
 }

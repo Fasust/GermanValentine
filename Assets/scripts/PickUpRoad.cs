@@ -41,6 +41,13 @@ public class PickUpRoad : MonoBehaviour {
     private bool breaking = false;
     private float yMove = 0;
 
+    [Header("Sound")]
+    public float pitchIncrease = .1f;
+    public float pitchFallOff = .1f;
+    private float carPitch = 1f;
+    private float BASE_CAR_PITCH = 1f;
+    private float MAX_CAR_PITCH = 1.8f;
+
     private void Start() {
         //Sound------------------
         FindObjectOfType<AudioManager>().play("Car");
@@ -63,13 +70,38 @@ public class PickUpRoad : MonoBehaviour {
             //Speed------------------
             if (paddle.pressed) {
                 currentSpeed += acceloration * Time.deltaTime;
+                FindObjectOfType<AudioManager>().setPitch("Car", carPitch += pitchIncrease);
             } else {
                 if (currentSpeed - breakSpeed * Time.deltaTime < BASE_SPEED) {
                     currentSpeed = BASE_SPEED;
                 } else {
                     currentSpeed -= breakSpeed * Time.deltaTime;
- 
+
                 }
+
+                if (carPitch - pitchFallOff < BASE_CAR_PITCH) {
+                    FindObjectOfType<AudioManager>().setPitch("Car", BASE_CAR_PITCH);
+                } else {
+                    FindObjectOfType<AudioManager>().setPitch("Car", carPitch -= pitchFallOff);
+                }
+
+            }
+
+            //Sound ------------
+            if (paddle.pressed) {
+                if (carPitch + pitchIncrease > MAX_CAR_PITCH) {
+                    FindObjectOfType<AudioManager>().setPitch("Car", MAX_CAR_PITCH);
+                } else {
+                    FindObjectOfType<AudioManager>().setPitch("Car", carPitch += pitchIncrease);
+                }
+
+            } else {
+                if (carPitch - pitchFallOff < BASE_CAR_PITCH) {
+                    FindObjectOfType<AudioManager>().setPitch("Car", BASE_CAR_PITCH);
+                } else {
+                    FindObjectOfType<AudioManager>().setPitch("Car", carPitch -= pitchFallOff);
+                }
+
             }
 
             //Move ------------------

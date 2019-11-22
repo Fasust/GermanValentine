@@ -35,4 +35,7 @@ public class AudioManager : MonoBehaviour {
 		
 		return s;
 	}
+	public void setPitch(String name, float val){
+		getSound(name).source.pitch = val;
+	}
 }
