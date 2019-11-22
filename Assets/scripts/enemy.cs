@@ -26,7 +26,7 @@ public class enemy : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-		health = MAX_HEALTH;
+        health = MAX_HEALTH;
         healthDisplay.enabled = false;
 
         points.GetComponent<TextMeshPro>().text = POINTS.ToString();
@@ -83,7 +83,7 @@ public class enemy : MonoBehaviour {
     }
 
     private void die() {
-		 pointsGain.SetActive(true);
+        pointsGain.SetActive(true);
         enemyAnimator.SetTrigger("die");
         healthDisplay.enabled = false;
 
