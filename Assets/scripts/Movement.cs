@@ -74,15 +74,15 @@ public class Movement : MonoBehaviour {
     }
     private void getInputs() {
 
-        if (Mathf.Abs(joystick.Horizontal) >= moveSensitivity) {
-            horizontalMove = joystick.Horizontal;
+        if (Mathf.Abs(keyboard.Horizontal) >= moveSensitivity) {
+            horizontalMove = keyboard.Horizontal;
 
         } else {
             horizontalMove = 0;
         }
 
-        if (joystick.Vertical >= jumpSensitivity) verticalMove = joystick.Vertical;
-        else if (joystick.Vertical <= crouchSensitivity) verticalMove = joystick.Vertical;
+        if (keyboard.Vertical >= jumpSensitivity) verticalMove = keyboard.Vertical;
+        else if (keyboard.Vertical <= crouchSensitivity) verticalMove = keyboard.Vertical;
         else verticalMove = 0;
 
         //Max them out
@@ -159,7 +159,7 @@ public class Movement : MonoBehaviour {
     }
 
     public void dash(float force) {
-        m_Rigidbody2D.AddForce(new Vector2(joystick.Horizontal * force, joystick.Vertical * force));
+        m_Rigidbody2D.AddForce(new Vector2(keyboard.Horizontal * force, keyboard.Vertical * force));
     }
 
     public void setBlocked(bool val) => blocked = val;

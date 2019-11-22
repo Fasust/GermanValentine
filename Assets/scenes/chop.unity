@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MILLISECOND_LOSE: 1
-  startScore: 10000
+  startScore: 1000
 --- !u!114 &23010034
 MonoBehaviour:
   m_ObjectHideFlags: 0
