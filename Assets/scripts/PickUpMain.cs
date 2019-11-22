@@ -5,7 +5,6 @@ using UnityEngine;
 public class PickUpMain : MonoBehaviour {
 
 	[Header("General")]
-	public StateManagerMain stateManager;
 	public TimerMain timer;
 	public Fireworks fireworks;
 

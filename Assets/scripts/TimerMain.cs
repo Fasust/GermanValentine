@@ -5,45 +5,45 @@ using UnityEngine;
 
 public class TimerMain : MonoBehaviour {
 
-	private float startTime;
-	private bool finish = false;
-	public int milisecondDesimels = 0;
+    private float startTime;
+    private bool finish = false;
+    public int milisecondDesimels = 0;
+    private Score score;
 
-	// Use this for initialization
-	void Start () {
-		startTime = Time.time;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start() {
+        startTime = Time.time;
+        score = FindObjectOfType<Score>();
+    }
 
-		if (finish)
-		{
-			return;
-		}
+    // Update is called once per frame
+    void Update() {
 
-		float timeSinceStart = Time.time - startTime;
+        if (finish) {
+            return;
+        }
 
-		string minutes = ((int) timeSinceStart / 60).ToString();
-		string seconds = (timeSinceStart % 60).ToString("f" + milisecondDesimels);
+        float timeSinceStart = Time.time - startTime;
 
-		if(minutes.Length == 1)
-		{
-			minutes = "0" + minutes;
-		}
+        string minutes = ((int)timeSinceStart / 60).ToString();
+        string seconds = (timeSinceStart % 60).ToString("f" + milisecondDesimels);
 
-		if (seconds.Length == 2 + milisecondDesimels)
-		{
-			seconds = "0" + seconds;
-		}
+        if (minutes.Length == 1) {
+            minutes = "0" + minutes;
+        }
 
-		this.GetComponent<TextMeshProUGUI>().text = minutes + ":" + seconds;
+        if (seconds.Length == 2 + milisecondDesimels) {
+            seconds = "0" + seconds;
+        }
 
-	}
+        this.GetComponent<TextMeshProUGUI>().text = minutes + ":" + seconds;
 
-	public void stop()
-	{
-		finish = true;
-		this.GetComponent<TextMeshProUGUI>().color = Color.yellow;
-	}
+    }
+
+    public void stop() {
+        finish = true;
+        this.GetComponent<TextMeshProUGUI>().color = Color.yellow;
+
+        FindObjectOfType<Score>().setBlocked();
+    }
 }
