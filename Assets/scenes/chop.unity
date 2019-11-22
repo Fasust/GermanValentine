@@ -29820,10 +29820,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa2d3eacaa28a542aa2f61b1a34c932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 500
-  jumpForce: 2500000
+  walkSpeed: 450
+  jumpForce: 5000000
   stumpForce: 10000
-  fallMultiplier: 200
+  fallMultiplier: 100
   crouchSpeedMultiplier: 0.3
   movementSmoothing: 0.15
   whatIsGround:

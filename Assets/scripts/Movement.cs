@@ -57,17 +57,21 @@ public class Movement : MonoBehaviour {
 
     void FixedUpdate() {
         checkIfGrounded();
+
+        if (blocked) {
+            verticalMove = 0;
+            horizontalMove = 0;
+        }
+        
+        move();
     }
 
     void Update() {
         getInputs();
-
-        if (blocked) return;
-        move();
         changeDirection();
     }
     private void getInputs() {
-        horizontalMove = keyboard.Horizontal;
+        horizontalMove = joystick.Horizontal;
         if (Mathf.Abs(horizontalMove) >= moveSensitivity) {
             if (horizontalMove > 0) horizontalMove = walkSpeed;
             else horizontalMove = -walkSpeed;
@@ -76,8 +80,8 @@ public class Movement : MonoBehaviour {
             horizontalMove = 0;
         }
 
-        if (keyboard.Vertical >= jumpSensitivity) verticalMove = keyboard.Vertical;
-        else if (keyboard.Vertical <= crouchSensitivity) verticalMove = keyboard.Vertical;
+        if (joystick.Vertical >= jumpSensitivity) verticalMove = joystick.Vertical;
+        else if (joystick.Vertical <= crouchSensitivity) verticalMove = joystick.Vertical;
         else verticalMove = 0;
     }
 
@@ -122,7 +126,7 @@ public class Movement : MonoBehaviour {
         for (int i = 0; i < colliders.Length; i++) {
             if (colliders[i].gameObject != gameObject) {
                 grounded = true;
-                if (!wasGrounded && verticalMove <= 0)
+                if (!wasGrounded)
                     OnLandEvent.Invoke();
             }
         }
