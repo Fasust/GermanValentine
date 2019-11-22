@@ -29,7 +29,7 @@ public class PlayerAnimation : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         playerAnimator.SetFloat("speed", Mathf.Abs(movement.getHorizontalMove()));
         playerAnimator.SetBool("sneak", movement.isCrouching());
         playerAnimator.SetBool("jump", movement.isAirborn());

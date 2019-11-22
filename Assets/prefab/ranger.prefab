@@ -991,8 +991,8 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 256
-  SERACHING_TIME: 1
-  SNEAKING_DETECTION_MULTIPLIER: 0.5
+  SERACHING_TIME: 1.2
+  SNEAKING_DETECTION_MULTIPLIER: 1
   rangerAnimator: {fileID: 95071538888737364}
   alertDisplay: {fileID: 223102773696775118}
   searchingDisplay: {fileID: 223800195937252472}
