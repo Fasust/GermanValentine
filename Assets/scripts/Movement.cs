@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour {
     public float moveSensitivity = .2f;
     public float crouchSensitivity = .5f;
     public float jumpSensitivity = .5f;
+    public float sprintThreshold = .6f;
 
     [Header("Internal")]
     const float groundedRadius = 1f;
@@ -62,7 +63,7 @@ public class Movement : MonoBehaviour {
             verticalMove = 0;
             horizontalMove = 0;
         }
-        
+
         move();
     }
 
@@ -71,10 +72,9 @@ public class Movement : MonoBehaviour {
         changeDirection();
     }
     private void getInputs() {
-        horizontalMove = joystick.Horizontal;
-        if (Mathf.Abs(horizontalMove) >= moveSensitivity) {
-            if (horizontalMove > 0) horizontalMove = walkSpeed;
-            else horizontalMove = -walkSpeed;
+
+        if (Mathf.Abs(joystick.Horizontal) >= moveSensitivity) {
+            horizontalMove = joystick.Horizontal;
 
         } else {
             horizontalMove = 0;
@@ -83,15 +83,20 @@ public class Movement : MonoBehaviour {
         if (joystick.Vertical >= jumpSensitivity) verticalMove = joystick.Vertical;
         else if (joystick.Vertical <= crouchSensitivity) verticalMove = joystick.Vertical;
         else verticalMove = 0;
+
+        //Max them out
+        if (horizontalMove >= sprintThreshold) { horizontalMove = .99f; }
+        if (horizontalMove <= -sprintThreshold) { horizontalMove = -.99f; }
     }
 
     private void move() {
+
         if (isCrouching()) horizontalMove *= crouchSpeedMultiplier;
 
         if (isCrouching() && state.isCarrying()) horizontalMove = 0;
 
         // Move the character by finding the target velocity
-        Vector3 targetVelocity = new Vector2(horizontalMove, m_Rigidbody2D.velocity.y);
+        Vector3 targetVelocity = new Vector2(horizontalMove * walkSpeed, m_Rigidbody2D.velocity.y);
         // And then smoothing it out and applying it to the character
         m_Rigidbody2D.velocity = Vector3.SmoothDamp(
             m_Rigidbody2D.velocity,
@@ -99,6 +104,12 @@ public class Movement : MonoBehaviour {
             ref refVector,
             movementSmoothing
         );
+
+        if (isStartingJump()) {
+            grounded = false;
+            m_Rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+        }
+        if (isStumping()) m_Rigidbody2D.AddForce(new Vector2(0f, -stumpForce));
 
         //Faster Fall
         if (m_Rigidbody2D.velocity.y < 0) {
@@ -108,12 +119,6 @@ public class Movement : MonoBehaviour {
         } else if (m_Rigidbody2D.velocity.y > 0 && verticalMove <= 0) {
             m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-
-        if (isStartingJump()) {
-            grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-        }
-        if (isStumping()) m_Rigidbody2D.AddForce(new Vector2(0f, -stumpForce));
     }
 
     private void checkIfGrounded() {
@@ -154,7 +159,7 @@ public class Movement : MonoBehaviour {
     public bool isStartingJump() => grounded && verticalMove > 0;
     public bool isJumping() => !grounded && verticalMove > 0;
     public bool isAirborn() => !grounded;
-    public bool isStumping() => !grounded && verticalMove < 0;
+    public bool isStumping() => !grounded && verticalMove <= 0;
     public bool isCrouching() => grounded && verticalMove < 0;
 
     public float getHorizontalMove() => horizontalMove;

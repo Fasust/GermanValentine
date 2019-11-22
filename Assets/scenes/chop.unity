@@ -29859,7 +29859,8 @@ MonoBehaviour:
   keyboard: {fileID: 874149458}
   moveSensitivity: 0.2
   crouchSensitivity: -0.3
-  jumpSensitivity: 0.6
+  jumpSensitivity: 0.55
+  sprintThreshold: 0.6
 --- !u!114 &2033382917
 MonoBehaviour:
   m_ObjectHideFlags: 0
