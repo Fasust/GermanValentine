@@ -14,10 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/chop.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/scenes/dress.unity
     guid: 2af33ba733a02ba48a9cfd33bf0cb765
   - enabled: 1
     path: Assets/scenes/drive.unity
     guid: 65c3f7ec39743b64e85994f660c7b6bb
+  - enabled: 0
+    path: Assets/scenes/chop_alt.unity
+    guid: ff2762c2371900740b2e958cc8f23d15
   m_configObjects: {}

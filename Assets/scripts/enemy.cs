@@ -21,9 +21,6 @@ public class enemy : MonoBehaviour {
     public GameObject points;
     public GameObject pointsGain;
 
-    //Audio
-    public float chopSoundDelay = 0.23f;
-
     // Use this for initialization
     void Start() {
         health = MAX_HEALTH;
@@ -65,7 +62,7 @@ public class enemy : MonoBehaviour {
         camShake.shake();
 
         //Sound
-        FindObjectOfType<AudioManager>().play("Chop", chopSoundDelay);
+        FindObjectOfType<AudioManager>().play("Chop");
 
         //Damage
         health -= amount;

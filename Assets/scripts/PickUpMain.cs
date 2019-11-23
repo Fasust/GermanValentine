@@ -26,11 +26,13 @@ public class PickUpMain : MonoBehaviour {
 		foreach (Collider2D col in playerColliders)
 		{
 			PlayerState playerState = col.GetComponent<PlayerState>();
+			Movement movement = col.GetComponent<Movement>();
 
 			if (playerState.isCarrying() && playerState.enabled)
 			{
 				fireworks.play();
 				playerState.enabled = false;
+				movement.setBlocked(true);
 				timer.stop();
 			}
 

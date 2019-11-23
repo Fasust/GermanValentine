@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour {
     [Header("Stats")]
     public int attackDamage;
     public float attackRange;
+    public float impactBackDelay = 0.23f;
     public float hitHorizontalNockBack = 2000000;
     public float hitVerticalNockBack = 1000000;
     public float misshorizontalNockBack = 2000000;
@@ -63,6 +64,12 @@ public class PlayerAttack : MonoBehaviour {
 
         bool hitMetal = (metals.Length != 0);
         bool hitDestructable = (destructables.Length != 0);
+
+        StartCoroutine(impactAfterDelay(impactBackDelay, hitMetal, hitDestructable, destructables));
+    }
+
+    IEnumerator impactAfterDelay(float time, bool hitMetal, bool hitDestructable, Collider2D[] destructables) {
+        yield return new WaitForSeconds(time);
 
         //Calc Knock Back
         float chKnockBack = misshorizontalNockBack;
