@@ -12,8 +12,8 @@ public class HerHouse : MonoBehaviour {
     public TextMeshPro pointDisplay;
     public Animator pointDisplayAnimator;
     public float minStayTime;
-    public int BASE_SCORE = 5000;
-    public int SCORE_STEPS = 1000;
+    public int BASE_SCORE = 500;
+    public int SCORE_STEPS = 100;
     private float stayTime;
     private bool won;
 
@@ -31,22 +31,23 @@ public class HerHouse : MonoBehaviour {
         }
         won = true;
         tree.settel();
-		arrow.SetActive(false);
+        arrow.SetActive(false);
 
         int currentPoints = 0;
         float distanz = Mathf.Abs(tree.transform.position.x - arrow.transform.position.x);
+        
         if (distanz < 100) currentPoints = BASE_SCORE;
-        if (distanz > 200) currentPoints = BASE_SCORE - SCORE_STEPS;
-        if (distanz > 300) currentPoints = BASE_SCORE - SCORE_STEPS * 2;
-        if (distanz > 400) currentPoints = BASE_SCORE - SCORE_STEPS * 3;
-        if (distanz > 500) currentPoints = BASE_SCORE - SCORE_STEPS * 4;
+        else if (distanz < 200) currentPoints = BASE_SCORE - SCORE_STEPS;
+        else if (distanz < 300) currentPoints = BASE_SCORE - SCORE_STEPS * 2;
+        else if (distanz < 400) currentPoints = BASE_SCORE - SCORE_STEPS * 3;
+        else currentPoints = BASE_SCORE - SCORE_STEPS * 4;
 
-		FindObjectOfType<Score>().add(currentPoints);
-		pointDisplay.text = currentPoints.ToString();
+        FindObjectOfType<Score>().add(currentPoints);
+        pointDisplay.text = currentPoints.ToString();
 
-		pointDisplayAnimator.SetTrigger("show");
-		
+        pointDisplayAnimator.SetTrigger("show");
+
         player.win();
-		fireworks.play();
+        fireworks.play();
     }
 }
