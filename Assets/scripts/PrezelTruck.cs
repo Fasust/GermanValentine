@@ -14,6 +14,7 @@ public class PrezelTruck : MonoBehaviour {
     public float detectionYRange;
     public GameObject player;
     public AudioSource horn;
+    public float volume = .1f;
     private bool honked = false;
 
     public GameObject smokeBigParitecels;
@@ -21,6 +22,7 @@ public class PrezelTruck : MonoBehaviour {
     // Use this for initialization
     void Start() {
         smokeBigParitecels.GetComponent<ParticleSystem>().Stop();
+        horn.volume = volume;
     }
 
     // Update is called once per frame
