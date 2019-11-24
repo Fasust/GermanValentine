@@ -53,7 +53,7 @@ public class Dog : MonoBehaviour {
 
         if (hitLeft && !isFacingRight) flip();
 
-        findPlayer();
+       // findPlayer();
 
         dogAnimator.SetBool("aggro", aggro);
 
@@ -67,30 +67,26 @@ public class Dog : MonoBehaviour {
 
     private void findPlayer() {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, viewRange, playerMask);
-        PlayerState playerState = null;
 
         aggro = false;
 
         foreach (Collider2D col in playerColliders) {
-            playerState = col.GetComponent<PlayerState>();
+            PlayerState playerState = col.GetComponent<PlayerState>();
+            Vector3 playerPos = col.transform.position;
 
             //check if he is on eye level
             float topEyeLevel = transform.position.y + eyeLevelMargin;
             float bottomEyeLevel = transform.position.y - eyeLevelMargin;
-            
-            if (playerState.transform.position.y <= topEyeLevel && playerState.transform.position.y >= bottomEyeLevel) {
 
-                //check if we are looking the right way
-                if (!playerState.isHidden()) {
-                    if (isFacingRight && playerState.transform.position.x >= transform.position.x) {
-                        aggro = true;
-                    }
-                    if (!isFacingRight && playerState.transform.position.x <= transform.position.x) {
-                        aggro = true;
-                    }
-                }
-            }
+            if (!(playerPos.y <= topEyeLevel && playerPos.y >= bottomEyeLevel)) continue;
 
+            //check if he hides
+            if (playerState.isHidden()) continue;
+
+            //check if we are looking the right way
+            if (isFacingRight && playerPos.x >= transform.position.x) aggro = true;
+
+            if (!isFacingRight && playerPos.x <= transform.position.x) aggro = true;
         }
     }
 
