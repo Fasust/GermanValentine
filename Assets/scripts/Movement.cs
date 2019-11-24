@@ -13,8 +13,9 @@ public class Movement : MonoBehaviour {
     public float jumpForce = 400f;
     public float stumpForce = 100f;
     public float fallMultiplier = 2.5f;
+    public float jumpForceFallOff = 0.6f;
     public float coyoteTime = 0.5f;
-    public float coyoteTimeCounter;
+    private float coyoteTimeCounter;
 
     [Header("General Movement")]
     [Range(0, 1)] public float crouchSpeedMultiplier = .36f;
@@ -72,7 +73,7 @@ public class Movement : MonoBehaviour {
     }
 
     void Update() {
-        
+
         getInputs();
         changeDirection();
     }
@@ -118,22 +119,30 @@ public class Movement : MonoBehaviour {
             ref refVector,
             movementSmoothing
         );
-
+         
+        //Jump
         if ((grounded || coyoteTimeCounter > 0) && verticalMove > 0) {
             grounded = false;
             coyoteTimeCounter = 0;
 
-            m_Rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpForce);
         }
+
+        //Stump
         if (isStumping()) m_Rigidbody2D.AddForce(new Vector2(0f, -stumpForce));
 
         //Faster Fall
         if (m_Rigidbody2D.velocity.y < 0) {
-            m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            m_Rigidbody2D.velocity = new Vector2(
+                                        m_Rigidbody2D.velocity.x,
+                                        m_Rigidbody2D.velocity.y * fallMultiplier - 1  
+                                        
+                                    );
+        }
 
-            //Canceling the Jump
-        } else if (m_Rigidbody2D.velocity.y > 0 && verticalMove <= 0) {
-            m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        //Jump Cancel
+        if (m_Rigidbody2D.velocity.y > 0 && verticalMove <= 0) {
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y * jumpForceFallOff);
         }
     }
 

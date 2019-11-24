@@ -30069,7 +30069,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2033382904}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2af077277d8eb114888123a8f36e65e8, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -30104,7 +30104,7 @@ Rigidbody2D:
   m_GravityScale: 180
   m_Material: {fileID: 6200000, guid: 2af077277d8eb114888123a8f36e65e8, type: 2}
   m_Interpolate: 1
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &2033382913
@@ -30170,11 +30170,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 550
-  jumpForce: 5000000
-  stumpForce: 10000
-  fallMultiplier: 100
+  jumpForce: 1000
+  stumpForce: 0
+  fallMultiplier: 1.04
+  jumpForceFallOff: 0.6
   coyoteTime: 0.2
-  coyoteTimeCounter: 0
   crouchSpeedMultiplier: 0.3
   movementSmoothing: 0.15
   whatIsGround:
