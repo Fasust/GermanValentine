@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        checkIfGrounded();
+
 
         if (blocked || attacking) {
             verticalMove = 0;
@@ -69,6 +69,8 @@ public class Movement : MonoBehaviour {
     }
 
     void Update() {
+        
+        checkIfGrounded();
         getInputs();
         changeDirection();
     }
