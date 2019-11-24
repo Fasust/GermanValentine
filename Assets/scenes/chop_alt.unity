@@ -30364,7 +30364,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 180
   m_Material: {fileID: 6200000, guid: 2af077277d8eb114888123a8f36e65e8, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -30430,7 +30430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa2d3eacaa28a542aa2f61b1a34c932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 450
+  walkSpeed: 550
   jumpForce: 5000000
   stumpForce: 10000
   fallMultiplier: 100

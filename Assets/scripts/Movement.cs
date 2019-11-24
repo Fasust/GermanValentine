@@ -13,6 +13,8 @@ public class Movement : MonoBehaviour {
     public float jumpForce = 400f;
     public float stumpForce = 100f;
     public float fallMultiplier = 2.5f;
+    public float coyoteTime = 0.5f;
+    public float coyoteTimeCounter;
 
     [Header("General Movement")]
     [Range(0, 1)] public float crouchSpeedMultiplier = .36f;
@@ -58,7 +60,8 @@ public class Movement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-
+        checkIfGrounded();
+        calcCoyoteTime();
 
         if (blocked || attacking) {
             verticalMove = 0;
@@ -70,10 +73,18 @@ public class Movement : MonoBehaviour {
 
     void Update() {
         
-        checkIfGrounded();
         getInputs();
         changeDirection();
     }
+
+    private void calcCoyoteTime() {
+        if (grounded) {
+            coyoteTimeCounter = coyoteTime;
+        } else {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
+
     private void getInputs() {
 
         if (Mathf.Abs(joystick.Horizontal) >= moveSensitivity) {
@@ -108,8 +119,10 @@ public class Movement : MonoBehaviour {
             movementSmoothing
         );
 
-        if (isStartingJump()) {
+        if ((grounded || coyoteTimeCounter > 0) && verticalMove > 0) {
             grounded = false;
+            coyoteTimeCounter = 0;
+
             m_Rigidbody2D.AddForce(new Vector2(0f, jumpForce));
         }
         if (isStumping()) m_Rigidbody2D.AddForce(new Vector2(0f, -stumpForce));
@@ -134,8 +147,9 @@ public class Movement : MonoBehaviour {
         for (int i = 0; i < colliders.Length; i++) {
             if (colliders[i].gameObject != gameObject) {
                 grounded = true;
-                if (!wasGrounded)
+                if (!wasGrounded) {
                     OnLandEvent.Invoke();
+                }
             }
         }
     }

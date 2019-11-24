@@ -26771,7 +26771,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328656801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5005, z: 0}
+  m_LocalPosition: {x: -0.044, y: -0.50003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2033382907}
@@ -29964,7 +29964,6 @@ GameObject:
   - component: {fileID: 2033382913}
   - component: {fileID: 2033382910}
   - component: {fileID: 2033382909}
-  - component: {fileID: 2033382908}
   - component: {fileID: 2033382918}
   - component: {fileID: 2033382914}
   m_Layer: 8
@@ -30061,22 +30060,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &2033382908
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033382904}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.20494384}
-  serializedVersion: 2
-  m_Radius: 0.29505616
 --- !u!61 &2033382909
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30090,7 +30073,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.001531601, y: 0.26341543}
+  m_Offset: {x: 0.001531601, y: -0.06160894}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -30101,7 +30084,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24880219, y: 0.3415441}
+  m_Size: {x: 0.3, y: 0.87653524}
   m_EdgeRadius: 0
 --- !u!50 &2033382910
 Rigidbody2D:
@@ -30120,7 +30103,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 180
   m_Material: {fileID: 6200000, guid: 2af077277d8eb114888123a8f36e65e8, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -30186,10 +30169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa2d3eacaa28a542aa2f61b1a34c932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 450
+  walkSpeed: 550
   jumpForce: 5000000
   stumpForce: 10000
   fallMultiplier: 100
+  coyoteTime: 0.2
+  coyoteTimeCounter: 0
   crouchSpeedMultiplier: 0.3
   movementSmoothing: 0.15
   whatIsGround:
