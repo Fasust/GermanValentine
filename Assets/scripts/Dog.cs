@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Dog : MonoBehaviour {
     [Header("Movement")]
+    private float OG_SPEED;
     public float movingSpeed = 100;
     public bool isFacingRight;
 
@@ -16,7 +18,11 @@ public class Dog : MonoBehaviour {
     public bool hitRight;
 
     [Header("Attack")]
-    public LayerMask coliderMask;
+    public float viewRange = 100;
+    private bool aggro;
+    public float chargeSpeed = 200;
+    public float eyeLevelMargin = 10;
+    public LayerMask playerMask;
     [Header("Visual")]
     public Animator dogAnimator;
 
@@ -28,6 +34,7 @@ public class Dog : MonoBehaviour {
 
 
     void Start() {
+        OG_SPEED = movingSpeed;
         rigbody = GetComponent<Rigidbody2D>();
     }
 
@@ -41,11 +48,50 @@ public class Dog : MonoBehaviour {
 
     private void Update() {
         checkForWalls();
-        
+
         if (hitRight && isFacingRight) flip();
-        
+
         if (hitLeft && !isFacingRight) flip();
-        
+
+        findPlayer();
+
+        dogAnimator.SetBool("aggro", aggro);
+
+        if (aggro) {
+            movingSpeed = chargeSpeed;
+        } else {
+            movingSpeed = OG_SPEED;
+        }
+    }
+
+
+    private void findPlayer() {
+        Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, viewRange, playerMask);
+        PlayerState playerState = null;
+
+        aggro = false;
+
+        foreach (Collider2D col in playerColliders) {
+            playerState = col.GetComponent<PlayerState>();
+
+            //check if he is on eye level
+            float topEyeLevel = transform.position.y + eyeLevelMargin;
+            float bottomEyeLevel = transform.position.y - eyeLevelMargin;
+            
+            if (playerState.transform.position.y <= topEyeLevel && playerState.transform.position.y >= bottomEyeLevel) {
+
+                //check if we are looking the right way
+                if (!playerState.isHidden()) {
+                    if (isFacingRight && playerState.transform.position.x >= transform.position.x) {
+                        aggro = true;
+                    }
+                    if (!isFacingRight && playerState.transform.position.x <= transform.position.x) {
+                        aggro = true;
+                    }
+                }
+            }
+
+        }
     }
 
     private void flip() {

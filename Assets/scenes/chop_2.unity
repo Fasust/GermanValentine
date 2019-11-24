@@ -5569,7 +5569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 202177069}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: leftCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15285,7 +15285,7 @@ GameObject:
   - component: {fileID: 786101162}
   - component: {fileID: 786101161}
   - component: {fileID: 786101160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15361,9 +15361,11 @@ MonoBehaviour:
   rightWallCheck: {fileID: 2038688127}
   hitLeft: 0
   hitRight: 0
-  coliderMask:
+  viewRange: 500
+  chargeSpeed: 500
+  playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   dogAnimator: {fileID: 786101163}
   dogSource: {fileID: 0}
 --- !u!95 &786101163
@@ -30459,7 +30461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2038688127}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rightCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
