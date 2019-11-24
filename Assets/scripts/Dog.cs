@@ -23,12 +23,16 @@ public class Dog : MonoBehaviour {
     public float chargeSpeed = 200;
     public float eyeLevelMargin = 10;
     public LayerMask playerMask;
+
     [Header("Visual")]
     public Animator dogAnimator;
 
     [Header("Sound")]
-    public AudioSource dogSource;
-    private bool walkingSoundPlaying = false;
+    public AudioSource pantingSource;
+    public AudioSource chargingSound;
+    private bool pantingSourcePlaying = true;
+    private bool chargingSoundPlaying;
+
     [Header("Misc")]
     private Rigidbody2D rigbody;
 
@@ -43,7 +47,6 @@ public class Dog : MonoBehaviour {
 
         //Applie Movement
         rigbody.velocity = new Vector2(movingSpeed * flipper, rigbody.velocity.y);
-
     }
 
     private void Update() {
@@ -53,17 +56,42 @@ public class Dog : MonoBehaviour {
 
         if (hitLeft && !isFacingRight) flip();
 
-       // findPlayer();
+        findPlayer();
 
         dogAnimator.SetBool("aggro", aggro);
 
         if (aggro) {
-            movingSpeed = chargeSpeed;
+            charge();
         } else {
-            movingSpeed = OG_SPEED;
+            relax();
         }
     }
 
+    private void relax() {
+        if (!pantingSourcePlaying) {
+            pantingSourcePlaying = true;
+            pantingSource.Play();
+        }
+        if (chargingSoundPlaying) {
+            chargingSoundPlaying = false;
+            chargingSound.Stop();
+        }
+
+        movingSpeed = OG_SPEED;
+    }
+
+    private void charge() {
+        if (pantingSourcePlaying) {
+            pantingSourcePlaying = false;
+            pantingSource.Stop();
+        }
+        if (!chargingSoundPlaying) {
+            chargingSoundPlaying = true;
+            chargingSound.Play();
+        }
+
+        movingSpeed = chargeSpeed;
+    }
 
     private void findPlayer() {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, viewRange, playerMask);
