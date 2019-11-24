@@ -45118,8 +45118,8 @@ MonoBehaviour:
   pointDisplay: {fileID: 172564389}
   pointDisplayAnimator: {fileID: 172564388}
   minStayTime: 0.7
-  BASE_SCORE: 500
-  SCORE_STEPS: 100
+  BASE_SCORE: 100
+  SCORE_STEPS: 20
 --- !u!61 &767597091
 BoxCollider2D:
   m_ObjectHideFlags: 0
