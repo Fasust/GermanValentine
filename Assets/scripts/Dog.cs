@@ -19,7 +19,9 @@ public class Dog : MonoBehaviour {
     [Header("Attack")]
     public float viewRange = 100;
     public float aggroDelay = 100;
-    private float aggroTimer;
+    public float aggroDecay = 100;
+    public float aggroTimer;
+    public float relaxTimer;
     private bool aggro;
     private bool detected;
     public float chargeSpeed = 200;
@@ -27,6 +29,7 @@ public class Dog : MonoBehaviour {
     public LayerMask playerMask;
     [SerializeField] private float attackRange;
     [SerializeField] private Transform attackPos;
+    public float closeProxAggroRange = 10;
 
     [Header("Visual")]
     public Animator dogAnimator;
@@ -56,13 +59,21 @@ public class Dog : MonoBehaviour {
     }
 
     private void Update() {
+
+        dogAnimator.SetBool("aggro", aggro || detected);
+
+        if (detected) return;
+
         checkForWalls();
 
         if (hitRight) flip();
 
-        findPlayer();
+        //Collision when Hidden
+        PlayerState player = FindObjectOfType<PlayerState>();
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>(), player.isHidden());
 
-        dogAnimator.SetBool("aggro", aggro || detected);
+        findPlayer();
+        findPlayerCloseProx();
 
         if (aggro) {
             charge();
@@ -73,6 +84,20 @@ public class Dog : MonoBehaviour {
         attack();
     }
 
+    private void findPlayerCloseProx() {
+        Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, closeProxAggroRange, playerMask);
+
+        if (playerColliders.Length != 0) {
+            //He is close
+            PlayerState playerState = playerColliders[0].GetComponent<PlayerState>();
+
+            //check if he hides
+            if (playerState.isHidden()) return;
+
+            raiseAggression();
+        }
+    }
+
     private void attack() {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(attackPos.position, attackRange, playerMask);
 
@@ -80,10 +105,10 @@ public class Dog : MonoBehaviour {
         foreach (Collider2D col in playerColliders) {
             PlayerState playerState = col.GetComponent<PlayerState>();
 
-            if (playerState.isHidden()) continue; 
+            if (playerState.isHidden()) continue;
+            if (!aggro) continue;
 
             //Detected
-            aggro = true;
             detected = true;
 
             pantingSource.Stop();
@@ -129,7 +154,12 @@ public class Dog : MonoBehaviour {
     private void findPlayer() {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, viewRange, playerMask);
 
-        aggro = false;
+
+
+        if (playerColliders.Length == 0) {
+            lowerAggression();
+            return;
+        }
 
         foreach (Collider2D col in playerColliders) {
             PlayerState playerState = col.GetComponent<PlayerState>();
@@ -140,13 +170,13 @@ public class Dog : MonoBehaviour {
             float bottomEyeLevel = transform.position.y - eyeLevelMargin;
 
             if (!(playerPos.y <= topEyeLevel && playerPos.y >= bottomEyeLevel)) {
-                aggroTimer = 0;
+                lowerAggression();
                 continue;
             }
 
             //check if he hides
             if (playerState.isHidden()) {
-                aggroTimer = 0;
+                lowerAggression();
                 continue;
             }
 
@@ -154,18 +184,32 @@ public class Dog : MonoBehaviour {
             if ((isFacingRight && playerPos.x >= transform.position.x) ||
             (!isFacingRight && playerPos.x <= transform.position.x)) {
                 //We can detect Him
-
-                if (aggroTimer >= aggroDelay) {
-                    aggro = true;
-                } else {
-                    aggroTimer += Time.deltaTime;
-                }
-
+                raiseAggression();
             } else {
-                aggroTimer = 0;
+                lowerAggression();
             }
-
         }
+    }
+    private void raiseAggression() {
+        if (aggro) return;
+
+        if (aggroTimer >= aggroDelay) {
+            aggro = true;
+            relaxTimer = 0;
+        } else {
+            aggroTimer += Time.deltaTime;
+        }
+    }
+    private void lowerAggression() {
+        if (!aggro) return;
+
+        if (relaxTimer >= aggroDecay) {
+            aggro = false;
+            aggroTimer = 0;
+        } else {
+            relaxTimer += Time.deltaTime;
+        }
+
     }
 
     private void flip() {
@@ -195,5 +239,7 @@ public class Dog : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, viewRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, closeProxAggroRange);
     }
 }
