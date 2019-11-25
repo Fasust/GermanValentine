@@ -8,6 +8,7 @@ public class PickUpRoad : MonoBehaviour {
 
     [Header("Movement")]
     public float BASE_SPEED = 400;
+    public float SPEED_LIMIT = 1000;
     private float currentSpeed;
     public float acceloration;
     public float breakSpeed;
@@ -69,8 +70,12 @@ public class PickUpRoad : MonoBehaviour {
         if (!hit && !breaking) {
             //Speed------------------
             if (paddle.pressed) {
+                if (currentSpeed + acceloration * Time.deltaTime >= SPEED_LIMIT) {
+                    currentSpeed = SPEED_LIMIT;
+                } else {
+                    currentSpeed += acceloration * Time.deltaTime;
+                }
                 currentSpeed += acceloration * Time.deltaTime;
-                FindObjectOfType<AudioManager>().setPitch("Car", carPitch += pitchIncrease);
             } else {
                 if (currentSpeed - breakSpeed * Time.deltaTime < BASE_SPEED) {
                     currentSpeed = BASE_SPEED;
@@ -79,13 +84,8 @@ public class PickUpRoad : MonoBehaviour {
 
                 }
 
-                if (carPitch - pitchFallOff < BASE_CAR_PITCH) {
-                    FindObjectOfType<AudioManager>().setPitch("Car", BASE_CAR_PITCH);
-                } else {
-                    FindObjectOfType<AudioManager>().setPitch("Car", carPitch -= pitchFallOff);
-                }
-
             }
+            print(currentSpeed);
 
             //Sound ------------
             if (paddle.pressed) {
