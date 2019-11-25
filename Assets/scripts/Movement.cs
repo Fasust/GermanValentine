@@ -194,7 +194,7 @@ public class Movement : MonoBehaviour {
     public bool isStartingJump() => grounded && verticalMove > 0;
     public bool isJumping() => !grounded && verticalMove > 0;
     public bool isAirborn() => !grounded;
-    public bool isFalling() => isAirborn() && (m_Rigidbody2D.velocity.y < 0);
+    public bool isFalling() => isAirborn() && (m_Rigidbody2D.velocity.y <= 0);
     public bool isBlocked() => blocked;
     public bool isAttacking() => attacking;
     public bool isStumping() => !grounded && verticalMove <= 0;

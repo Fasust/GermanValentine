@@ -26,7 +26,7 @@ public class enemy : MonoBehaviour {
         health = MAX_HEALTH;
         healthDisplay.enabled = false;
 
-        points.GetComponent<TextMeshPro>().text = POINTS.ToString();
+        points.GetComponent<TextMeshPro>().text = POINTS.ToString() + " POINTS";
         pointsGain.GetComponent<TextMeshPro>().text = POINTS.ToString();
 
         points.SetActive(false);
