@@ -21,6 +21,7 @@ public class Dog : MonoBehaviour {
     public float aggroDelay = 100;
     private float aggroTimer;
     private bool aggro;
+    private bool detected;
     public float chargeSpeed = 200;
     public float eyeLevelMargin = 10;
     public LayerMask playerMask;
@@ -61,7 +62,7 @@ public class Dog : MonoBehaviour {
 
         findPlayer();
 
-        dogAnimator.SetBool("aggro", aggro);
+        dogAnimator.SetBool("aggro", aggro || detected);
 
         if (aggro) {
             charge();
@@ -83,6 +84,7 @@ public class Dog : MonoBehaviour {
 
             //Detected
             aggro = true;
+            detected = true;
 
             pantingSource.Stop();
             chargingSound.Stop();
