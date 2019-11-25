@@ -14,18 +14,22 @@ public class Dog : MonoBehaviour {
     [SerializeField] private float wallCheckRadius;
     [SerializeField] private Transform leftWallCheck;
     [SerializeField] private Transform rightWallCheck;
-    public bool hitLeft;
-    public bool hitRight;
+    private bool hitRight;
 
     [Header("Attack")]
     public float viewRange = 100;
+    public float aggroDelay = 100;
+    private float aggroTimer;
     private bool aggro;
     public float chargeSpeed = 200;
     public float eyeLevelMargin = 10;
     public LayerMask playerMask;
+    [SerializeField] private float attackRange;
+    [SerializeField] private Transform attackPos;
 
     [Header("Visual")]
     public Animator dogAnimator;
+    public Canvas alertDisplay;
 
     [Header("Sound")]
     public AudioSource pantingSource;
@@ -38,6 +42,7 @@ public class Dog : MonoBehaviour {
 
 
     void Start() {
+        alertDisplay.enabled = false;
         OG_SPEED = movingSpeed;
         rigbody = GetComponent<Rigidbody2D>();
     }
@@ -52,9 +57,7 @@ public class Dog : MonoBehaviour {
     private void Update() {
         checkForWalls();
 
-        if (hitRight && isFacingRight) flip();
-
-        if (hitLeft && !isFacingRight) flip();
+        if (hitRight) flip();
 
         findPlayer();
 
@@ -64,6 +67,32 @@ public class Dog : MonoBehaviour {
             charge();
         } else {
             relax();
+        }
+
+        attack();
+    }
+
+    private void attack() {
+        Collider2D[] playerColliders = Physics2D.OverlapCircleAll(attackPos.position, attackRange, playerMask);
+
+
+        foreach (Collider2D col in playerColliders) {
+            PlayerState playerState = col.GetComponent<PlayerState>();
+
+            if (playerState.isHidden()) continue; 
+
+            //Detected
+            aggro = true;
+
+            pantingSource.Stop();
+            chargingSound.Stop();
+            pantingSourcePlaying = false;
+            chargingSoundPlaying = false;
+
+            //Movement
+            movingSpeed = 0;
+
+            playerState.detect();
         }
     }
 
@@ -78,6 +107,7 @@ public class Dog : MonoBehaviour {
         }
 
         movingSpeed = OG_SPEED;
+        alertDisplay.enabled = false;
     }
 
     private void charge() {
@@ -91,6 +121,7 @@ public class Dog : MonoBehaviour {
         }
 
         movingSpeed = chargeSpeed;
+        alertDisplay.enabled = true;
     }
 
     private void findPlayer() {
@@ -106,34 +137,48 @@ public class Dog : MonoBehaviour {
             float topEyeLevel = transform.position.y + eyeLevelMargin;
             float bottomEyeLevel = transform.position.y - eyeLevelMargin;
 
-            if (!(playerPos.y <= topEyeLevel && playerPos.y >= bottomEyeLevel)) continue;
+            if (!(playerPos.y <= topEyeLevel && playerPos.y >= bottomEyeLevel)) {
+                aggroTimer = 0;
+                continue;
+            }
 
             //check if he hides
-            if (playerState.isHidden()) continue;
+            if (playerState.isHidden()) {
+                aggroTimer = 0;
+                continue;
+            }
 
             //check if we are looking the right way
-            if (isFacingRight && playerPos.x >= transform.position.x) aggro = true;
+            if ((isFacingRight && playerPos.x >= transform.position.x) ||
+            (!isFacingRight && playerPos.x <= transform.position.x)) {
+                //We can detect Him
 
-            if (!isFacingRight && playerPos.x <= transform.position.x) aggro = true;
+                if (aggroTimer >= aggroDelay) {
+                    aggro = true;
+                } else {
+                    aggroTimer += Time.deltaTime;
+                }
+
+            } else {
+                aggroTimer = 0;
+            }
+
         }
     }
 
     private void flip() {
-        isFacingRight = !isFacingRight;
-        GetComponent<SpriteRenderer>().flipX = isFacingRight;
+        //GetComponent<SpriteRenderer>().flipX = isFacingRight;
+        transform.localScale =
+                new Vector3(
+                    -transform.localScale.x,
+                    +transform.localScale.y,
+                    +transform.localScale.z);
+
+        isFacingRight = transform.localScale.x > 0;
     }
 
     private void checkForWalls() {
         hitRight = false;
-        hitLeft = false;
-
-        //left
-        Collider2D[] collidersLeft = Physics2D.OverlapCircleAll(leftWallCheck.position, wallCheckRadius, whatIsWall);
-        for (int i = 0; i < collidersLeft.Length; i++) {
-            if (collidersLeft[i].gameObject != gameObject) {
-                hitLeft = true;
-            }
-        }
 
         //Right
         Collider2D[] collidersRight = Physics2D.OverlapCircleAll(rightWallCheck.position, wallCheckRadius, whatIsWall);
@@ -142,5 +187,11 @@ public class Dog : MonoBehaviour {
                 hitRight = true;
             }
         }
+    }
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, viewRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 }

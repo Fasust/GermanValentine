@@ -25,11 +25,15 @@ public class PlayerState : MonoBehaviour {
     }
 
     public void detect() {
-        detected = true;
-        FindObjectOfType<AudioManager>().play("Gameover");
-        StateManager.showReplay();
-        movement.setBlocked(true);
-        timer.stop();
+        if (!detected) {
+            detected = true;
+            FindObjectOfType<AudioManager>().play("Gameover");
+
+
+            StateManager.showReplay();
+            movement.setBlocked(true);
+            timer.stop();
+        }
     }
 
     public bool isHidden() {
