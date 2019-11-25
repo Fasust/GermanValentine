@@ -45,4 +45,5 @@ public class PlayerState : MonoBehaviour {
     public bool isCarrying() => carrying;
     public bool isCrouching() => movement.isCrouching();
     public bool isDetected() => detected;
+    public bool isFalling() => movement.isFalling();
 }
