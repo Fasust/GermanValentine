@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/scenes/levelSelect.unity
     guid: 6d80451f156b3c0418aadae588e4c57a
   - enabled: 1
-    path: Assets/scenes/chop.unity
+    path: Assets/scenes/chop_old.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/scenes/dress.unity
