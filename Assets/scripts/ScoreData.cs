@@ -8,7 +8,7 @@ public class ScoreData {
     public int score;
     public string name;
     public ScoreData(string input) {
-        score = int.Parse(input.Substring(0, SCORE_NUMBER_LENGTH - 1));
+        score = int.Parse(input.Substring(0, SCORE_NUMBER_LENGTH));
         name = input.Substring(SCORE_NUMBER_LENGTH, input.Length - SCORE_NUMBER_LENGTH);
     }
     public ScoreData(int score, string name) {
@@ -21,7 +21,7 @@ public class ScoreData {
         return scoreString + name;
     }
     public String getFormatedScore() {
-        double scoreDigits = Math.Floor(Math.Log10(score) + 1);
+        double scoreDigits = Math.Floor(Math.Log10(score));
         String scoreString = score.ToString();
         int neededDigits = SCORE_NUMBER_LENGTH - (int)scoreDigits;
 

@@ -9,6 +9,7 @@ public class StateManagerMain : MonoBehaviour {
     public Button replayButton;
     public Button startOverButton;
     public bool hideReplay = true;
+
     void Start() {
 
         if (hideReplay) {
@@ -41,4 +42,7 @@ public class StateManagerMain : MonoBehaviour {
     public void startOver() {
         loadLevel("chop");
     }
+    public void emptyAllScores() {
+        PlayerPrefs.DeleteAll();
+    }   
 }

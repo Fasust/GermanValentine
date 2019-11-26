@@ -60,10 +60,16 @@ public class Score : MonoBehaviour {
         DataHolder.score = currentScore;
     }
     public void gameComplete() {
+        setBlocked();
+
+        //create score
         ScoreData score = new ScoreData(currentScore, "Mr. Placeholder");
+
+        //Increase score list size
         int size = PlayerPrefs.GetInt(PrefKeySize);
-        size++;
-        PlayerPrefs.SetInt(PrefKeySize, size);
-        PlayerPrefs.SetString(PrefKeyPrefix + (size -1).ToString(), score.ToString());
+        PlayerPrefs.SetInt(PrefKeySize, size + 1);
+
+        //Add score to list
+        PlayerPrefs.SetString(PrefKeyPrefix + size.ToString(), score.ToString());
     }
 }
