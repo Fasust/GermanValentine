@@ -176,7 +176,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000000 - Name
+  m_text: '1500 - Name
+
+    1200 - Name
+
+    0500 - Name
+
+    0000 - Name'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb923ec9f8223b24d8041ed091585b80, type: 2}
   m_sharedMaterial: {fileID: 21453863656221250, guid: eb923ec9f8223b24d8041ed091585b80,
@@ -246,12 +252,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: -1.4482422, z: 0, w: 4.314789}
   m_textInfo:
     textComponent: {fileID: 40579617}
-    characterCount: 13
+    characterCount: 47
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 11
+    wordCount: 12
     linkCount: 0
-    lineCount: 1
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
