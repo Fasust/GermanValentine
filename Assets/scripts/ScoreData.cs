@@ -21,7 +21,9 @@ public class ScoreData {
         return scoreString + name;
     }
     public String getFormatedScore() {
-        double scoreDigits = Math.Floor(Math.Log10(score));
+        if(score == 0) return "0000";
+
+        double scoreDigits = Math.Floor(Math.Log10(score) +1);
         String scoreString = score.ToString();
         int neededDigits = SCORE_NUMBER_LENGTH - (int)scoreDigits;
 

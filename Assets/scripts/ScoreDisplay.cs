@@ -19,7 +19,7 @@ public class ScoreDisplay : MonoBehaviour {
     }
 
     private void sortScores() {
-        scores.Sort((x, y) => x.score.CompareTo(y.score));
+        scores.Sort((x, y) => y.score.CompareTo(x.score));
     }
 
     private void loadScores() {

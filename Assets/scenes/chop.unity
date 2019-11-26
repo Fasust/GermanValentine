@@ -55030,7 +55030,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   joystick: {fileID: 783199653}
-  jumpButton: {fileID: 1395911634}
+  jumpButton: {fileID: 1395911637}
   keyboard: {fileID: 874149458}
   moveSensitivity: 0.2
   crouchSensitivity: -0.3

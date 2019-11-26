@@ -11,9 +11,6 @@ public class Score : MonoBehaviour {
     private bool block;
     private TextMeshProUGUI ui;
 
-    private string PrefKeyPrefix = "german_valentine_score_";
-    private string PrefKeySize = "german_valentine_score_size";
-
 
     // Use this for initialization
     void Start() {
@@ -22,6 +19,8 @@ public class Score : MonoBehaviour {
         //Load Score
         if (SceneManager.GetActiveScene().name == "drive") {
             currentScore += DataHolder.score;
+        } else if (SceneManager.GetActiveScene().name == "name_edit") {
+             currentScore = DataHolder.score;
         } else {
             currentScore += startScore;
         }
@@ -59,17 +58,5 @@ public class Score : MonoBehaviour {
     public void saveScore() {
         DataHolder.score = currentScore;
     }
-    public void gameComplete() {
-        setBlocked();
-
-        //create score
-        ScoreData score = new ScoreData(currentScore, "Mr. Placeholder");
-
-        //Increase score list size
-        int size = PlayerPrefs.GetInt(PrefKeySize);
-        PlayerPrefs.SetInt(PrefKeySize, size + 1);
-
-        //Add score to list
-        PlayerPrefs.SetString(PrefKeyPrefix + size.ToString(), score.ToString());
-    }
+    public int getCurrentScore() => currentScore;
 }
