@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreData {
-    private const int SCORE_NUMBER_LENGTH = 6;
+    private const int SCORE_NUMBER_LENGTH = 4;
     public int score;
     public string name;
     public ScoreData(string input) {

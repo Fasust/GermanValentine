@@ -33,6 +33,7 @@ public class Movement : MonoBehaviour {
 
     [Header("Input")]
     public Joystick joystick;
+    public GasPaddle jumpButton;
     public KeyboardInput keyboard;
     public float moveSensitivity = .2f;
     public float crouchSensitivity = .5f;
@@ -95,9 +96,12 @@ public class Movement : MonoBehaviour {
             horizontalMove = 0;
         }
 
-        if (joystick.Vertical >= jumpSensitivity) verticalMove = joystick.Vertical;
-        else if (joystick.Vertical <= crouchSensitivity) verticalMove = joystick.Vertical;
-        else verticalMove = 0;
+        //if (joystick.Vertical >= jumpSensitivity) verticalMove = joystick.Vertical;
+        if (joystick.Vertical <= crouchSensitivity) verticalMove = joystick.Vertical;
+
+        if (jumpButton.pressed) verticalMove = 1;
+
+        if (!jumpButton.pressed && joystick.Vertical > crouchSensitivity) verticalMove = 0;
 
         //Max them out
         if (horizontalMove >= sprintThreshold) { horizontalMove = .99f; }
@@ -119,7 +123,7 @@ public class Movement : MonoBehaviour {
             ref refVector,
             movementSmoothing
         );
-         
+
         //Jump
         if ((grounded || coyoteTimeCounter > 0) && verticalMove > 0) {
             grounded = false;
@@ -135,8 +139,8 @@ public class Movement : MonoBehaviour {
         if (m_Rigidbody2D.velocity.y < 0) {
             m_Rigidbody2D.velocity = new Vector2(
                                         m_Rigidbody2D.velocity.x,
-                                        m_Rigidbody2D.velocity.y * fallMultiplier - 1  
-                                        
+                                        m_Rigidbody2D.velocity.y * fallMultiplier - 1
+
                                     );
         }
 
