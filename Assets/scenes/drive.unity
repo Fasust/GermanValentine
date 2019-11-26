@@ -120812,8 +120812,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BASE_SPEED: 400
   SPEED_LIMIT: 1650
-  acceloration: 115
-  breakSpeed: 165
+  acceloration: 100
+  breakSpeed: 150
   yMoveDistance: 100
   UpMoveLimet: 500
   DownMoveLimet: 200
