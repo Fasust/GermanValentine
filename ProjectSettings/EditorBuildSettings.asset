@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/chop.unity
     guid: 730e7fc9010aa4f45a8ba53dea84bd6a
+  - enabled: 1
+    path: Assets/scenes/score.unity
+    guid: 8ead0d3644125444f84e8c04ad04e431
   m_configObjects: {}
