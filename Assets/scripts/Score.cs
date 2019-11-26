@@ -11,6 +11,10 @@ public class Score : MonoBehaviour {
     private bool block;
     private TextMeshProUGUI ui;
 
+    private string PrefKeyPrefix = "german_valentine_score_";
+    private string PrefKeySize = "german_valentine_score_size";
+
+
     // Use this for initialization
     void Start() {
         ui = this.GetComponent<TextMeshProUGUI>();
@@ -54,5 +58,12 @@ public class Score : MonoBehaviour {
 
     public void saveScore() {
         DataHolder.score = currentScore;
+    }
+    public void gameComplete() {
+        ScoreData score = new ScoreData(currentScore, "Mr. Placeholder");
+        int size = PlayerPrefs.GetInt(PrefKeySize);
+        size++;
+        PlayerPrefs.SetInt(PrefKeySize, size);
+        PlayerPrefs.SetString(PrefKeyPrefix + (size -1).ToString(), score.ToString());
     }
 }

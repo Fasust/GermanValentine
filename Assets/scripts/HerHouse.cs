@@ -43,6 +43,7 @@ public class HerHouse : MonoBehaviour {
         else currentPoints = BASE_SCORE - SCORE_STEPS * 4;
 
         FindObjectOfType<Score>().add(currentPoints);
+
         pointDisplay.text = currentPoints.ToString();
 
         pointDisplayAnimator.SetTrigger("show");

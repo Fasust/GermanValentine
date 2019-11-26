@@ -13,10 +13,6 @@ public class ScoreDisplay : MonoBehaviour {
     void Start() {
         display = GetComponent<TextMeshProUGUI>();
 
-        ScoreData dummy = new ScoreData(1002, "Fasust");
-        PlayerPrefs.SetInt(PrefKeySize, 1);
-        PlayerPrefs.SetString(PrefKeyPrefix + 0.ToString(), dummy.ToString());
-
         loadScores();
         sortScores();
         fillDisplay();
