@@ -34,8 +34,8 @@ public class ScoreDisplay : MonoBehaviour {
     }
     private void fillDisplay() {
         string displayText = "";
-        for (int i = 0; i < 100; i++) {
-            displayText += scores[0].getFormatedScore() + " - " + scores[0].name + "\n";
+        for (int i = 0; i < scores.Count; i++) {
+            displayText += scores[i].getFormatedScore() + " - " + scores[i].name + "\n";
         }
         display.text = displayText;
     }
