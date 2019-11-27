@@ -44,5 +44,8 @@ public class StateManagerMain : MonoBehaviour {
     }
     public void emptyAllScores() {
         PlayerPrefs.DeleteAll();
-    }   
+    }
+    public void clearCurrentCashedScore() {
+        DataHolder.score = 0;
+    }
 }
