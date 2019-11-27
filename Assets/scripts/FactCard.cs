@@ -26,17 +26,17 @@ public class FactCard : MonoBehaviour {
     private AudioSource readySound;
 
     private string[] facts = {
-        "\"schandMaien\" are a variant of \"LiebesMaien\" that People Attach to to houses of people they dislike. \n\n" +
+        "\"Schandmaien\" are a variant of \"Liebesmaien\" that people attach to houses of people they dislike. \n\n" +
             "They are traditionally decorated with tampons and black ribbons.",
-        "One month after placing there tree, the german bealors come back to the houses of their crushes and put down their tree. \n\n" +
+        "One month after placing their tree, the german bachelors come back to the houses of their crushes and put down their tree. \n\n" +
             "Their efforts will be rewarded with a cake or a beer.",
-        "Every Leap year, the gender roles of the original tradition switch. The girls go out to steal the trees and the boys eagerly lay in their beds. ",
-        "Legally Buying a tree for this tradition is looked down upon. \n\n" +
-            "Thusly Security in german forests on the 1. Of May is on High Alert. ",
-        "Usually the whole process of stealing, dressing and placing the trees is planed days in advance to the first of May. \n\n" +
+        "Every leap year, the gender roles of the original tradition switch. The girls go out to steal the trees and the boys eagerly lay in their beds. ",
+        "Legally buying a tree for this tradition is looked down upon. \n\n" +
+            "Thusly security in german forests on the 1. of may is on high alert. ",
+        "Usually, the whole process of stealing, dressing and placing the trees is planned days in advance to the first of may. \n\n" +
             "Beer (as you would expect from Germany) plays a big role in this. ",
-        "Many Bachelors try to avoid the hassle of stealing a tree in the forest by stealing trees that other bachelors did not properly secure on/at the houses of their crushes. ",
-        "The \"Libesmaies\" are usually taped, tied or thrown on to the roofs of the german beachloretts to make them less accessible for potential thieves."
+        "Many bachelors try to avoid the hassle of stealing a tree in the forest by stealing trees that other bachelors did not properly secure on/at the houses of their crushes. ",
+        "The \"Libesmaies\" are usually taped, tied or thrown on to the roofs of the german bachelorettes to make them less accessible for potential thieves."
     };
     private int index;
 
