@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/scenes/menu.unity
     guid: a69b0945531580448b66d341cb0602db
   - enabled: 1
-    path: Assets/scenes/levelSelect.unity
+    path: Assets/scenes/options.unity
     guid: 6d80451f156b3c0418aadae588e4c57a
   - enabled: 1
     path: Assets/scenes/dress.unity
