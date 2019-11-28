@@ -1,7 +1,7 @@
 # German Valentine
 #### A 2D Pixel Art Game build for Android with Unity 2D 
 ![last-commit badge](https://img.shields.io/github/last-commit/fasust/GermanValentine.svg?style=flat-square)
-![tree badge](https://img.shields.io/badge/trees%20to%20cut-enough%20available-darkgreen?style=flat-square)
+![tree badge](https://img.shields.io/badge/virtual%20trees-enough%20available-darkgreen?style=flat-square)
 ![star badge](https://img.shields.io/github/stars/fasust/GermanValentine?style=social)
 
 | ![screen 1](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-0.png) | ![screen 2](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-1.png) | ![screen 3](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-3.png) | ![screen 4](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-4.png) |
