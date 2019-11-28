@@ -1,9 +1,8 @@
 # 🌳 German Valentine
 ### A 2D Pixel Art Game build for Android with Unity 2D 
 
-| ![screen 1](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-0.png)
- | ![screen 2](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-1.png) | ![screen 3](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-3.png) | ![screen 4](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-4.png) |
- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |  |
+| ![screen 1](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-0.png) | ![screen 2](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-1.png) | ![screen 3](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-3.png) | ![screen 4](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-4.png) |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 
 
 This game was built for the module Digital Design 2018 at Westerdals Oslo ACT.
