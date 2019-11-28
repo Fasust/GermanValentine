@@ -7,7 +7,7 @@
 | ![screen 1](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-0.png) | ![screen 2](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-1.png) | ![screen 3](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-3.png) | ![screen 4](https://github.com/Fasust/GermanValentine/blob/master/screens/playstore/play-store-screen-4.png) |
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 
-## 🌳 The Origin of the Game
+## 🌳 Origin of the Game
 The german “Liebesmaien” tradition is celebrated on the first of May. It is in its essence very close to the more well-known _Valentines day_. But instead of chocolate, german bachelors go out into the woods to chop down trees, dress them up and then secretly place them at the houses of their crushes. 
 
 ## 🥇 Goal of the Game 
