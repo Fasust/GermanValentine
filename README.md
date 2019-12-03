@@ -21,8 +21,10 @@ I created all used sprites and most of the sound effects myself. This is the mos
 All in all, this was a great opportunity to learn Unity and get some more experience in digital design.
 
 ### Useful Links
-<a href="https://github.com/Fasust/GermanValentine/releases/">📲 APK Download</a>
+<a href="https://play.google.com/store/apps/details?id=faust.freetime.GermanValentine">📲 Android PlayStore</a>
 
 <a href="https://unitylist.com/p/svp/German-Valentine">📢 Publication on Unity List</a>
 
 <a href="https://github.com/Fasust/GermanValentine/blob/master/German%20Valentine%20-%20Process%20Report.pdf">📄 Process Report</a>
+
+<a href="https://github.com/Fasust/GermanValentine/releases/">:octocat: GitHub APK Download</a>
