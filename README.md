@@ -23,4 +23,6 @@ All in all, this was a great opportunity to learn Unity and get some more experi
 ### Useful Links
 <a href="https://github.com/Fasust/GermanValentine/releases/">📲 APK Download</a>
 
+<a href="https://unitylist.com/p/svp/German-Valentine">📢 Publication on Unity List</a>
+
 <a href="https://github.com/Fasust/GermanValentine/blob/master/German%20Valentine%20-%20Process%20Report.pdf">📄 Process Report</a>
