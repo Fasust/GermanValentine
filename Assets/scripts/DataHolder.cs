@@ -1,6 +1,7 @@
 ﻿
 
-public class DataHolder {
+public class DataHolder
+{
     public static int score = 0;
 
 }

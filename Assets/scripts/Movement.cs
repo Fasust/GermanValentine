@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
-public class Movement : MonoBehaviour {
+public class Movement : MonoBehaviour
+{
     [Header("Horizontal Movement")]
     public float walkSpeed = 40f;
 
@@ -54,18 +52,21 @@ public class Movement : MonoBehaviour {
 
 
     // Start is called before the first frame update
-    void Awake() {
+    void Awake()
+    {
         state = GetComponent<PlayerState>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null) OnLandEvent = new UnityEvent();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         checkIfGrounded();
         calcCoyoteTime();
 
-        if (blocked || attacking) {
+        if (blocked || attacking)
+        {
             verticalMove = 0;
             horizontalMove = 0;
         }
@@ -73,26 +74,35 @@ public class Movement : MonoBehaviour {
         move();
     }
 
-    void Update() {
+    void Update()
+    {
 
         getInputs();
         changeDirection();
     }
 
-    private void calcCoyoteTime() {
-        if (grounded) {
+    private void calcCoyoteTime()
+    {
+        if (grounded)
+        {
             coyoteTimeCounter = coyoteTime;
-        } else {
+        }
+        else
+        {
             coyoteTimeCounter -= Time.deltaTime;
         }
     }
 
-    private void getInputs() {
+    private void getInputs()
+    {
 
-        if (Mathf.Abs(joystick.Horizontal) >= moveSensitivity) {
+        if (Mathf.Abs(joystick.Horizontal) >= moveSensitivity)
+        {
             horizontalMove = joystick.Horizontal;
 
-        } else {
+        }
+        else
+        {
             horizontalMove = 0;
         }
 
@@ -108,7 +118,8 @@ public class Movement : MonoBehaviour {
         if (horizontalMove <= -sprintThreshold) { horizontalMove = -.99f; }
     }
 
-    private void move() {
+    private void move()
+    {
 
         if (isCrouching()) horizontalMove *= crouchSpeedMultiplier;
 
@@ -125,7 +136,8 @@ public class Movement : MonoBehaviour {
         );
 
         //Jump
-        if ((grounded || coyoteTimeCounter > 0) && verticalMove > 0) {
+        if ((grounded || coyoteTimeCounter > 0) && verticalMove > 0)
+        {
             grounded = false;
             coyoteTimeCounter = 0;
 
@@ -136,7 +148,8 @@ public class Movement : MonoBehaviour {
         if (isStumping()) m_Rigidbody2D.AddForce(new Vector2(0f, -stumpForce));
 
         //Faster Fall
-        if (m_Rigidbody2D.velocity.y < 0) {
+        if (m_Rigidbody2D.velocity.y < 0)
+        {
             m_Rigidbody2D.velocity = new Vector2(
                                         m_Rigidbody2D.velocity.x,
                                         m_Rigidbody2D.velocity.y * fallMultiplier - 1
@@ -145,22 +158,27 @@ public class Movement : MonoBehaviour {
         }
 
         //Jump Cancel
-        if (m_Rigidbody2D.velocity.y > 0 && verticalMove <= 0) {
+        if (m_Rigidbody2D.velocity.y > 0 && verticalMove <= 0)
+        {
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y * jumpForceFallOff);
         }
     }
 
-    private void checkIfGrounded() {
+    private void checkIfGrounded()
+    {
         bool wasGrounded = grounded;
         grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround);
-        for (int i = 0; i < colliders.Length; i++) {
-            if (colliders[i].gameObject != gameObject) {
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
                 grounded = true;
-                if (!wasGrounded) {
+                if (!wasGrounded)
+                {
                     OnLandEvent.Invoke();
                 }
             }
@@ -168,12 +186,14 @@ public class Movement : MonoBehaviour {
     }
 
 
-    private void changeDirection() {
+    private void changeDirection()
+    {
         if (horizontalMove > 0 && !facingRight) Flip();
         else if (horizontalMove < 0 && facingRight) Flip();
     }
 
-    private void Flip() {
+    private void Flip()
+    {
         // Switch the way the player is labelled as facing.
         facingRight = !facingRight;
 
@@ -183,11 +203,13 @@ public class Movement : MonoBehaviour {
         transform.localScale = theScale;
     }
 
-    public void nockBack(float horizontalForce, float verticalForce) {
+    public void nockBack(float horizontalForce, float verticalForce)
+    {
         m_Rigidbody2D.AddForce(new Vector2(horizontalForce, verticalForce));
     }
 
-    public void dash(float force) {
+    public void dash(float force)
+    {
         m_Rigidbody2D.AddForce(new Vector2(joystick.Horizontal * force, joystick.Vertical * force));
     }
 

@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class FactCard : MonoBehaviour {
+public class FactCard : MonoBehaviour
+{
 
     [Header("Visuals")]
     public Image loadingAnimation;
@@ -40,7 +39,8 @@ public class FactCard : MonoBehaviour {
     };
     private int index;
 
-    void Start() {
+    void Start()
+    {
         readySound = GetComponent<AudioSource>();
         continueButton.onClick.AddListener(invokeAfterDisplay);
 
@@ -55,16 +55,23 @@ public class FactCard : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        if (showPermanent) {
+    void Update()
+    {
+        if (showPermanent)
+        {
             return;
         }
 
-        if (showing) {
-            if (delay > currentDelay) {
+        if (showing)
+        {
+            if (delay > currentDelay)
+            {
                 currentDelay += Time.deltaTime;
-            } else {
-                if (!continueButton.enabled) {
+            }
+            else
+            {
+                if (!continueButton.enabled)
+                {
                     continueButton.enabled = true;
                     continueButton.image.enabled = true;
                     continueButton.image.color = yellow;
@@ -77,7 +84,8 @@ public class FactCard : MonoBehaviour {
         }
     }
 
-    public void show() {
+    public void show()
+    {
         showing = true;
         index = Random.Range(0, facts.Length - 1);
 
@@ -91,7 +99,8 @@ public class FactCard : MonoBehaviour {
         text.text = facts[index].Replace("\\n", "\n");
         titelText.text = "Fact #00" + ((index) + 1);
     }
-    public void hide() {
+    public void hide()
+    {
         showing = false;
 
         text.enabled = false;
@@ -99,8 +108,10 @@ public class FactCard : MonoBehaviour {
         GetComponent<Image>().enabled = false;
         loadingAnimation.enabled = false;
     }
-    public void showNext() {
-        if (!showing) {
+    public void showNext()
+    {
+        if (!showing)
+        {
             show();
         }
         index++;
@@ -110,7 +121,8 @@ public class FactCard : MonoBehaviour {
         titelText.text = "Fact #00" + (index + 1);
 
     }
-    private void invokeAfterDisplay() {
+    private void invokeAfterDisplay()
+    {
         FindObjectOfType<AudioManager>().play("Button");
         afterDisplay.Invoke();
     }

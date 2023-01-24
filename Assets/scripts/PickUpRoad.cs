@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PickUpRoad : MonoBehaviour {
+public class PickUpRoad : MonoBehaviour
+{
 
     [Header("Movement")]
     public float BASE_SPEED = 400;
@@ -49,7 +47,8 @@ public class PickUpRoad : MonoBehaviour {
     private float BASE_CAR_PITCH = 1f;
     private float MAX_CAR_PITCH = 1.8f;
 
-    private void Start() {
+    private void Start()
+    {
         //Sound------------------
         FindObjectOfType<AudioManager>().play("Car");
 
@@ -66,20 +65,31 @@ public class PickUpRoad : MonoBehaviour {
 
         paddle = FindObjectOfType<GasPaddle>();
     }
-    void Update() {
-        if (!hit && !breaking) {
+    void Update()
+    {
+        if (!hit && !breaking)
+        {
             //Speed------------------
-            if (paddle.pressed) {
-                if (currentSpeed + acceloration * Time.deltaTime >= SPEED_LIMIT) {
+            if (paddle.pressed)
+            {
+                if (currentSpeed + acceloration * Time.deltaTime >= SPEED_LIMIT)
+                {
                     currentSpeed = SPEED_LIMIT;
-                } else {
+                }
+                else
+                {
                     currentSpeed += acceloration * Time.deltaTime;
                 }
                 currentSpeed += acceloration * Time.deltaTime;
-            } else {
-                if (currentSpeed - breakSpeed * Time.deltaTime < BASE_SPEED) {
+            }
+            else
+            {
+                if (currentSpeed - breakSpeed * Time.deltaTime < BASE_SPEED)
+                {
                     currentSpeed = BASE_SPEED;
-                } else {
+                }
+                else
+                {
                     currentSpeed -= breakSpeed * Time.deltaTime;
 
                 }
@@ -88,17 +98,26 @@ public class PickUpRoad : MonoBehaviour {
             print(currentSpeed);
 
             //Sound ------------
-            if (paddle.pressed) {
-                if (carPitch + pitchIncrease > MAX_CAR_PITCH) {
+            if (paddle.pressed)
+            {
+                if (carPitch + pitchIncrease > MAX_CAR_PITCH)
+                {
                     FindObjectOfType<AudioManager>().setPitch("Car", MAX_CAR_PITCH);
-                } else {
+                }
+                else
+                {
                     FindObjectOfType<AudioManager>().setPitch("Car", carPitch += pitchIncrease);
                 }
 
-            } else {
-                if (carPitch - pitchFallOff < BASE_CAR_PITCH) {
+            }
+            else
+            {
+                if (carPitch - pitchFallOff < BASE_CAR_PITCH)
+                {
                     FindObjectOfType<AudioManager>().setPitch("Car", BASE_CAR_PITCH);
-                } else {
+                }
+                else
+                {
                     FindObjectOfType<AudioManager>().setPitch("Car", carPitch -= pitchFallOff);
                 }
 
@@ -114,7 +133,8 @@ public class PickUpRoad : MonoBehaviour {
 
 
             //Throw -----------------
-            if (lever.GetComponent<leverControl>().wasHit && !throwing) {
+            if (lever.GetComponent<leverControl>().wasHit && !throwing)
+            {
                 throwing = true;
                 animator.SetTrigger("throw");
 
@@ -123,9 +143,11 @@ public class PickUpRoad : MonoBehaviour {
         yMove = 0;
 
     }
-    void OnCollisionEnter2D(Collision2D col) {
+    void OnCollisionEnter2D(Collision2D col)
+    {
         //Particals
-        if (!hit) {
+        if (!hit)
+        {
             Instantiate(hitParitecels, col.transform.position, Quaternion.identity);
             smokeBigParitecels.GetComponent<ParticleSystem>().Play();
             FindObjectOfType<AudioManager>().play("Hit");
@@ -133,7 +155,8 @@ public class PickUpRoad : MonoBehaviour {
             lose();
         }
     }
-    void moveUp() {
+    void moveUp()
+    {
 
         if (hit || throwing) { return; }
 
@@ -149,7 +172,8 @@ public class PickUpRoad : MonoBehaviour {
             FindObjectOfType<AudioManager>().play("Dash");
 
             //Animaton
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("pickup_german_turn_up")) {
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("pickup_german_turn_up"))
+            {
                 animator.SetTrigger("up");
             }
 
@@ -157,12 +181,15 @@ public class PickUpRoad : MonoBehaviour {
             sprite.sortingOrder--;
 
             yMove = yMoveDistance;
-        } else {
+        }
+        else
+        {
             //Sound------------------
             FindObjectOfType<AudioManager>().play("Hit");
         }
     }
-    void moveDown() {
+    void moveDown()
+    {
         if (hit || throwing) { return; }
 
         //Sound------------------
@@ -177,7 +204,8 @@ public class PickUpRoad : MonoBehaviour {
             FindObjectOfType<AudioManager>().play("Dash");
 
             //Animaton
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("pickup_german_turn_down")) {
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("pickup_german_turn_down"))
+            {
                 animator.SetTrigger("down");
             }
             //Sprite
@@ -185,13 +213,16 @@ public class PickUpRoad : MonoBehaviour {
 
 
             yMove = -yMoveDistance;
-        } else {
+        }
+        else
+        {
             //Sound------------------
             FindObjectOfType<AudioManager>().play("Hit");
         }
     }
 
-    public void throwTree() {
+    public void throwTree()
+    {
 
         cam.centerX();
         FindObjectOfType<AudioManager>().stop("Car");
@@ -201,16 +232,22 @@ public class PickUpRoad : MonoBehaviour {
 
         breaking = true;
     }
-    public void win() {
+    public void win()
+    {
         FindObjectOfType<TimerMain>().stop();
         animator.SetTrigger("win");
     }
-    public void lose() {
-        if (!hit) {
+    public void lose()
+    {
+        if (!hit)
+        {
             //Animation
-            if (throwing) {
+            if (throwing)
+            {
                 animator.SetTrigger("loseNoTree");
-            } else {
+            }
+            else
+            {
                 animator.SetTrigger("lose");
             }
 

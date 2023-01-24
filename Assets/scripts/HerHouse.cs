@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-public class HerHouse : MonoBehaviour {
+public class HerHouse : MonoBehaviour
+{
 
     public PickUpRoad player;
     public Fireworks fireworks;
@@ -17,16 +15,22 @@ public class HerHouse : MonoBehaviour {
     private float stayTime;
     private bool won;
 
-    void OnTriggerStay2D(Collider2D col) {
-        if (stayTime < minStayTime) {
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (stayTime < minStayTime)
+        {
             stayTime += Time.deltaTime;
-        } else {
+        }
+        else
+        {
             win(col.GetComponent<ThrownTree>());
         }
     }
 
-    void win(ThrownTree tree) {
-        if (won) {
+    void win(ThrownTree tree)
+    {
+        if (won)
+        {
             return;
         }
         won = true;
@@ -35,7 +39,7 @@ public class HerHouse : MonoBehaviour {
 
         int currentPoints = 0;
         float distanz = Mathf.Abs(tree.transform.position.x - arrow.transform.position.x);
-        
+
         if (distanz < 100) currentPoints = BASE_SCORE;
         else if (distanz < 200) currentPoints = BASE_SCORE - SCORE_STEPS;
         else if (distanz < 300) currentPoints = BASE_SCORE - SCORE_STEPS * 2;

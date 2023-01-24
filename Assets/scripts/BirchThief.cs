@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BirchThief : MonoBehaviour {
+public class BirchThief : MonoBehaviour
+{
 
     [Header("Visuals")]
     public GameObject bloodParticels;
@@ -22,21 +21,25 @@ public class BirchThief : MonoBehaviour {
     public AudioSource audio;
 
     // Use this for initialization
-    void Awake() {
+    void Awake()
+    {
         bloodParticels.GetComponent<ParticleSystem>().Stop();
         sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         //Movement -----------------------
-        if (transform.transform.position.y >= yDistance) {
+        if (transform.transform.position.y >= yDistance)
+        {
             //Turn after Distance
             yspeed = -yspeed;
         }
 
-        if (!hit) {
-			bloodParticels.GetComponent<ParticleSystem>().Stop();
+        if (!hit)
+        {
+            bloodParticels.GetComponent<ParticleSystem>().Stop();
             //Move 
             Vector3 target = new Vector3(
                 transform.position.x + xspeed * Time.deltaTime,
@@ -47,16 +50,21 @@ public class BirchThief : MonoBehaviour {
         }
 
         //Render ---------------------------
-        if (playerAncor.transform.position.y > ancor.transform.position.y) {
+        if (playerAncor.transform.position.y > ancor.transform.position.y)
+        {
             sprite.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder - 1;
-        } else {
+        }
+        else
+        {
             sprite.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder + 1;
         }
 
     }
-    void OnCollisionEnter2D(Collision2D col) {
+    void OnCollisionEnter2D(Collision2D col)
+    {
 
-        if (!hit) {
+        if (!hit)
+        {
             bloodParticels.GetComponent<ParticleSystem>().Play();
             hit = true;
             animator.SetTrigger("lose");

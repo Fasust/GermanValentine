@@ -2,7 +2,8 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class ButtonLongPress : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler {
+public class ButtonLongPress : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+{
     [SerializeField]
     [Tooltip("How long must pointer be down on this object to trigger a long press")]
     private float holdTime = 1f;
@@ -13,23 +14,27 @@ public class ButtonLongPress : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public UnityEvent onLongPress = new UnityEvent();
 
-    public void OnPointerDown(PointerEventData eventData) {
+    public void OnPointerDown(PointerEventData eventData)
+    {
         //held = false;
         Invoke("OnLongPress", holdTime);
     }
 
-    public void OnPointerUp(PointerEventData eventData) {
+    public void OnPointerUp(PointerEventData eventData)
+    {
         CancelInvoke("OnLongPress");
 
         //if (!held)
         //    onClick.Invoke();
     }
 
-    public void OnPointerExit(PointerEventData eventData) {
+    public void OnPointerExit(PointerEventData eventData)
+    {
         CancelInvoke("OnLongPress");
     }
 
-    private void OnLongPress() {
+    private void OnLongPress()
+    {
         //held = true;
         onLongPress.Invoke();
     }

@@ -1,24 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 
-public class ScoreSaver : MonoBehaviour {
+public class ScoreSaver : MonoBehaviour
+{
     private string PrefKeyPrefix = "german_valentine_score_";
     private string PrefKeySize = "german_valentine_score_size";
 
     public TMP_InputField input;
     public StateManagerMain manager;
 
-    void Start(){
+    void Start()
+    {
         FindObjectOfType<Score>().setBlocked();
     }
 
-    public void SaveScore() {
+    public void SaveScore()
+    {
         string name;
-        if(input.text == "" || input.text == null){
+        if (input.text == "" || input.text == null)
+        {
             name = "Mr. Placeholder";
-        }else{
+        }
+        else
+        {
             name = input.text;
         }
 

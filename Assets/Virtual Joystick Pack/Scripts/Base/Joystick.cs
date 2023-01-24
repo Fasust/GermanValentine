@@ -41,4 +41,4 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     }
 }
 
-public enum JoystickMode { AllAxis, Horizontal, Vertical}
+public enum JoystickMode { AllAxis, Horizontal, Vertical }

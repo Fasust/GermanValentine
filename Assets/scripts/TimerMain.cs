@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-public class TimerMain : MonoBehaviour {
+public class TimerMain : MonoBehaviour
+{
 
     private float startTime;
     private bool finish = false;
@@ -11,15 +10,18 @@ public class TimerMain : MonoBehaviour {
     private Score score;
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         startTime = Time.time;
         score = FindObjectOfType<Score>();
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
-        if (finish) {
+        if (finish)
+        {
             return;
         }
 
@@ -28,11 +30,13 @@ public class TimerMain : MonoBehaviour {
         string minutes = ((int)timeSinceStart / 60).ToString();
         string seconds = (timeSinceStart % 60).ToString("f" + milisecondDesimels);
 
-        if (minutes.Length == 1) {
+        if (minutes.Length == 1)
+        {
             minutes = "0" + minutes;
         }
 
-        if (seconds.Length == 2 + milisecondDesimels) {
+        if (seconds.Length == 2 + milisecondDesimels)
+        {
             seconds = "0" + seconds;
         }
 
@@ -40,7 +44,8 @@ public class TimerMain : MonoBehaviour {
 
     }
 
-    public void stop() {
+    public void stop()
+    {
         finish = true;
         this.GetComponent<TextMeshProUGUI>().color = Color.yellow;
 

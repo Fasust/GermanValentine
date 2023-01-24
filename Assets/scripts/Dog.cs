@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Dog : MonoBehaviour {
+public class Dog : MonoBehaviour
+{
     [Header("Movement")]
     private float OG_SPEED;
     public float movingSpeed = 100;
@@ -45,20 +43,23 @@ public class Dog : MonoBehaviour {
     private Rigidbody2D rigbody;
 
 
-    void Start() {
+    void Start()
+    {
         alertDisplay.enabled = false;
         OG_SPEED = movingSpeed;
         rigbody = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         float flipper = isFacingRight ? 1 : -1;
 
         //Applie Movement
         rigbody.velocity = new Vector2(movingSpeed * flipper, rigbody.velocity.y);
     }
 
-    private void Update() {
+    private void Update()
+    {
 
         dogAnimator.SetBool("aggro", aggro || detected);
 
@@ -75,19 +76,24 @@ public class Dog : MonoBehaviour {
         findPlayer();
         findPlayerCloseProx();
 
-        if (aggro) {
+        if (aggro)
+        {
             charge();
-        } else {
+        }
+        else
+        {
             relax();
         }
 
         attack();
     }
 
-    private void findPlayerCloseProx() {
+    private void findPlayerCloseProx()
+    {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, closeProxAggroRange, playerMask);
 
-        if (playerColliders.Length != 0) {
+        if (playerColliders.Length != 0)
+        {
             //He is close
             PlayerState playerState = playerColliders[0].GetComponent<PlayerState>();
 
@@ -98,11 +104,13 @@ public class Dog : MonoBehaviour {
         }
     }
 
-    private void attack() {
+    private void attack()
+    {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(attackPos.position, attackRange, playerMask);
 
 
-        foreach (Collider2D col in playerColliders) {
+        foreach (Collider2D col in playerColliders)
+        {
             PlayerState playerState = col.GetComponent<PlayerState>();
 
             if (playerState.isHidden()) continue;
@@ -123,12 +131,15 @@ public class Dog : MonoBehaviour {
         }
     }
 
-    private void relax() {
-        if (!pantingSourcePlaying) {
+    private void relax()
+    {
+        if (!pantingSourcePlaying)
+        {
             pantingSourcePlaying = true;
             pantingSource.Play();
         }
-        if (chargingSoundPlaying) {
+        if (chargingSoundPlaying)
+        {
             chargingSoundPlaying = false;
             chargingSound.Stop();
         }
@@ -137,12 +148,15 @@ public class Dog : MonoBehaviour {
         alertDisplay.enabled = false;
     }
 
-    private void charge() {
-        if (pantingSourcePlaying) {
+    private void charge()
+    {
+        if (pantingSourcePlaying)
+        {
             pantingSourcePlaying = false;
             pantingSource.Stop();
         }
-        if (!chargingSoundPlaying) {
+        if (!chargingSoundPlaying)
+        {
             chargingSoundPlaying = true;
             chargingSound.Play();
         }
@@ -151,17 +165,20 @@ public class Dog : MonoBehaviour {
         alertDisplay.enabled = true;
     }
 
-    private void findPlayer() {
+    private void findPlayer()
+    {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, viewRange, playerMask);
 
 
 
-        if (playerColliders.Length == 0) {
+        if (playerColliders.Length == 0)
+        {
             lowerAggression();
             return;
         }
 
-        foreach (Collider2D col in playerColliders) {
+        foreach (Collider2D col in playerColliders)
+        {
             PlayerState playerState = col.GetComponent<PlayerState>();
             Vector3 playerPos = col.transform.position;
 
@@ -169,50 +186,64 @@ public class Dog : MonoBehaviour {
             float topEyeLevel = transform.position.y + eyeLevelMargin;
             float bottomEyeLevel = transform.position.y - eyeLevelMargin;
 
-            if (!(playerPos.y <= topEyeLevel && playerPos.y >= bottomEyeLevel)) {
+            if (!(playerPos.y <= topEyeLevel && playerPos.y >= bottomEyeLevel))
+            {
                 lowerAggression();
                 continue;
             }
 
             //check if he hides
-            if (playerState.isHidden()) {
+            if (playerState.isHidden())
+            {
                 lowerAggression();
                 continue;
             }
 
             //check if we are looking the right way
             if ((isFacingRight && playerPos.x >= transform.position.x) ||
-            (!isFacingRight && playerPos.x <= transform.position.x)) {
+            (!isFacingRight && playerPos.x <= transform.position.x))
+            {
                 //We can detect Him
                 raiseAggression();
-            } else {
+            }
+            else
+            {
                 lowerAggression();
             }
         }
     }
-    private void raiseAggression() {
+    private void raiseAggression()
+    {
         if (aggro) return;
 
-        if (aggroTimer >= aggroDelay) {
+        if (aggroTimer >= aggroDelay)
+        {
             aggro = true;
             relaxTimer = 0;
-        } else {
+        }
+        else
+        {
             aggroTimer += Time.deltaTime;
         }
     }
-    private void lowerAggression() {
+    private void lowerAggression()
+    {
         if (!aggro) return;
 
-        if (relaxTimer >= aggroDecay) {
+        if (relaxTimer >= aggroDecay)
+        {
             aggro = false;
             aggroTimer = 0;
-        } else {
+        }
+        else
+        {
             relaxTimer += Time.deltaTime;
         }
 
     }
 
-    private void flip() {
+    private void flip()
+    {
         //GetComponent<SpriteRenderer>().flipX = isFacingRight;
         transform.localScale =
                 new Vector3(
@@ -223,18 +254,22 @@ public class Dog : MonoBehaviour {
         isFacingRight = transform.localScale.x > 0;
     }
 
-    private void checkForWalls() {
+    private void checkForWalls()
+    {
         hitRight = false;
 
         //Right
         Collider2D[] collidersRight = Physics2D.OverlapCircleAll(rightWallCheck.position, wallCheckRadius, whatIsWall);
-        for (int i = 0; i < collidersRight.Length; i++) {
-            if (collidersRight[i].gameObject != gameObject) {
+        for (int i = 0; i < collidersRight.Length; i++)
+        {
+            if (collidersRight[i].gameObject != gameObject)
+            {
                 hitRight = true;
             }
         }
     }
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, viewRange);
         Gizmos.color = Color.red;

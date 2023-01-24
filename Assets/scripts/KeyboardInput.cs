@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class KeyboardInput : MonoBehaviour 
+public class KeyboardInput : MonoBehaviour
 {
     public float Horizontal;
     public float Vertical;
@@ -10,8 +8,8 @@ public class KeyboardInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         Horizontal = Input.GetAxisRaw("Horizontal") * 100;
-         Vertical = Input.GetAxisRaw("Vertical") * 100;
+        Horizontal = Input.GetAxisRaw("Horizontal") * 100;
+        Vertical = Input.GetAxisRaw("Vertical") * 100;
 
     }
 }

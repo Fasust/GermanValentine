@@ -8,8 +8,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float m_fallMultiplier = 2.5f;
     [SerializeField] private float m_lowJumpMultiplier = 2f;
 
-    [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
-    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
+    [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
+    [Range(0, .3f)][SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                                   // A position marking where to check for ceilings
@@ -66,7 +66,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float move, bool crouch, float vertical_move)
     {
-       
+
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
@@ -104,9 +104,9 @@ public class CharacterController2D : MonoBehaviour
             Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
             // And then smoothing it out and applying it to the character
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(
-                m_Rigidbody2D.velocity, 
-                targetVelocity, 
-                ref m_Velocity, 
+                m_Rigidbody2D.velocity,
+                targetVelocity,
+                ref m_Velocity,
                 m_MovementSmoothing
             );
 

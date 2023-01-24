@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PrezelTruck : MonoBehaviour {
+public class PrezelTruck : MonoBehaviour
+{
 
     [Header("Movement")]
     private bool hit;
@@ -20,25 +19,29 @@ public class PrezelTruck : MonoBehaviour {
     public GameObject smokeBigParitecels;
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         smokeBigParitecels.GetComponent<ParticleSystem>().Stop();
         horn.volume = volume;
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         //Horn----------------------
         if (player.transform.position.x >= detectionPos.transform.position.x &&
             player.transform.position.x <= this.transform.position.x &&
             player.transform.position.y <= this.transform.position.y + detectionYRange &&
             player.transform.position.y >= this.transform.position.y - detectionYRange &&
-            !honked) {
+            !honked)
+        {
             horn.Play();
             honked = true;
         }
 
         //Movement -----------------------
-        if (!hit) {
+        if (!hit)
+        {
             smokeBigParitecels.GetComponent<ParticleSystem>().Stop();
             //Move 
             Vector3 target = new Vector3(
@@ -52,9 +55,11 @@ public class PrezelTruck : MonoBehaviour {
         yMove = 0;
     }
 
-    void OnCollisionEnter2D(Collision2D col) {
+    void OnCollisionEnter2D(Collision2D col)
+    {
 
-        if (!hit) {
+        if (!hit)
+        {
             smokeBigParitecels.GetComponent<ParticleSystem>().Play();
             FindObjectOfType<AudioManager>().play("Hit");
             hit = true;

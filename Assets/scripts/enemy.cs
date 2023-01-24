@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class enemy : MonoBehaviour {
+public class enemy : MonoBehaviour
+{
     [Header("Stats")]
     public int MAX_HEALTH = 100;
     public int POINTS = 1000;
@@ -22,7 +21,8 @@ public class enemy : MonoBehaviour {
     public GameObject pointsGain;
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         health = MAX_HEALTH;
         healthDisplay.enabled = false;
 
@@ -35,26 +35,34 @@ public class enemy : MonoBehaviour {
         camShake = GameObject.FindGameObjectWithTag("CamController").GetComponent<camShake>();
     }
 
-    void Update() {
+    void Update()
+    {
         //Check if Player in range && Not Damaged
         if (Physics2D.OverlapCircleAll(transform.position, playerMinRange, playerLayer).Length > 0 &&
          health == MAX_HEALTH
-         ) {
+         )
+        {
             points.SetActive(true);
-        } else {
+        }
+        else
+        {
             points.SetActive(false);
         }
     }
 
-    public bool takeDamage(int amount) {
+    public bool takeDamage(int amount)
+    {
         //Particals
         Instantiate(particalEffect, transform.position, Quaternion.identity);
 
         //Animation
         bool facingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>().isFacingRight();
-        if (facingRight) {
+        if (facingRight)
+        {
             enemyAnimator.SetTrigger("hit_fl");
-        } else {
+        }
+        else
+        {
             enemyAnimator.SetTrigger("hit");
         }
 
@@ -71,7 +79,8 @@ public class enemy : MonoBehaviour {
         if (healthDisplay.enabled == false) { healthDisplay.enabled = true; }
         healthBar.fillAmount = (float)health / (float)MAX_HEALTH;
 
-        if (health <= 0) {
+        if (health <= 0)
+        {
             die();
             return true;
         }
@@ -79,7 +88,8 @@ public class enemy : MonoBehaviour {
 
     }
 
-    private void die() {
+    private void die()
+    {
         pointsGain.SetActive(true);
         enemyAnimator.SetTrigger("die");
         healthDisplay.enabled = false;

@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Score : MonoBehaviour {
+public class Score : MonoBehaviour
+{
     public int MILLISECOND_LOSE = 1;
     public int startScore = 10000;
     private int currentScore;
@@ -13,15 +12,21 @@ public class Score : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         ui = this.GetComponent<TextMeshProUGUI>();
 
         //Load Score
-        if (SceneManager.GetActiveScene().name == "drive") {
+        if (SceneManager.GetActiveScene().name == "drive")
+        {
             currentScore += DataHolder.score;
-        } else if (SceneManager.GetActiveScene().name == "name_edit") {
-             currentScore = DataHolder.score;
-        } else {
+        }
+        else if (SceneManager.GetActiveScene().name == "name_edit")
+        {
+            currentScore = DataHolder.score;
+        }
+        else
+        {
             currentScore += startScore;
         }
 
@@ -30,32 +35,41 @@ public class Score : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         ui.text = currentScore.ToString();
     }
 
-    public void add(int val) {
+    public void add(int val)
+    {
         if (block) return;
         currentScore += val;
     }
-    public void subtract(int val) {
+    public void subtract(int val)
+    {
         if (block) return;
 
-        if (currentScore - val < 0) {
+        if (currentScore - val < 0)
+        {
             currentScore = 0;
-        } else {
+        }
+        else
+        {
             currentScore -= val;
         }
     }
-    private void timeDecal() {
+    private void timeDecal()
+    {
         subtract(MILLISECOND_LOSE);
     }
-    public void setBlocked() {
+    public void setBlocked()
+    {
         block = true;
         this.GetComponent<TextMeshProUGUI>().color = Color.yellow;
     }
 
-    public void saveScore() {
+    public void saveScore()
+    {
         DataHolder.score = currentScore;
     }
     public int getCurrentScore() => currentScore;

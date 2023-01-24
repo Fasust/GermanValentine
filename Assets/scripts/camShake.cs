@@ -1,24 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class camShake : MonoBehaviour {
+public class camShake : MonoBehaviour
+{
 
     public Animator camAnim;
 
-	public void shake(){
+    public void shake()
+    {
         camAnim.SetTrigger("shake");
     }
-	public void shakeTiny()
-	{
-		camAnim.SetTrigger("shakeTiny");
-	}
-	public void shakeDrive()
-	{
-		camAnim.SetTrigger("shakeDrive");
-	}
-	public void zoomOut()
-	{
-		camAnim.SetBool("zoomOut",true);
-	}
+    public void shakeTiny()
+    {
+        camAnim.SetTrigger("shakeTiny");
+    }
+    public void shakeDrive()
+    {
+        camAnim.SetTrigger("shakeDrive");
+    }
+    public void zoomOut()
+    {
+        camAnim.SetBool("zoomOut", true);
+    }
 }

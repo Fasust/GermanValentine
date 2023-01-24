@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviour {
+public class PlayerAnimation : MonoBehaviour
+{
 
     [Header("Visuals")]
     private Animator playerAnimator;
@@ -16,7 +15,8 @@ public class PlayerAnimation : MonoBehaviour {
     private bool pickUpTriggered = false;
     private bool detectionTriggered = false;
 
-    void Start() {
+    void Start()
+    {
         //Get own Components
         movement = this.GetComponent<Movement>();
         state = this.GetComponent<PlayerState>();
@@ -29,20 +29,23 @@ public class PlayerAnimation : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         playerAnimator.SetFloat("speed", Mathf.Abs(movement.getHorizontalMove()));
         playerAnimator.SetBool("sneak", movement.isCrouching());
         playerAnimator.SetBool("jump", movement.isAirborn());
 
         hiddenDisplay.enabled = state.isHidden();
 
-        if (state.isCarrying() && !pickUpTriggered) {
+        if (state.isCarrying() && !pickUpTriggered)
+        {
             pickUpTriggered = true;
             playerAnimator.SetTrigger("carrying");
             particalEffect.GetComponent<ParticleSystem>().Play();
         }
 
-        if (state.isDetected() && !detectionTriggered) {
+        if (state.isDetected() && !detectionTriggered)
+        {
             detectionTriggered = true;
             playerAnimator.SetTrigger("detect");
             particalEffect.GetComponent<ParticleSystem>().Stop();
@@ -50,7 +53,8 @@ public class PlayerAnimation : MonoBehaviour {
 
     }
 
-    public void onLand() {
+    public void onLand()
+    {
         playerAnimator.SetBool("jump", false);
         camShake.shakeTiny();
 

@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerState : MonoBehaviour {
+public class PlayerState : MonoBehaviour
+{
     [Header("Hiding")]
     public LayerMask hideMask;
 
@@ -15,17 +14,21 @@ public class PlayerState : MonoBehaviour {
     private bool carrying;
     private bool detected;
 
-    void Start() {
+    void Start()
+    {
         movement = this.GetComponent<Movement>();
     }
 
-    public void makeCarry() {
+    public void makeCarry()
+    {
         carrying = true;
         FindObjectOfType<AudioManager>().play("Pickup");
     }
 
-    public void detect() {
-        if (!detected) {
+    public void detect()
+    {
+        if (!detected)
+        {
             detected = true;
             FindObjectOfType<AudioManager>().play("Gameover");
 
@@ -36,7 +39,8 @@ public class PlayerState : MonoBehaviour {
         }
     }
 
-    public bool isHidden() {
+    public bool isHidden()
+    {
         return movement.isCrouching() &&
         !movement.isBlocked() &&
         GetComponent<Collider2D>().IsTouchingLayers(hideMask);

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-public class RangerController : MonoBehaviour {
+public class RangerController : MonoBehaviour
+{
 
     [Header("Movement")]
     public bool isFacingRight = true;
@@ -38,7 +38,8 @@ public class RangerController : MonoBehaviour {
     private bool walkingSoundPlaying = false;
     private bool searchSoundPlaying = false;
 
-    void Start() {
+    void Start()
+    {
         alertDisplay.enabled = false;
         searchingDisplay.enabled = false;
         initialPosition = transform.position;
@@ -46,8 +47,10 @@ public class RangerController : MonoBehaviour {
         rigthMoveDistance = initialPosition.x + rigthMoveDistance;
         leftMoveDistance = initialPosition.x - leftMoveDistance;
     }
-    void Update() {
-        if (rangerAnimator.GetCurrentAnimatorStateInfo(0).IsName("ranger_right_detected")) {
+    void Update()
+    {
+        if (rangerAnimator.GetCurrentAnimatorStateInfo(0).IsName("ranger_right_detected"))
+        {
             return;
         }
 
@@ -56,35 +59,43 @@ public class RangerController : MonoBehaviour {
         PlayerState playerState = null;
 
         detecting = false;
-        foreach (Collider2D col in playerColliders) {
+        foreach (Collider2D col in playerColliders)
+        {
             playerState = col.GetComponent<PlayerState>();
 
-            if (!playerState.isHidden()) {
+            if (!playerState.isHidden())
+            {
                 detecting = true;
             }
 
         }
 
-        if (detecting) {
+        if (detecting)
+        {
             //Searching
             searchForPlayer(playerState);
-        } else {
+        }
+        else
+        {
             //Move 
             regularMove();
         }
 
     }
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         //Applie Movement
         GetComponent<Rigidbody2D>().velocity = new Vector2(velocity * Time.fixedDeltaTime * 100, GetComponent<Rigidbody2D>().velocity.y);
 
     }
 
-    private void searchForPlayer(PlayerState playerState) {
+    private void searchForPlayer(PlayerState playerState)
+    {
         //Sound
         walkingSource.Stop();
         walkingSoundPlaying = false;
-        if (!searchSoundPlaying) {
+        if (!searchSoundPlaying)
+        {
             searchSound.Play();
             searchSoundPlaying = true;
         }
@@ -98,13 +109,15 @@ public class RangerController : MonoBehaviour {
         velocity = 0;
 
         //Instant Detect
-        if (Vector2.Distance(this.transform.position, playerState.transform.position) <= instantDetectionRange) {
+        if (Vector2.Distance(this.transform.position, playerState.transform.position) <= instantDetectionRange)
+        {
             detect(playerState);
         }
 
         //Timeing
         float curMul = 1;
-        if (playerState.isCrouching()) {
+        if (playerState.isCrouching())
+        {
             curMul = SNEAKING_DETECTION_MULTIPLIER;
         }
         currentSearchingTime += Time.deltaTime * curMul;
@@ -115,11 +128,13 @@ public class RangerController : MonoBehaviour {
         float greenValue = 255 - (progress * 255);
         searchingBar.color = new Color32(255, (byte)greenValue, 0, 255);
 
-        if (currentSearchingTime >= SERACHING_TIME) {
+        if (currentSearchingTime >= SERACHING_TIME)
+        {
             detect(playerState);
         }
     }
-    private void detect(PlayerState playerState) {
+    private void detect(PlayerState playerState)
+    {
         //Sound
         walkingSource.Stop();
         walkingSoundPlaying = false;
@@ -133,11 +148,13 @@ public class RangerController : MonoBehaviour {
         playerState.detect();
         alertDisplay.enabled = true;
     }
-    private void regularMove() {
+    private void regularMove()
+    {
         //Resets-------------------------
 
         //Sound
-        if (!walkingSoundPlaying) {
+        if (!walkingSoundPlaying)
+        {
             walkingSource.Play();
             walkingSoundPlaying = true;
         }
@@ -150,29 +167,38 @@ public class RangerController : MonoBehaviour {
         currentSearchingTime = 0;
 
         //Movement-------------------------
-        switch (isFacingRight) {
+        switch (isFacingRight)
+        {
             case true:
                 //Moving Right
-                if (transform.position.x <= rigthMoveDistance) {
+                if (transform.position.x <= rigthMoveDistance)
+                {
                     velocity = movingSpeed;
-                } else {
+                }
+                else
+                {
                     flip();
 
                 }
                 break;
             case false:
                 // Moving Left
-                if (transform.position.x >= leftMoveDistance) {
+                if (transform.position.x >= leftMoveDistance)
+                {
                     velocity = -movingSpeed;
-                } else {
+                }
+                else
+                {
                     flip();
 
                 }
                 break;
         }
     }
-    public void flip() {
-        if (!nowSearching) {
+    public void flip()
+    {
+        if (!nowSearching)
+        {
             nowSearching = true;
             rangerAnimator.SetTrigger("search");
             walkingSource.Stop();
@@ -180,7 +206,8 @@ public class RangerController : MonoBehaviour {
             return;
         }
 
-        if (!rangerAnimator.GetCurrentAnimatorStateInfo(0).IsName("ranger_searching")) {
+        if (!rangerAnimator.GetCurrentAnimatorStateInfo(0).IsName("ranger_searching"))
+        {
 
             transform.localScale =
                 new Vector3(
@@ -197,7 +224,8 @@ public class RangerController : MonoBehaviour {
 
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(lightPos.position, lightRange);
     }

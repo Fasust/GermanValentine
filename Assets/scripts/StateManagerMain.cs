@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StateManagerMain : MonoBehaviour {
+public class StateManagerMain : MonoBehaviour
+{
     public Button replayButton;
     public Button startOverButton;
     public bool hideReplay = true;
 
-    void Start() {
+    void Start()
+    {
 
-        if (hideReplay) {
+        if (hideReplay)
+        {
             replayButton.enabled = false;
             replayButton.image.enabled = false;
             replayButton.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
@@ -23,10 +24,12 @@ public class StateManagerMain : MonoBehaviour {
         }
 
     }
-    public void relode() {
+    public void relode()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void showReplay() {
+    public void showReplay()
+    {
         replayButton.enabled = true;
         replayButton.image.enabled = true;
         replayButton.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
@@ -36,16 +39,20 @@ public class StateManagerMain : MonoBehaviour {
         startOverButton.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
     }
 
-    public void loadLevel(string name) {
+    public void loadLevel(string name)
+    {
         SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
-    public void startOver() {
+    public void startOver()
+    {
         loadLevel("chop");
     }
-    public void emptyAllScores() {
+    public void emptyAllScores()
+    {
         PlayerPrefs.DeleteAll();
     }
-    public void clearCurrentCashedScore() {
+    public void clearCurrentCashedScore()
+    {
         DataHolder.score = 0;
     }
 }
